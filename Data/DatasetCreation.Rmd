@@ -1,0 +1,92 @@
+---
+title: "Creating the dataset"
+author: "DLW"
+date: "5/20/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(wakefield)
+library(tidyverse)
+library(summarytools)
+library(psych)
+library(scales)
+```
+
+```{r}
+dat <-
+  r_data_frame(
+    n = 300,
+    id,
+    # 2 groups
+    athlete = dummy,
+    smokes,
+    live_on_campus = dummy,
+    # 3+ groups
+    race, 
+    sex_inclusive,
+    `grade_class` = level,
+    political,
+    # Scale variables
+    height,
+    iq(mean = 103.5),
+    hs_gpa = normal(mean = 3.1, sd = .3, min = 2, max = 4),
+    r_series(normal, j = 2, name = "weight", mean = 170, sd = 15, relate = "+5_5"),
+    `age` = rpois(lambda = 3), #Need to add 17 to this value
+    r_series(normal, j = 4, name = "ACT", mean = 21, sd = 5.4, min = 1, max = 36, relate = "+.3_6"),
+    r_series(likert, 5, name = "SWLS_time1", relate = "-.5_.1"),
+    r_series(likert, 5, name = "SWLS_time2", relate = "-.5_.1"),
+    r_series(normal, j = 3, name = "Exam", mean = 75, sd = 10, min = 0, max = 100, relate = "+5_5")
+    ) %>%
+  mutate_at(vars(starts_with("SWLS")), rescale, to = c(1, 5)) %>% # Comment 1 below
+  mutate_at(vars(starts_with("SWLS")), round, digits = 0) %>% 
+  mutate_at(vars(starts_with("ACT")), rescale, to = c(1, 36)) %>% 
+  mutate_at(vars(starts_with("Exam")), rescale, to = c(0, 100)) %>% 
+  mutate_at(vars(starts_with("ACT"), starts_with("weight"), starts_with("Exam")), 
+            round, digits = 0) %>%
+  rename(ACT_English = ACT_4, # Comment 2 below
+         ACT_Mathematics = ACT_3,
+         ACT_Reading = ACT_1,
+         ACT_Science = ACT_2)
+```
+
+# Comment 1
+
+Unfortunately, the relate argument in the r_series option messes up the range of the response scale. If you ran the above code for SWLS without the mutate_at function below, then this would be the response ranges for the five items:
+
+1. Item_1: 1-5
+2. Item_2: 0-5
+3. Item_3: -1-5
+4. Item_4: -2-5
+5. Item_5: -3-4
+
+Clearly, the response scales should always be 1-5. Therefore, needed to rescale using the scales::rescale package into being 1-5. 
+
+# Comment 2
+
+ACT scores range from 1-36 and the average composite score is 21 (sd = 5.4). I did the relate function so that the scores went up by subscale slightly and then renamed and ordered by what students typically get highest scores on (english) to lowest (science). 
+
+```{r, warning = FALSE, message = FALSE, include = FALSE}
+# So I can quickly see the data summary
+view(dfSummary(dat))
+```
+
+```{r}
+# Needed to check my scales had decent Cronbach's alphas
+dat %>%
+  as.data.frame() %>%
+  select(starts_with("SWLS_time2")) %>%
+  psych::alpha()
+
+# Needed to check my ACT scores had the proper-ish relationships
+cor(dat[, c(16:19)])
+```
+
+```{r}
+write.csv(dat, file = "dataset.csv", row.names = FALSE)
+```
+
+
+
