@@ -13,6 +13,7 @@ library(tidyverse)
 library(summarytools)
 library(psych)
 library(scales)
+library(janitor)
 ```
 
 ```{r}
@@ -49,7 +50,8 @@ dat <-
   rename(ACT_English = ACT_4, # Comment 2 below
          ACT_Mathematics = ACT_3,
          ACT_Reading = ACT_1,
-         ACT_Science = ACT_2)
+         ACT_Science = ACT_2) %>% 
+  clean_names()
 ```
 
 # Comment 1
@@ -85,8 +87,11 @@ cor(dat[, c(16:19)])
 ```
 
 ```{r}
-write.csv(dat, file = "dataset.csv", row.names = FALSE)
+write_csv(dat, path = "dataset.csv") 
 ```
 
 
+```{r}
+temp <- read_csv("dataset.csv")
+```
 
