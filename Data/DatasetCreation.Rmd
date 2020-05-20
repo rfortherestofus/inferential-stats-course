@@ -70,7 +70,7 @@ ACT scores range from 1-36 and the average composite score is 21 (sd = 5.4). I d
 
 ```{r}
 # So I can quickly see the data summary
-dfSummary(dat, plain.ascii = FALSE, style = "grid", valid.col = FALSE)
+print(dfSummary(dat, plain.ascii = FALSE, style = "grid", valid.col = FALSE), method = 'render')
 ```
 
 ```{r}
