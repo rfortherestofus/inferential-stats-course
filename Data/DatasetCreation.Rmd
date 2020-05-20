@@ -2,7 +2,7 @@
 title: "Creating the dataset"
 author: "DLW"
 date: "5/20/2020"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -19,26 +19,26 @@ library(scales)
 dat <-
   r_data_frame(
     n = 300,
-    id,
+    id = id,
     # 2 groups
     athlete = dummy,
-    smokes,
+    smokes = smokes,
     live_on_campus = dummy,
     # 3+ groups
-    race, 
-    sex_inclusive,
+    race = race, 
+    sex = sex_inclusive,
     `grade_class` = level,
-    political,
+    political = political,
     # Scale variables
-    height,
-    iq(mean = 103.5),
+    height = height,
+    iq = iq(mean = 103.5),
     hs_gpa = normal(mean = 3.1, sd = .3, min = 2, max = 4),
     r_series(normal, j = 2, name = "weight", mean = 170, sd = 15, relate = "+5_5"),
     `age` = rpois(lambda = 3), #Need to add 17 to this value
     r_series(normal, j = 4, name = "ACT", mean = 21, sd = 5.4, min = 1, max = 36, relate = "+.3_6"),
     r_series(likert, 5, name = "SWLS_time1", relate = "-.5_.1"),
     r_series(likert, 5, name = "SWLS_time2", relate = "-.5_.1"),
-    r_series(normal, j = 3, name = "Exam", mean = 75, sd = 10, min = 0, max = 100, relate = "+5_5")
+    r_series(normal, j = 3, name = "exam", mean = 75, sd = 10, min = 0, max = 100, relate = "+5_5")
     ) %>%
   mutate_at(vars(starts_with("SWLS")), rescale, to = c(1, 5)) %>% # Comment 1 below
   mutate_at(vars(starts_with("SWLS")), round, digits = 0) %>% 
@@ -68,9 +68,9 @@ Clearly, the response scales should always be 1-5. Therefore, needed to rescale 
 
 ACT scores range from 1-36 and the average composite score is 21 (sd = 5.4). I did the relate function so that the scores went up by subscale slightly and then renamed and ordered by what students typically get highest scores on (english) to lowest (science). 
 
-```{r, warning = FALSE, message = FALSE, include = FALSE}
+```{r}
 # So I can quickly see the data summary
-view(dfSummary(dat))
+dfSummary(dat, plain.ascii = FALSE, style = "grid", valid.col = FALSE)
 ```
 
 ```{r}
