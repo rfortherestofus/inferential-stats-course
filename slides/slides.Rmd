@@ -15,10 +15,82 @@ output:
 ```{r child = "setup.Rmd"}
 ```
 
-## R for the Rest of Us Slides
+```{r eval = TRUE, echo = FALSE}
+```
 
-This file is what a user will see when they select your template. Make sure that you update the fields in the yaml header. In particular you will want to update the `output` field to whatever format your template requires.
+class: center, middle, dk-section-title
 
-This is a good place to demonstrate special features that your template provides. Ideally it should knit out-of-the-box, or at least contain clear instructions as to what needs changing.
+# Welcome to the Course!
 
-Finally, be sure to remove this message!
+---
+
+
+## What you will learn in this course
+
+???
+
+This course will cover seven topics. 
+1. First, we're going to learn four main inferential statistics...
+
+5. We'll also learn how to conduct reliability such as Cronbach's alpha, a measure of internal consistency.
+
+6. Then we'll learn how to report statistics in R through learning how to extract values from the summary output, tidying up the results, and using packages to report statistics easily.
+
+7. Lastly, we'll cover how to test assumptions of your parametric tests and what to do if you do not meet the assumptions of normally distributed data. 
+
+--
+
+1. t-tests: independent and dependent
+
+--
+
+2. ANOVA: mainly the one-way ANOVA
+
+--
+
+3. chi-square
+
+--
+
+4. regression
+
+--
+
+5. reliability (internal consistency)
+
+--
+
+6. how to report statistics in R
+
+--
+
+7. how to test parametric assumptions
+
+---
+
+## What you will need for this course
+
+-- 
+
+1. R and RStudio!
+
+--
+
+2. Dataset: [insert dataset here]
+
+--
+
+3. Packages: [insert packages here]
+  + broom
+  + apa
+  + psych
+  + lm.beta
+  + etc.
+  
+---
+
+## How this course will work
+
+
+
+
