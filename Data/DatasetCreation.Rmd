@@ -84,6 +84,11 @@ dat %>%
 
 # Needed to check my ACT scores had the proper-ish relationships
 cor(dat[, c(16:19)])
+
+# DK: This is how I would do it with tidyverse
+dat %>% 
+  select(act_science:swls_time1_1) %>% 
+  cor()
 ```
 
 ```{r}
