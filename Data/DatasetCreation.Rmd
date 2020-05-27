@@ -22,13 +22,13 @@ dat <-
     n = 300,
     id = id,
     # 2 groups
-    athlete = dummy,
+    athlete = dummy(prob = c(70, 30)),
     smokes = smokes,
-    live_on_campus = dummy,
+    live_on_campus = dummy(prob = c(22, 78)),
     # 3+ groups
     race = race, 
-    sex = sex_inclusive,
-    `grade_class` = level,
+    gender = gender_inclusive(prob = c(49, 47, 4)),
+    `grade_class` = level(prob = c(27, 26, 25, 24)),
     political = political,
     # Scale variables
     height = height,
@@ -51,6 +51,16 @@ dat <-
          ACT_Mathematics = ACT_3,
          ACT_Reading = ACT_1,
          ACT_Science = ACT_2) %>% 
+  mutate(grade_class = recode(grade_class,
+                              `1` = "Freshman",
+                              `2` = "Sophomore",
+                              `3` = "Junior",
+                              `4` = "Senior")) %>%
+  mutate(political = recode(political,
+                            "Constitution" = "Other",
+                            "Libertarian" = "Other",
+                            "Green" = "Other")) %>%
+  mutate(age = age + 17) %>%
   clean_names()
 ```
 
@@ -83,20 +93,17 @@ dat %>%
   psych::alpha()
 
 # Needed to check my ACT scores had the proper-ish relationships
-cor(dat[, c(16:19)])
-
-# DK: This is how I would do it with tidyverse
 dat %>% 
-  select(act_science:swls_time1_1) %>% 
+  select(act_reading:act_english) %>% 
   cor()
 ```
 
 ```{r}
-write_csv(dat, path = "dataset.csv") 
+write_csv(dat, path = "college.csv") 
 ```
 
 
 ```{r}
-temp <- read_csv("dataset.csv")
+temp <- read_csv("college.csv")
 ```
 
