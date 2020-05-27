@@ -8,15 +8,19 @@ output:
     nature:
       highlightStyle: github
       highlightLines: true
+      highlightSpans: true
       countIncrementalSlides: false
       ratio: 16:9
 ---
 
 ```{r child = "setup.Rmd"}
 ```
-
-```{r eval = TRUE, echo = FALSE}
+```{r packages, include = F, eval = T}
+library(tidyverse)
+library(skimr)
+library(summarytools)
 ```
+
 
 class: center, middle, dk-section-title
 
@@ -76,7 +80,7 @@ This course will cover seven topics.
 
 --
 
-2. Dataset: [insert dataset here]
+2. Dataset: college.csv
 
 --
 
@@ -91,6 +95,342 @@ This course will cover seven topics.
 
 ## How this course will work
 
+---
 
+class: center, middle, dk-section-title
+
+# Introduction to the dataset
+
+---
+
+## college.csv
+
+```{r eval = TRUE}
+college <- read_csv("../Data/college.csv")
+
+college 
+```
+
+---
+
+```{r eval = TRUE, echo = FALSE, results = 'asis'}
+st_css()
+print(dfSummary(college[2:5], style = "grid", valid.col = FALSE, caption = FALSE, graph.magnif = 1.2,
+                varnumbers = FALSE, na.col = FALSE, headings = FALSE), method = 'render')
+```
+
+---
+
+```{r eval = TRUE, echo = FALSE, results = 'asis'}
+st_css()
+print(dfSummary(college[6:9], style = "grid", valid.col = FALSE, caption = FALSE, graph.magnif = 1.2,
+                varnumbers = FALSE, na.col = FALSE, headings = FALSE), method = 'render')
+```
+
+---
+
+```{r eval = TRUE, echo = FALSE, results = 'asis'}
+st_css()
+print(dfSummary(college[c(10:11, 14)], style = "grid", valid.col = FALSE, caption = FALSE,
+                varnumbers = FALSE, na.col = FALSE, headings = FALSE), method = 'render')
+```
+
+---
+
+```{r eval = TRUE, echo = FALSE, results = 'asis'}
+st_css()
+print(dfSummary(college[15:18], style = "grid", valid.col = FALSE, caption = FALSE,
+                varnumbers = FALSE, na.col = FALSE, headings = FALSE), method = 'render')
+```
+
+---
+
+## Satisfaction with Life Scale
+
+```{r eval = TRUE, echo = FALSE, results = 'asis', rows.print = 10}
+college %>%
+  select(19:28) %>%
+  summarytools::descr(., stats = c("mean", "min", "max"), headings = FALSE) %>%
+  tb()
+```
+
+---
+
+```{r eval = TRUE, echo = FALSE, results = 'asis'}
+st_css()
+print(dfSummary(college[29:31], style = "grid", valid.col = FALSE, caption = FALSE,
+                varnumbers = FALSE, na.col = FALSE, headings = FALSE), method = 'render')
+```
+
+---
+
+class:inverse
+
+## Your Turn
+
+You'll be working with the college dataset to run all your analyses. 
+
+--
+
+1. Create a new project. Make sure you put it somehwere you'll be able to find it again later!
+
+--
+
+1. Download the dataset "college.csv"
+
+--
+
+1. Create a new R script file where you'll do all of your inferential statistics
+
+--
+
+1. Import the spreadsheet into a dataframe `college`
+
+---
+
+class: center, middle, dk-section-title
+
+# t-tests
+
+---
+
+## Independent vs dependent t-test
+
+.pull-left[
+### Independent t-test
+
+- Between-subjects
+- Independent samples
+- Examine the mean difference between two unrelated groups (e.g., males and females, a group of mothers and a group of daughters)
+]
+
+--
+
+.pull-right[
+### Dependent t-test
+
+- Within-subjects
+- Dependent or paired samples
+- Examine the mean difference between two related groups (e.g., same group at two time points, pairs of mothers and daughters)
+]
+
+--
+
+Both t-tests are performed using the `t.test()` function in the **stats** package
+
+---
+
+## Independent t-test
+
+```{r}
+dat %>%
+  t.test(DV ~ IV, .)
+```
+
+???
+
+This is the basic syntax of the independent t-test using the tidyverse. There are a lot of other arguments in the t.test function that we'll slowly learn about. 
+
+---
+
+## Independent t-test
+
+```{r}
+dat %>%
+  t.test(DV ~ IV, `.`)
+```
+
+???
+
+One of the arguments is the data argument. In the t.test function, the dataset argument comes second. This is why the dot comes second instead of first.
+
+--
+
+```{r}
+dat %>%
+  t.test(., DV ~ IV)
+```
+
+--
+
+`## Error: Can't combine id <character> and athlete <double>.`
+
+???
+
+If you put the dot first, indicating to put the dataset at the beginning, it won't work
+
+---
+
+## Independent t-test
+
+Let's try running an independent samples t-test with our `college` dataset. 
+
+--
+
+```{r}
+college %>%
+  t.test(weight_2 ~ smokes, .)
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  t.test(weight_2 ~ smokes, .)
+```
+
+--
+
+The t-test defaults to assuming the variances between groups is *not* equal.
+
+---
+
+## Variances Equal
+
+```{r}
+college %>%
+  t.test(weight_2 ~ smokes, ., `var.equal = TRUE`)
+```
+
+???
+
+Add the argument `var.equal = TRUE` to specify that we assume the variances between groups is equal.
+
+--
+
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  t.test(weight_2 ~ smokes, ., var.equal = TRUE)
+```
+
+---
+
+## Alternative hypothesis
+
+The default alternative hypothesis is a **two-sided hypothesis** that the mean difference is not equal to 0. 
+
+```{r}
+college %>%
+  t.test(weight_2 ~ smokes, ., var.equal = TRUE, `alternative = "two.sided"`)
+```
+
+--
+
+What if you have a **one-sided hypothesis**? 
+
+--
+
+```{r}
+college %>%
+  t.test(weight_2 ~ smokes, ., var.equal = TRUE, `alternative = "greater"`)
+```
+
+```{r}
+college %>%
+  t.test(weight_2 ~ smokes, ., var.equal = TRUE, `alternative = "less"`)
+```
+
+???
+
+The alternative argument lets you specify either **less** or **greater** than 0. 
+
+---
+
+## Alternative hypothesis
+
+.pull-left[
+```{r, eval = TRUE}
+college %>%
+  t.test(weight_2 ~ smokes, ., 
+         var.equal = TRUE, 
+         alternative = "two.sided")
+```
+]
+
+--
+
+.pull-right[
+```{r, eval = TRUE}
+college %>%
+  t.test(weight_2 ~ smokes, ., 
+         var.equal = TRUE, 
+         alternative = "greater")
+```
+]
+
+???
+
+Notice that the p-value is half of the previous value of .2305. 
+
+---
+
+## Other arguments in the t-test
+.pull-left[
+```{r}
+college %>%
+  t.test(weight_2 ~ smokes, ., 
+         `mu = 1`)
+```
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  t.test(weight_2 ~ smokes, ., 
+         mu = 1)
+```
+]
+
+???
+
+mu is a greek symbol for the population mean, or in this case the mean difference that we're testing for. It defaults at 0, but you can change it to any value to test whether the mean difference is mu.
+
+--
+
+.pull-right[
+```{r}
+college %>%
+  t.test(weight_2 ~ smokes, ., 
+         `conf.level = .99`)
+```
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  t.test(weight_2 ~ smokes, ., 
+         conf.level = .99)
+```
+]
+
+???
+
+You can also adjust the confidence intervals to be from the default 95% confidence interval to something else, such as a 99% confidence interval.
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform an independent samples t-test to test whether there is a difference in `exam_1` by `athlete`. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
+
+--
+
+1. Filter your dataset to only people who have the `political` party of Democrat or Republican. Perform an independent samples t-test to test whether there is a difference in `age` by `political` party. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
+
+```{r include = FALSE}
+
+### T-TEST ANSWERS
+
+## 2 ##
+college %>%
+  t.test(exam_1 ~ athlete, ., var.equal = TRUE)
+
+## 3 ##
+college %>%
+  filter(political != "Other") %>%
+  t.test(age ~ political, ., var.equal = FALSE)
+```
 
 
