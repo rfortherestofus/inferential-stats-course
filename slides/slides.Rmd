@@ -220,7 +220,7 @@ Both t-tests are performed using the `t.test()` function in the **stats** packag
 
 ---
 
-## Independent t-test
+### Independent t-test
 
 ```{r}
 dat %>%
@@ -233,7 +233,7 @@ This is the basic syntax of the independent t-test using the tidyverse. There ar
 
 ---
 
-## Independent t-test
+### Independent t-test
 
 ```{r}
 dat %>%
@@ -261,7 +261,7 @@ If you put the dot first, indicating to put the dataset at the beginning, it won
 
 ---
 
-## Independent t-test
+### Independent t-test
 
 Let's try running an independent samples t-test with our `college` dataset. 
 
@@ -285,7 +285,7 @@ The t-test defaults to assuming the variances between groups is *not* equal.
 
 ---
 
-## Variances Equal
+### Variances Equal
 
 ```{r}
 college %>%
@@ -305,7 +305,7 @@ college %>%
 
 ---
 
-## Alternative hypothesis
+### Alternative hypothesis
 
 The default alternative hypothesis is a **two-sided hypothesis** that the mean difference is not equal to 0. 
 
@@ -336,7 +336,7 @@ The alternative argument lets you specify either **less** or **greater** than 0.
 
 ---
 
-## Alternative hypothesis
+### Alternative hypothesis
 
 .pull-left[
 ```{r, eval = TRUE}
@@ -364,7 +364,7 @@ Notice that the p-value is half of the previous value of .2305.
 
 ---
 
-## Other arguments in the t-test
+### Other arguments in the t-test
 .pull-left[
 ```{r}
 college %>%
@@ -405,7 +405,7 @@ You can also adjust the confidence intervals to be from the default 95% confiden
 
 class: inverse
 
-## Your Turn
+### Your Turn
 
 --
 
@@ -419,7 +419,7 @@ class: inverse
 
 1. Filter your dataset to only people who have the `political` party of Democrat or Republican. Perform an independent samples t-test to test whether there is a difference in `age` by `political` party. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
 
-```{r include = FALSE}
+```{r, include = FALSE}
 
 ### T-TEST ANSWERS
 
@@ -433,4 +433,160 @@ college %>%
   t.test(age ~ political, ., var.equal = FALSE)
 ```
 
+## Dependent t-test
 
+### Independent vs dependent t-test
+
+.pull-left[
+### Independent t-test
+
+- Between-subjects
+- Independent samples
+- Examine the mean difference between two unrelated groups (e.g., males and females, a group of mothers and a group of daughters)
+]
+
+--
+
+.pull-right[
+### Dependent t-test
+
+- Within-subjects
+- Dependent or paired samples
+- Examine the mean difference between two related groups (e.g., same group at two time points, pairs of mothers and daughters)
+]
+
+--
+
+### Dependent t-test
+
+```{r}
+dat %>%
+  t.test(DV1, DV2, `paired = TRUE`, .)
+```
+
+```{r}
+dat %>%
+  t.test(DV ~ IV, `paired = TRUE`, .)
+```
+
+???
+
+This is the basic syntax of the dependent t-test using the tidyverse. Notice the inclusion of paired = TRUE argument. This tells R the data is a paired samples or dependent samples t-test. 
+
+There are two ways of inputting the data. If your data is in wide format, with each person representing a row and two columns of data per person, then you'll use the first set of code. However, if your data is in long format, with each person's data at two time points representing a row (therefore having double the rows of data) then you'll use the second set of code. 
+
+---
+
+### Dependent t-test
+
+```{r}
+college %>%
+  t.test(weight_1, weight_2, data = ., paired = TRUE)
+```
+
+
+---
+
+# One-way ANOVA
+
+---
+
+## One-way ANOVA
+
+- Between-subjects
+
+--
+
+- Independent samples
+
+--
+
+- Examine the mean difference between **three or more** unrelated groups
+
+--
+
+- Tests the null hypothesis that the three or more means are the same
+
+--
+
+- To know *where* the mean differences are, we need planned contrasts or post-hoc procedures like Tukey's HSD (we'll cover that in the next video)
+
+---
+
+### One-way ANOVA in R
+
+```{r}
+dat %>%
+  aov(DV ~ IV, data = .) %>%
+  summary()
+```
+
+---
+
+### An example
+
+```{r, eval = TRUE}
+college %>%
+  aov(exam_1 ~ grade_class, data = .)
+```
+
+--
+
+The output is not very useful. For that reason, we need to store the output into a model and ask for the summary of the model. 
+
+---
+
+### An example
+
+```{r}
+college %>%
+  aov(exam_1 ~ grade_class, data = .) %>%
+  summary() #<<
+```
+-- 
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  aov(exam_1 ~ grade_class, data = .) %>%
+  summary()
+```
+
+```{r, include = FALSE}
+modelsummary <- summary(model)
+```
+
+
+The `summary()` output provides the F-value (`r round(modelsummary[[1]]$"F value", 2)`), df (`r modelsummary[[1]]$Df`), and p-value (`r round(modelsummary[[1]]$"Pr(>F)"[1], 3)`) you need to report the statistical values. 
+
+---
+
+class: inverse
+
+### Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. Is there a difference? What is the p-value? 
+
+--
+
+1. Previously, you performed a t-test between Democrats and Republicans to see if there is a difference in age between the two groups. Now, using all three groups of `political`, test whether there is a difference in `age`. Is there a difference? What is the p-value? 
+
+```{r include = FALSE}
+
+### T-TEST ANSWERS
+
+## 2 ##
+college %>%
+  aov(hs_gpa ~ grade_class, data = .) %>%
+  summary()
+
+## 3 ##
+college %>%
+  aov(age ~ political, data = .) %>%
+  summary()
+```
