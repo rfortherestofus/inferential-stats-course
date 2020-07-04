@@ -192,7 +192,7 @@ You'll be working with the college dataset to run all your analyses.
 
 class: center, middle, dk-section-title
 
-# t-tests
+# Independent t-tests
 
 ---
 
@@ -222,7 +222,7 @@ Both t-tests are performed using the `t.test()` function in the **stats** packag
 
 ---
 
-### Independent t-test
+## Independent t-test in R
 
 ```{r}
 dat %>%
@@ -235,7 +235,7 @@ This is the basic syntax of the independent t-test using the tidyverse. There ar
 
 ---
 
-### Independent t-test
+## Independent t-test in R
 
 ```{r}
 dat %>%
@@ -263,7 +263,7 @@ If you put the dot first, indicating to put the dataset at the beginning, it won
 
 ---
 
-### Independent t-test
+## An example
 
 Let's try running an independent samples t-test with our `college` dataset. 
 
@@ -287,7 +287,7 @@ The t-test defaults to assuming the variances between groups is *not* equal.
 
 ---
 
-### Variances Equal
+## Variances Equal
 
 ```{r}
 college %>%
@@ -307,7 +307,7 @@ college %>%
 
 ---
 
-### Alternative hypothesis
+## Alternative hypothesis
 
 The default alternative hypothesis is a **two-sided hypothesis** that the mean difference is not equal to 0. 
 
@@ -338,7 +338,7 @@ The alternative argument lets you specify either **less** or **greater** than 0.
 
 ---
 
-### Alternative hypothesis
+## Alternative hypothesis
 
 .pull-left[
 ```{r, eval = TRUE}
@@ -366,7 +366,7 @@ Notice that the p-value is half of the previous value of .2305.
 
 ---
 
-### Other arguments in the t-test
+## Other arguments in the t-test
 .pull-left[
 ```{r}
 college %>%
@@ -407,7 +407,7 @@ You can also adjust the confidence intervals to be from the default 95% confiden
 
 class: inverse
 
-### Your Turn
+## Your Turn
 
 --
 
@@ -431,17 +431,19 @@ college %>%
 
 ## 3 ##
 college %>%
-  filter(political != "Other") %>%
-  t.test(age ~ political, ., var.equal = FALSE)
+  filter(gender != "Trans*") %>%
+  t.test(act_english ~ gender, ., var.equal = FALSE)
 ```
 
 ---
 
-## Dependent t-test
+class: center, middle, dk-section-title
+
+# Dependent t-test
 
 ---
 
-### Independent vs dependent t-test
+## Independent vs dependent t-test
 
 .pull-left[
 ### Independent t-test
@@ -461,7 +463,7 @@ college %>%
 
 ---
 
-### Dependent t-test
+## Dependent t-test in R
 
 The dependent t-test adds a new argument to the `t.test` function: 
 
@@ -504,7 +506,7 @@ There are two ways of inputting the data. If your data is in wide format, with e
 
 ---
 
-### Dependent t-test
+## An example
 
 ```{r}
 t.test(college$weight_1, college$weight_2, paired = TRUE)
@@ -518,7 +520,7 @@ t.test(college$weight_1, college$weight_2, paired = TRUE)
 
 ---
 
-### Converting wide to long format
+## Converting wide to long format
 
 ```{r}
 college %>%
@@ -546,7 +548,7 @@ college %>%
 
 class: inverse
 
-### Your Turn
+## Your Turn
 
 --
 
@@ -558,7 +560,7 @@ class: inverse
 
 --
 
-1. Perform a dependent samples t-test to test whether there is a difference in `act_english` and `act_reading` scores. Is there a difference? What is the p-value?
+1. Perform a dependent samples t-test to test whether there is a difference in `act_science` and `act_mathematics` scores. Is there a difference? What is the p-value?
 
 --
 
@@ -574,7 +576,7 @@ Using `pivot_longer` pivot your data so it is in long form. Perform a dependent 
 t.test(college$exam_1, college$exam_2, paired = TRUE)
 
 ## 3 ##
-t.test(college$act_english, college$act_reading, paired = TRUE)
+t.test(college$act_science, college$act_mathematics, paired = TRUE)
 
 ## BONUS ##
 college %>%
@@ -589,6 +591,8 @@ college %>%
 
 
 ---
+
+class: center, middle, dk-section-title
 
 # One-way ANOVA
 
@@ -616,17 +620,19 @@ college %>%
 
 ---
 
-### One-way ANOVA in R
+## One-way ANOVA in R
 
 ```{r}
 dat %>%
-  aov(DV ~ IV, data = .) %>%
+  `aov`(DV ~ IV, data = .) %>%
   summary()
 ```
 
+The formatting for the one-way ANOVA is similar to that of `t.test` except we replace it with `aov`.
+
 ---
 
-### An example
+## An example
 
 ```{r, eval = TRUE}
 college %>%
@@ -635,37 +641,39 @@ college %>%
 
 --
 
-The output is not very useful. For that reason, we need to store the output into a model and ask for the summary of the model. 
+The output is not very useful. For that reason, we need to ask for the summary of the model. 
 
 ---
 
-### An example
+## An example
 
 ```{r}
 college %>%
-  aov(exam_1 ~ grade_class, data = .) %>%
+  aov(age ~ grade_class, data = .) %>%
   summary() #<<
 ```
 
--- 
+--
 
 ```{r, eval = TRUE, echo = FALSE}
 college %>%
-  aov(exam_1 ~ grade_class, data = .) %>%
+  aov(age ~ grade_class, data = .) %>%
   summary()
 ```
 
 ```{r, eval = TRUE, echo = FALSE}
-modelsummary <- summary(aov(exam_1 ~ grade_class, data = college))
+modelsummary <- summary(aov(age ~ grade_class, data = college))
 ```
 
 The `summary()` output provides the F-value (`r round(modelsummary[[1]]$"F value"[1], 2)`), df (`r modelsummary[[1]]$Df`), and p-value (`r round(modelsummary[[1]]$"Pr(>F)"[1], 3)`) you need to report the statistical values. 
+
+The summary will add asterisks if there are any statistically significant p-values (e.g., `‘*’ 0.05`).
 
 ---
 
 class: inverse
 
-### Your Turn
+## Your Turn
 
 --
 
@@ -673,11 +681,11 @@ class: inverse
 
 --
 
-1. Perform one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. Is there a difference? What is the p-value? 
+1. Perform a one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. Is there a difference? What is the p-value? 
 
 --
 
-1. Previously, you performed a t-test between Democrats and Republicans to see if there is a difference in age between the two groups. Now, using all three groups of `political`, test whether there is a difference in `age`. Is there a difference? What is the p-value? 
+1. Perform a one-way ANOVA to test whether there is a difference in `act_english` by `race`. Is there a difference? What is the p-value? 
 
 ```{r include = FALSE}
 
@@ -690,6 +698,124 @@ college %>%
 
 ## 3 ##
 college %>%
-  aov(age ~ political, data = .) %>%
+  aov(act_english ~ race, data = .) %>%
   summary()
 ```
+
+---
+
+class: center, middle, dk-section-title
+
+# Post hoc comparisons
+
+---
+
+## Post hoc comparisons
+
+The one-way ANOVA tests the null hypothesis that there is no mean difference between the 3+ groups. If the one-way ANOVA is statistically significant, it does not tell us *where* the differences lie.
+
+--
+
+For that, we need post hoc comparisons.*
+
+--
+
+There are many post hoc comparisons possible (e.g., Fisher's LSD, Bonferroni, Newman-Keuls, Scheffe), but we're going to focus on **Tukey's HSD** because it's easy to calculate and does a good job protecting against Type I errors without being too conservative. 
+
+??
+
+Tukey's Honest Significant Differences
+
+---
+
+## Tukey's HSD
+
+```{r}
+dat %>%
+  aov(DV ~ IV, data = .) %>%
+  `TukeyHSD()`
+```
+
+---
+
+## An example
+
+```{r}
+college %>%
+  aov(act_reading ~ gender, data = .) %>%
+  summary()
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  aov(act_reading ~ gender, data = .) %>%
+  summary()
+```
+
+---
+
+## An example
+
+```{r}
+college %>%
+  aov(act_reading ~ gender, data = .) %>%
+  TukeyHSD()
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE, highlight.output = 8}
+college %>%
+  aov(act_reading ~ gender, data = .) %>%
+  TukeyHSD()
+```
+
+--
+
+Female students tend to have higher ACT reading scores than male students. There are no differences in ACT reading scores between male and female students with Trans* students.
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. Is there a difference? If so, perform a Tukey's HSD to test where the differences are. Describe the differences.
+
+--
+
+1. Perform one-way ANOVA to test whether there is a difference in `weight_1` by `gender`. Is there a difference? If so, perform a Tukey's HSD to test where the differences are. Describe the differences. 
+
+```{r include = FALSE}
+
+### ONE-WAY ANOVA ANSWERS
+
+## 2 ##
+college %>%
+  aov(hs_gpa ~ grade_class, data = .) %>%
+  summary()
+# No Tukey's HSD because there is no statistically significant difference.
+
+## 3 ##
+college %>%
+  aov(weight_1 ~ gender, data = .) %>%
+  summary()
+
+college %>%
+  aov(weight_1 ~ gender, data = .) %>%
+  TukeyHSD
+# 
+```
+
+---
+
+
+
