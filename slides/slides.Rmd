@@ -817,5 +817,123 @@ college %>%
 
 ---
 
+class: center, middle, dk-section-title
+
+# Other ANOVA tests
+
+---
+
+## Repeated measures ANOVA
+
+Repeated Measures ANOVA allows us to examine designs in which the same people or samples contributed to the different means (within-groups design). This means that all participants or cases participated in all conditions of an experiment or IV. 
+
+**Example**: Let's examine how exam scores (`exam_1`, `exam_2`, and `exam_3`) differ within individuals across time. 
+
+---
+
+### An example
+
+First, we need to convert our data to long format.
+
+```{r}
+college %>%
+  select(starts_with("exam"), id) %>%
+  pivot_longer(cols = starts_with("exam"), 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "exam_")
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  select(starts_with("exam"), id) %>%
+  pivot_longer(cols = starts_with("exam"), 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "exam_")
+```
+
+---
+
+### An example
+
+Then we can run our repeated measures ANOVA.
+
+```{r}
+college %>%
+  select(starts_with("exam"), id) %>%
+  pivot_longer(cols = starts_with("exam"), 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "exam_") %>%
+  aov(score ~ exam + Error(id), data = .) %>% #<<
+  summary() #<<
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE, highlight.output = 8}
+college %>%
+  select(starts_with("exam"), id) %>%
+  pivot_longer(cols = starts_with("exam"), 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "exam_") %>%
+  aov(score ~ exam + Error(id), data = .) %>%
+  summary()
+```
+
+---
+
+## Factorial ANOVA
+
+Factorial ANOVA allows us to examine two or more independent variables (IVs) simultaneously. There are several types of factorial designs:
+
+--
+
+- **Independent factorial design**: 2+ between-group (independent) IVs 
+
+--
+
+-	**Repeated measures factorial design**: 2+ within-group (repeated-measures) IVs
+
+--
+
+-	**Mixed factorial design**: 1+ between-group and 1+ within-group IVs
+
+---
+
+## Factorial ANOVA
+
+To perform a factorial ANOVA in R, all you need to do is add more variables to the right hand of the tilde (~) in the ANOVA equation using either a + (does not add an interaction term) or * (adds an interaction term).
+
+---
+
+## Example independent factorial design
+
+```{r, eval = TRUE}
+college %>% aov(weight_1 ~ gender + smokes, data = .) %>% summary() # NO INTERACTION
+```
+
+--
+
+```{r, eval = TRUE}
+college %>% aov(weight_1 ~ gender * smokes, data = .) %>% summary() #  INTERACTION 
+```
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+Read more about how to conduct repeated measures and factorial ANOVA designs using the resources below.
+
+
+
 
 
