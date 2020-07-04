@@ -19,6 +19,8 @@ output:
 library(tidyverse)
 library(skimr)
 library(summarytools)
+
+college <- read_csv("../Data/college.csv")
 ```
 
 
@@ -433,7 +435,11 @@ college %>%
   t.test(age ~ political, ., var.equal = FALSE)
 ```
 
+---
+
 ## Dependent t-test
+
+---
 
 ### Independent vs dependent t-test
 
@@ -445,8 +451,6 @@ college %>%
 - Examine the mean difference between two unrelated groups (e.g., males and females, a group of mothers and a group of daughters)
 ]
 
---
-
 .pull-right[
 ### Dependent t-test
 
@@ -455,19 +459,42 @@ college %>%
 - Examine the mean difference between two related groups (e.g., same group at two time points, pairs of mothers and daughters)
 ]
 
---
+---
 
 ### Dependent t-test
 
+The dependent t-test adds a new argument to the `t.test` function: 
+
+.center[`paired = TRUE`]
+
+--
+
+.pull-left[
 ```{r}
-dat %>%
-  t.test(DV1, DV2, `paired = TRUE`, .)
+t.test(`dat$DV1, dat$DV2`, 
+       paired = TRUE)
 ```
 
+
+Used when the data are in **wide** format.
+
+Each *case or pair* is a row, and the DV is in two different columns.
+(This is most common.)
+
+<font size = "3">Note that piping the dataset doesn't work here. You have to explicitly type out data$DV.</font>
+]
+
+--
+
+.pull-right[
 ```{r}
 dat %>%
-  t.test(DV ~ IV, `paired = TRUE`, .)
+  t.test(`DV ~ IV`, paired = TRUE, .)
 ```
+Used when the data are in **long** format.
+
+Each *observation* is a row, and the DV is in one column and the case or pair ID is in another column.
+]
 
 ???
 
@@ -480,8 +507,84 @@ There are two ways of inputting the data. If your data is in wide format, with e
 ### Dependent t-test
 
 ```{r}
+t.test(college$weight_1, college$weight_2, paired = TRUE)
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE, highlight.output = 5}
+t.test(college$weight_1, college$weight_2, paired = TRUE)
+```
+
+---
+
+### Converting wide to long format
+
+```{r}
 college %>%
-  t.test(weight_1, weight_2, data = ., paired = TRUE)
+  select(weight_1, weight_2) %>%
+  pivot_longer(cols = starts_with("weight"), 
+               names_to = "time",
+               values_to = "weight",
+               names_prefix = "weight_") %>%
+  `t.test(weight ~ time, data = ., paired = TRUE)`
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE, highlight.output = 5}
+college %>%
+  select(weight_1, weight_2) %>%
+  pivot_longer(cols = starts_with("weight"), 
+               names_to = "time",
+               values_to = "weight",
+               names_prefix = "weight_") %>%
+  t.test(weight ~ time, data = ., paired = TRUE)
+```
+
+---
+
+class: inverse
+
+### Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform a  dependent samples t-test to test whether there is a difference in exam scores: `exam_1` and `exam_2`. Is there a difference? What is the p-value? 
+
+--
+
+1. Perform a dependent samples t-test to test whether there is a difference in `act_english` and `act_reading` scores. Is there a difference? What is the p-value?
+
+--
+
+**Bonus!!!**
+
+Using `pivot_longer` pivot your data so it is in long form. Perform a dependent samples t-test to test whether there is a difference in `act_science` and `act_english` scores using the long-data t.test code.
+
+```{r, include = FALSE}
+
+### T-TEST ANSWERS
+
+## 2 ##
+t.test(college$exam_1, college$exam_2, paired = TRUE)
+
+## 3 ##
+t.test(college$act_english, college$act_reading, paired = TRUE)
+
+## BONUS ##
+college %>%
+  select(act_science, act_english) %>%
+  pivot_longer(cols = starts_with("act"), 
+               names_to = "act",
+               values_to = "score",
+               names_prefix = "act_") %>%
+  t.test(score ~ act, data = ., paired = TRUE)
+
 ```
 
 
@@ -543,6 +646,7 @@ college %>%
   aov(exam_1 ~ grade_class, data = .) %>%
   summary() #<<
 ```
+
 -- 
 
 ```{r, eval = TRUE, echo = FALSE}
@@ -551,12 +655,11 @@ college %>%
   summary()
 ```
 
-```{r, include = FALSE}
-modelsummary <- summary(model)
+```{r, eval = TRUE, echo = FALSE}
+modelsummary <- summary(aov(exam_1 ~ grade_class, data = college))
 ```
 
-
-The `summary()` output provides the F-value (`r round(modelsummary[[1]]$"F value", 2)`), df (`r modelsummary[[1]]$Df`), and p-value (`r round(modelsummary[[1]]$"Pr(>F)"[1], 3)`) you need to report the statistical values. 
+The `summary()` output provides the F-value (`r round(modelsummary[[1]]$"F value"[1], 2)`), df (`r modelsummary[[1]]$Df`), and p-value (`r round(modelsummary[[1]]$"Pr(>F)"[1], 3)`) you need to report the statistical values. 
 
 ---
 
@@ -578,7 +681,7 @@ class: inverse
 
 ```{r include = FALSE}
 
-### T-TEST ANSWERS
+### ONE-WAY ANOVA ANSWERS
 
 ## 2 ##
 college %>%
