@@ -19,6 +19,7 @@ output:
 library(tidyverse)
 library(skimr)
 library(summarytools)
+library(janitor)
 
 college <- read_csv("../Data/college.csv")
 ```
@@ -192,7 +193,7 @@ You'll be working with the college dataset to run all your analyses.
 
 class: center, middle, dk-section-title
 
-# Independent t-tests
+# Independent t-test
 
 ---
 
@@ -937,3 +938,271 @@ Read more about how to conduct repeated measures and factorial ANOVA designs usi
 
 
 
+
+---
+
+class: center, middle, dk-section-title
+
+# Chi-square
+
+---
+
+## Chi-square
+
+The chi-square test is used to analyze categorical data (data that describe categories of entities). We can't examine categorical data using things like means or medians, so we examine counts instead. 
+
+--
+
+```{r}
+college %>% 
+  tabyl(live_on_campus, athlete)
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>% 
+  tabyl(live_on_campus, athlete)
+```
+
+
+---
+
+## Chi-square in R
+
+Two methods: the `janitor` package or the `stats` package
+
+--
+
+.pull-left[
+###Janitor Package
+```{r, eval = TRUE, highlight.output = 5}
+college %>%
+  tabyl(smokes, athlete) %>%
+  janitor::chisq.test()
+```
+
+]
+
+--
+
+.pull-right[
+###stats Package
+```{r, eval = TRUE, highlight.output = 5}
+stats::chisq.test(college$smokes, college$athlete)
+```
+]
+
+---
+
+## Standardized Residuals
+
+The standardized residuals tell us for that cell if the expected and observed frequency are independent. They are z-scores so values greater than 1.96 are statistically significant (*p* < .05).
+
+--
+
+```{r}
+tab$stdres #<<
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE}
+tab <- college %>%
+  tabyl(smokes, athlete) %>%
+  janitor::chisq.test(.)
+
+tab$stdres
+```
+
+---
+
+## Observed and expected counts
+
+Similarly, we can ask for the observed and expected counts.
+
+--
+
+.pull-left[
+### Observed
+```{r, eval = TRUE}
+tab$observed
+```
+]
+
+--
+
+.pull-left[
+### Expected
+```{r, eval = TRUE}
+tab$expected
+```
+]
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform a chi-square to examine how `grade_class` relates to `live_on_campus`. What is the p-value? Is there a relationship?
+
+--
+
+1. If there is a significant difference, examine standardized residuals and the observed/expected frequencies to determine what grade class is more or less likely to live on campus. Interpret the results.
+
+```{r include = FALSE}
+
+### CHI-SQUARE ANSWERS
+
+## 2 ##
+tab2 <- college %>%
+  tabyl(grade_class, live_on_campus) %>%
+  chisq.test()
+
+tab2
+
+## 3 ##
+tab2$stdres
+
+tab2$observed
+
+tab2$expected
+# 
+```
+
+---
+
+class: center, middle, dk-section-title
+
+# Dealing with small cells
+
+---
+
+## Dealing with small cells
+
+Sometimes when dealing with small cells, you will get an error that the Chi-square approximation may not be correct. 
+
+--
+
+Example:
+
+```{r, eval = TRUE, warning = TRUE}
+college %>%
+  filter(smokes == 1) %>%
+  tabyl(race, gender) %>%
+  chisq.test()
+```
+
+--
+
+There are a few things we can do to fix this problem.
+
+---
+
+## 1. Drop a row or column
+
+--
+
+```{r, eval = TRUE}
+college %>%
+  filter(smokes == 1) %>%
+  tabyl(race, gender)
+```
+
+---
+
+## 1. Drop a row or column
+
+```{r, eval = TRUE, warning = TRUE}
+college %>%
+  filter(smokes == 1) %>%
+  filter(gender != "Trans*") %>% #<<
+  tabyl(race, gender)
+```
+
+---
+
+## 1. Drop a row or column
+
+```{r, eval = TRUE, warning = TRUE}
+college %>%
+  filter(smokes == 1) %>%
+  filter(gender != "Trans*") %>%
+  tabyl(race, gender) %>%
+  chisq.test()  #<<
+```
+
+---
+
+## 2. Combine rows or columns so there are larger cells
+
+--
+
+```{r, eval = TRUE}
+college %>%
+  filter(smokes == 1) %>%
+  tabyl(race, gender)
+```
+---
+
+## 2. Combine rows or columns so there are larger cells
+
+```{r, eval = TRUE}
+college %>%
+  filter(smokes == 1) %>%
+  mutate(URM = recode(race, "Bi-Racial" = 1,  #<<
+                     "Asian" = 0, "White" = 0,  #<<
+                     "Black" = 1, "Hispanic" = 1)) %>%  #<<
+  tabyl(URM, gender)
+```
+---
+
+## 2. Combine rows or columns so there are larger cells
+
+```{r, eval = TRUE}
+college %>%
+  filter(smokes == 1) %>%
+  mutate(URM = recode(race, "Bi-Racial" = 1,
+                     "Asian" = 0, "White" = 0,
+                     "Black" = 1, "Hispanic" = 1)) %>%
+  tabyl(URM, gender) %>%
+  chisq.test()  #<<
+```
+
+---
+
+## 3. Both!
+
+--
+
+```{r, eval = TRUE}
+college %>%
+  filter(smokes == 1) %>%
+  filter(gender != "Trans*") %>%  #<< 
+  mutate(URM = recode(race, "Bi-Racial" = 1,  #<<
+                     "Asian" = 0, "White" = 0,  #<<
+                     "Black" = 1, "Hispanic" = 1)) %>%  #<<
+  tabyl(URM, gender)
+```
+
+---
+
+## 3. Both!
+
+```{r, eval = TRUE}
+college %>%
+  filter(smokes == 1) %>%
+  filter(gender != "Trans*") %>%
+  mutate(URM = recode(race, "Bi-Racial" = 1,
+                     "Asian" = 0, "White" = 0,
+                     "Black" = 1, "Hispanic" = 1)) %>%
+  tabyl(URM, gender) %>%
+  chisq.test()  #<<
+```
