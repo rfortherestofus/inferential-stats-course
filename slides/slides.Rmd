@@ -20,6 +20,8 @@ library(tidyverse)
 library(skimr)
 library(summarytools)
 library(janitor)
+library(correlation)
+library(lm.beta)
 
 college <- read_csv("../Data/college.csv")
 ```
@@ -1150,6 +1152,7 @@ college %>%
   filter(smokes == 1) %>%
   tabyl(race, gender)
 ```
+
 ---
 
 ## 2. Combine rows or columns so there are larger cells
@@ -1162,6 +1165,7 @@ college %>%
                      "Black" = 1, "Hispanic" = 1)) %>%  #<<
   tabyl(URM, gender)
 ```
+
 ---
 
 ## 2. Combine rows or columns so there are larger cells
@@ -1206,3 +1210,445 @@ college %>%
   tabyl(URM, gender) %>%
   chisq.test()  #<<
 ```
+
+---
+
+class: center, middle, dk-section-title
+
+# Correlation
+
+---
+
+## Correlation
+
+Tests the relationship between two (usually) continuous variables.
+
+--
+
+There are three methods you can use to test correlations.
+
+--
+
+1. **`cor()` and `cor.test()` in the `stats` package**. `cor()` can do a correlation matrix, but no p-values. `cor.test()` can provide p-values, but can't do so with a correlation matrix.
+
+--
+
+2. **`rcorr()` in the `Hmisc` package**. `rcorr()` can provide a correlation matrix with p-values, but not in a tidy format.
+
+--
+
+3. **`correlation()` in the `correlation` package**. `correlation()` can provide a correlation matrix with p-values, but it can also do so in a tidy format.
+
+---
+
+## Correlation in R
+
+--
+
+```{r}
+college %>%
+  select(exam_1, exam_2) %>%
+  correlation() #<<
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  select(exam_1, exam_2) %>%
+  correlation()
+```
+
+---
+
+## Correlation in R
+
+--
+
+```{r}
+college %>%
+  select(exam_1, exam_2) %>%
+  correlation() %>%
+  select(r, p) #<<
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  select(exam_1, exam_2) %>%
+  correlation() %>%
+  select(r, p)
+```
+
+---
+
+## Correlation Matrix in R
+
+```{r}
+college %>%
+  select(starts_with("exam")) %>% #<<
+  correlation()
+```
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  select(starts_with("exam")) %>%
+  correlation()
+```
+
+---
+
+## Correlation Matrix in R
+
+```{r}
+college %>%
+  select(starts_with("exam")) %>%
+  correlation() %>%
+  summary() #<<
+```
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  select(starts_with("exam")) %>%
+  correlation() %>%
+  summary()
+```
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform a correlation among the four ACT scores. Which two scales of the ACT have the highest correlation? Which two scales have the lowest correlation?
+
+```{r include = FALSE}
+
+### CORRELATION ANSWERS
+
+## 2 ##
+college %>%
+  select(starts_with("act")) %>%
+  correlation() %>%
+  summary()
+  
+  # Highest: act_english & act_mathematics r = .83***
+  # Lowest: act_english & act_reading r = .38***
+
+```
+
+---
+
+class: center, middle, dk-section-title
+
+# Regression
+
+---
+
+## Three basic types of regression
+
+1. **Linear regression** has a single IV
+
+--
+
+2. **Multiple regression** has multiple IVs
+
+--
+
+3. **Hierarchical regression** has multiple IVs across multiple "steps"
+
+--
+
+All three use the `lm()` function in the `stats` package.
+
+---
+
+## Linear regression
+.left-code[
+```{r}
+college %>%
+  lm(exam_1 ~ iq, #<<
+     data = .) #<<
+```
+]
+
+--
+
+.right-plot[
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  lm(exam_1 ~ iq, data = .)
+```
+]
+
+---
+
+## Linear regression
+
+.left-code[
+```{r}
+college %>%
+  lm(exam_1 ~ iq, 
+     data = .) %>%
+  summary() #<<
+```
+]
+
+--
+
+.right-plot[
+```{r eval = TRUE, echo = FALSE, highlight.output = c(12, 17)}
+college %>%
+  lm(exam_1 ~ iq, data = .) %>%
+  summary()
+```
+]
+
+---
+
+## Standardized Coefficients
+
+.left-code[
+```{r}
+college %>%
+  lm(exam_1 ~ iq, 
+     data = .) %>%
+  lm.beta() %>% #<<
+  summary() 
+```
+]
+
+--
+
+.right-plot[
+```{r eval = TRUE, echo = FALSE, highlight.output = 12}
+college %>%
+  lm(exam_1 ~ iq, 
+     data = .) %>%
+  lm.beta() %>% 
+  summary()
+```
+]
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform a linear regression examining how `iq` predicts `act_reading`. Ask for standardized coefficients before calling for the summary of results. Is IQ a significant predictor of ACT reading scores? If so, what is the standardized coefficient?
+
+```{r include = FALSE}
+
+### LINEAR REGRESSION ANSWERS
+
+## 2 ##
+college %>%
+  lm(act_reading ~ iq, 
+     data = .) %>%
+  lm.beta() %>% 
+  summary()
+
+  # Yes, it's significant (p = .024). Beta = -.13
+
+```
+
+---
+
+class: center, middle, dk-section-title
+
+# Multiple Regression
+
+---
+
+## Multiple Regression in R
+
+To perform a multiple regression, add the IVs to the right of the ~ (tilde).
+
+--
+
+**Example**: DV ~ IV1 + IV2
+
+--
+
+<br />
+
+With both `aov()` and `lm()`, you can request interactions by replacing the + with a *.
+
+--
+
+**Example**: DV ~ IV1 * IV2
+
+---
+
+```{r}
+college %>%
+  lm(exam_2 ~ iq` + `exam_1, data = .) %>%
+  lm.beta() %>% 
+  summary()
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE, highlight.output = c(12, 13, 18)}
+college %>%
+  lm(exam_2 ~ iq + exam_1, 
+     data = .) %>%
+  lm.beta() %>% 
+  summary()
+```
+
+---
+
+```{r}
+college %>%
+  lm(exam_2 ~ iq` * `exam_1, data = .) %>%
+  lm.beta() %>% 
+  summary()
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE, highlight.output = c(12:14, 19)}
+college %>%
+  lm(exam_2 ~ iq * exam_1, 
+     data = .) %>%
+  lm.beta() %>% 
+  summary()
+```
+
+---
+
+## Categorical predictors
+
+```{r}
+college %>%
+  lm(exam_2 ~ iq + `gender`, data = .) %>%
+  lm.beta() %>% 
+  summary()
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE, highlight.output = c(12:14, 19)}
+college %>%
+  lm(exam_2 ~ iq + gender, 
+     data = .) %>%
+  lm.beta() %>% 
+  summary()
+```
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform a multiple regression examining how both `iq` and `act_science` predict `act_reading`. Ask for standardized coefficients before calling for the summary of results. Which (if any) of the IVs are significant predictors? Based on the standardized coefficient, which is the stronger predictor of ACT readings cores?
+
+```{r include = FALSE}
+
+### MULTIPLE REGRESSION ANSWERS
+
+## 2 ##
+college %>%
+  lm(act_reading ~ iq + act_science, 
+     data = .) %>%
+  lm.beta() %>% 
+  summary()
+
+  # Both are significant. Science scores is a stronger predictor of reading scores than IQ.
+
+```
+
+---
+
+class: center, middle, dk-section-title
+
+# Hierarchical Regression
+
+---
+
+## Hierarchical Regression
+
+Hierarchical regression takes a *little* more work than in SPSS. Here are the steps:
+
+--
+
+1. Perform a regression with your first set of predictors.
+
+--
+
+2. Perform a regression *adding* your second set of predictors.
+
+--
+
+3. Run `anova()` comparing the two models. 
+
+---
+
+## Hierarchical Regression in R
+
+.pull-left[
+**Step 1:** 
+
+```{r}
+lm1 <- #<<
+  college %>%
+  lm(exam_2 ~ iq, data = .) %>% #<<
+  lm.beta()
+```
+]
+
+--
+
+.pull-right[
+**Step 2:** 
+
+```{r eval = TRUE}
+lm2 <- #<<
+  college %>%
+  lm(exam_2 ~ iq + exam_1, data = .) %>% #<<
+  lm.beta()
+```
+]
+
+--
+
+**Step 3:**
+```{r eval = TRUE}
+anova(lm1, lm2) #<<
+```
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+Read more about hierarchical regression with the resources below.
+
+---
