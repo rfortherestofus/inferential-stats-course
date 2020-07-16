@@ -16,12 +16,13 @@ output:
 ```{r child = "setup.Rmd"}
 ```
 ```{r packages, include = F, eval = T}
-library(tidyverse)
-library(skimr)
-library(summarytools)
-library(janitor)
-library(correlation)
-library(lm.beta)
+library(tidyverse) ## because tidyverse = life
+library(skimr) ## looking at the data
+library(summarytools) ## looking at the data
+library(janitor) ## for chi-square: tabyl for chi-squares
+library(correlation) ## for correlation: tidy correlation results
+library(lm.beta) ## for regression: standardized coefficients
+library(psych) ## for reliability: omega and alpha
 
 college <- read_csv("../Data/college.csv")
 ```
@@ -1613,7 +1614,7 @@ Hierarchical regression takes a *little* more work than in SPSS. Here are the st
 .pull-left[
 **Step 1:** 
 
-```{r}
+```{r eval = TRUE}
 lm1 <- #<<
   college %>%
   lm(exam_2 ~ iq, data = .) %>% #<<
@@ -1652,3 +1653,191 @@ class: inverse
 Read more about hierarchical regression with the resources below.
 
 ---
+
+class: center, middle, dk-section-title
+
+# Reliability
+
+---
+
+## Reliability
+
+When working with scales, we want to see how well items "hang together." This is called internal consistency, which is a type of reliability. 
+
+--
+
+You are likely familiar with Cronbach's alpha as a measure of internal consistency. 
+
+--
+
+However, Cronbach's alpha has assumptions your data *may not* meet. For that reason, I recommend using omega instead. 
+
+---
+
+## Assumptions of Cronbach's alpha
+
+--
+
+1. Scale is unidimensional
+
+--
+
+2. Scale items are continuous and normally distributed
+
+--
+
+3. Tau equivalence
+
+--
+
+4. Errors of the items do not covary
+
+---
+
+## Tau equivalence
+
+.pull-left[
+### Tau Equivalent
+| Item          | Std. Loading  |
+| ------------- |:-------------:|
+| Q1            | .711          |
+| Q2            | .714          |
+| Q3            | .716          |
+| Q4            | .709          |
+| Q5            | .721          |
+]
+
+.pull-right[
+### Not Tau Equivalent
+| Item          | Std. Loading  |
+| ------------- |:-------------:|
+| Q1            | .806          |
+| Q2            | .790          |
+| Q3            | .725          |
+| Q4            | .578          |
+| Q5            | .523          |
+]
+
+--
+
+In my experience running lots of factor analyses, I *almost never* have tau equivalence.
+
+---
+
+## Covarying item errors
+
+Some items may be more related to other items in the
+scale for a variety of reasons:
+
+--
+
+- The items are very similarly worded
+
+--
+
+- The items measure essentially the same thing
+
+--
+
+- Order of items
+
+--
+
+- Speeded tests
+
+--
+
+- Transient responses where feelings or opinions may change
+over the course of the scale
+
+--
+
+- Unmodeled multidimensionality of the scale
+
+---
+
+## Omega
+
+Omega is designed for scales that are not tau equivalent (also called congeneric). Most of our scales are congeneric!
+
+*Therefore, I recommend you always use omega instead of alpha!*
+
+The values are interpreted just the same as you would alpha. It will just be a less biased estimate of the internal consistency of your scale, especially if you do not meet the assumptions of alpha.
+
+---
+
+## Omega and alpha in R
+
+```{r}
+library(psych)
+
+omega(dat)
+
+alpha(dat)
+```
+
+---
+
+## An example: omega
+
+```{r eval = TRUE}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  omega()
+```
+
+---
+
+## An example: alpha
+
+```{r eval = TRUE}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  alpha()
+```
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform a test of internal consistency using both omega and alpha on the SWLS scale at time 2. Does the scale have good internal consistency at time 2, as well?
+
+--
+
+1. Read the article by McNeish (2018) explaining why omega is often a better measure of internal consistency than alpha. 
+
+```{r include = FALSE}
+
+### RELIABILITY ANSWERS
+
+## 2 ##
+college %>%
+  select(starts_with("swls_time2")) %>%
+  omega()
+
+college %>%
+  select(starts_with("swls_time2")) %>%
+  alpha()
+
+  # Yes, it has good internal consistency. 
+  # Should use omega, which is .98. Alpha is .95
+
+```
+
+---
+
+class: center, middle, dk-section-title
+
+# Extracting Output
+
+---
+
+## 
