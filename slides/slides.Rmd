@@ -91,12 +91,12 @@ This course will cover seven topics.
 --
 
 3. Packages: [insert packages here]
-  + broom
-  + apa
-  + psych
-  + lm.beta
-  + etc.
-  
++ broom
++ apa
++ psych
++ lm.beta
++ etc.
+
 ---
 
 ## How this course will work
@@ -1162,8 +1162,8 @@ college %>%
 college %>%
   filter(smokes == 1) %>%
   mutate(URM = recode(race, "Bi-Racial" = 1,  #<<
-                     "Asian" = 0, "White" = 0,  #<<
-                     "Black" = 1, "Hispanic" = 1)) %>%  #<<
+                      "Asian" = 0, "White" = 0,  #<<
+                      "Black" = 1, "Hispanic" = 1)) %>%  #<<
   tabyl(URM, gender)
 ```
 
@@ -1175,8 +1175,8 @@ college %>%
 college %>%
   filter(smokes == 1) %>%
   mutate(URM = recode(race, "Bi-Racial" = 1,
-                     "Asian" = 0, "White" = 0,
-                     "Black" = 1, "Hispanic" = 1)) %>%
+                      "Asian" = 0, "White" = 0,
+                      "Black" = 1, "Hispanic" = 1)) %>%
   tabyl(URM, gender) %>%
   chisq.test()  #<<
 ```
@@ -1192,8 +1192,8 @@ college %>%
   filter(smokes == 1) %>%
   filter(gender != "Trans*") %>%  #<< 
   mutate(URM = recode(race, "Bi-Racial" = 1,  #<<
-                     "Asian" = 0, "White" = 0,  #<<
-                     "Black" = 1, "Hispanic" = 1)) %>%  #<<
+                      "Asian" = 0, "White" = 0,  #<<
+                      "Black" = 1, "Hispanic" = 1)) %>%  #<<
   tabyl(URM, gender)
 ```
 
@@ -1206,8 +1206,8 @@ college %>%
   filter(smokes == 1) %>%
   filter(gender != "Trans*") %>%
   mutate(URM = recode(race, "Bi-Racial" = 1,
-                     "Asian" = 0, "White" = 0,
-                     "Black" = 1, "Hispanic" = 1)) %>%
+                      "Asian" = 0, "White" = 0,
+                      "Black" = 1, "Hispanic" = 1)) %>%
   tabyl(URM, gender) %>%
   chisq.test()  #<<
 ```
@@ -1341,9 +1341,9 @@ college %>%
   select(starts_with("act")) %>%
   correlation() %>%
   summary()
-  
-  # Highest: act_english & act_mathematics r = .83***
-  # Lowest: act_english & act_reading r = .38***
+
+# Highest: act_english & act_mathematics r = .83***
+# Lowest: act_english & act_reading r = .38***
 
 ```
 
@@ -1465,7 +1465,7 @@ college %>%
   lm.beta() %>% 
   summary()
 
-  # Yes, it's significant (p = .024). Beta = -.13
+# Yes, it's significant (p = .024). Beta = -.13
 
 ```
 
@@ -1579,7 +1579,7 @@ college %>%
   lm.beta() %>% 
   summary()
 
-  # Both are significant. Science scores is a stronger predictor of reading scores than IQ.
+# Both are significant. Science scores is a stronger predictor of reading scores than IQ.
 
 ```
 
@@ -1784,6 +1784,10 @@ alpha(dat)
 college %>%
   select(starts_with("swls_time1")) %>%
   omega()
+
+temp$call
+
+temp$schmid
 ```
 
 ---
@@ -1827,8 +1831,8 @@ college %>%
   select(starts_with("swls_time2")) %>%
   alpha()
 
-  # Yes, it has good internal consistency. 
-  # Should use omega, which is .98. Alpha is .95
+# Yes, it has good internal consistency. 
+# Should use omega, which is .98. Alpha is .95
 
 ```
 
