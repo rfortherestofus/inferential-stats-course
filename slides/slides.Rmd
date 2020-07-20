@@ -91,11 +91,11 @@ This course will cover seven topics.
 --
 
 3. Packages: [insert packages here]
-+ broom
-+ apa
-+ psych
-+ lm.beta
-+ etc.
+  + broom
+  + apa
+  + psych
+  + lm.beta
+  + etc.
 
 ---
 
@@ -1822,10 +1822,6 @@ college %>%
 college %>%
   select(starts_with("swls_time1")) %>%
   omega()
-
-temp$call
-
-temp$schmid
 ```
 
 ![](images/omega4.jpg)
@@ -1960,17 +1956,136 @@ class: center, middle, dk-section-title
 
 ---
 
-## Extracing Output
+## Extracting Output
 
 .center[
-So you've got your output... 
-what next?
+So you've got your output...
+]
+--
+
+.center[
+**what next?**
 ]
 
+---
 
+## An example: alpha
 
+```{r}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  alpha()
+```
 
+![](images/alpha1.png)
 
+---
+
+## An example: alpha
+
+.pull-left[
+```{r}
+rel <- #<<
+  college %>%
+  select(starts_with("swls_time1")) %>%
+  alpha()
+```
+
+```{r eval = TRUE, echo = FALSE, include = FALSE}
+rel <- college %>%
+  select(starts_with("swls_time1")) %>%
+  alpha()
+```
+]
+
+--
+
+.pull-right[
+![](images/output1.png)
+]
+
+---
+
+## An example: alpha
+
+```{r}
+rel$alpha.drop #<<
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE}
+rel$alpha.drop
+```
+
+---
+
+## An example: alpha
+
+```{r}
+rel$alpha.drop %>%
+  select(std.alpha) %>% #<<
+  rownames_to_column("var") %>% #<<
+  arrange(std.alpha) #<<
+```
+```{r eval = TRUE, echo = FALSE}
+rel$alpha.drop %>%
+  select(std.alpha) %>%
+  rownames_to_column("var") %>%
+  arrange(std.alpha)
+```
+
+---
+
+## An example: alpha
+
+.pull-left[
+```{r}
+drop <- #<<
+  rel$alpha.drop %>%
+  select(std.alpha) %>%
+  rownames_to_column("var") %>%
+  arrange(std.alpha)
+```
+]
+
+---
+
+## An example: alpha
+
+.pull-left[
+```{r}
+drop <-
+  rel$alpha.drop %>%
+  select(std.alpha) %>%
+  rownames_to_column("var") %>%
+  arrange(std.alpha)
+
+rel$total %>% #<<
+  select(std.alpha) %>% #<<
+  rownames_to_column("var") %>% #<<
+  bind_rows(drop) %>% #<<
+  mutate(std.alpha = round(std.alpha, 3)) #<<
+```
+]
+
+--
+
+.pull-right[
+```{r eval = TRUE, echo = FALSE, rows.print = 10}
+drop <-
+  rel$alpha.drop %>%
+  select(std.alpha) %>%
+  rownames_to_column("var") %>%
+  arrange(std.alpha)
+
+rel$total %>% 
+  select(std.alpha) %>% 
+  rownames_to_column("var") %>% 
+  bind_rows(drop) %>%
+  mutate(std.alpha = round(std.alpha, 3))
+```
+]
 
 ---
 
@@ -1984,26 +2099,20 @@ class: inverse
 
 --
 
-1. Perform a test of internal consistency using both omega and alpha on the SWLS scale at time 2. Does the scale have good internal consistency at time 2, as well?
-
---
-
-1. (Optional) Read the article by McNeish (2018) explaining why omega is often a better measure of internal consistency than alpha. 
+1. Perform a test of internal consistency using omega on the SWLS scale at time 2. Extract the `omega.tot` information from the list. Round it to two decimals. What is your omega value?
 
 ```{r include = FALSE}
 
-### RELIABILITY ANSWERS
+### EXTRACTING BASE R ANSWERS
 
 ## 2 ##
-college %>%
+relomega <- college %>%
   select(starts_with("swls_time2")) %>%
   omega()
 
-college %>%
-  select(starts_with("swls_time2")) %>%
-  alpha()
+relomega$omega.tot %>%
+  round(2)
 
-  # Yes, it has good internal consistency. 
-  # Should use omega, which is .98. Alpha is .95
+  ## .98
 
 ```
