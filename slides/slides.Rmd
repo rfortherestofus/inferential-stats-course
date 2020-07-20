@@ -19,11 +19,11 @@ output:
 library(tidyverse) ## because tidyverse = life
 library(skimr) ## looking at the data
 library(summarytools) ## looking at the data
+library(broom) ## for extracting output using broom
 library(janitor) ## for chi-square: tabyl for chi-squares
 library(correlation) ## for correlation: tidy correlation results
 library(lm.beta) ## for regression: standardized coefficients
 library(psych) ## for reliability: omega and alpha
-library(broom) ## for extracting output using broom
 library(apa) ## for reporting results in APA format
 
 college <- read_csv("../Data/college.csv")
@@ -1856,7 +1856,7 @@ college %>%
 ```{r eval = TRUE, echo = FALSE}
 temp <- college %>%
   select(starts_with("swls_time1")) %>%
-  alpha()
+  psych::alpha()
 
 temp[["response.freq"]]
 ```
@@ -1996,7 +1996,7 @@ rel <- #<<
 ```{r eval = TRUE, echo = FALSE, include = FALSE}
 rel <- college %>%
   select(starts_with("swls_time1")) %>%
-  alpha()
+  psych::alpha()
 ```
 ]
 
@@ -2308,6 +2308,7 @@ college %>%
   aov(hs_gpa ~ grade_class, data = .) %>%
   anova_apa(effect = "grade_class") #<<
 ```
+
 ---
 
 ## apa: Chi-square
@@ -2342,7 +2343,6 @@ There was a strong, positive relationship between exam 1 and exam 2 scores, `'r 
 
 **Turns into this**:
 There was a strong, positive relationship between exam 1 and exam 2 scores, `r apa(cor.test(college$exam_1, college$exam_2))`. 
-
 
 ---
 
@@ -2380,8 +2380,236 @@ Our parametric statistics all have four main assumptions that we should test and
 
 --
 
-1. Scores are **independent** from one another. .small[*Note*: this is not an assumption of between groups designs like the dependent t-test or repeated measures ANOVA.]
+1. Scores are **independent** from one another. .small[*Note*: this is not an assumption of within groups designs like the dependent t-test or repeated measures ANOVA.]
 
 --
 
 1. Data is at the **interval or ratio** level. .small[*Note*: likert-scale data is *technically* at the ordinal level, and there is research to suggest it shouldn't be analyzed at the interval/ratio level.]
+
+---
+
+## Normality
+
+Normally distributed:
+
+```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
+ggplot(data = data.frame(x = c(-3, 3)), 
+       aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) + 
+  ylab("") +
+  scale_y_continuous(breaks = NULL)
+```
+
+---
+
+## Normality
+
+Positively skewed:
+
+```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
+
+skew <- rbeta(100, 2, 5)
+skew <- as.data.frame(rescale(skew, to = c(-2, 2))) %>%
+  rename(data = `rescale(skew, to = c(-2, 2))`)
+
+ggplot(data = skew, 
+       aes(data)) +
+  geom_density(adjust = 2) +
+  ylab("") +
+  xlab("") + 
+  scale_y_continuous(breaks = NULL)
+```
+
+---
+
+## Normality
+
+Negatively skewed:
+
+```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
+
+skew2 <- rbeta(100, 2, 5)
+skew2 <- as.data.frame(rescale(skew2, to = c(-2, 2))) %>%
+  rename(data = `rescale(skew2, to = c(-2, 2))`) %>%
+  mutate(data = data * -1)
+
+ggplot(data = skew2, 
+       aes(data)) +
+  geom_density(adjust = 2) +
+  ylab("") +
+  xlab("") + 
+  scale_y_continuous(breaks = NULL)
+```
+
+---
+
+## Homogeneity of variances
+
+Equal variances or homogeneity of variances (assumption met):
+
+```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
+g1 <- rnorm(n = 100, mean = 0, sd = 1) %>%
+  as.data.frame() %>%
+  rename(val = ".") %>%
+  mutate(group = 1)
+g2 <- rnorm(n = 100, mean = 0, sd = 1)  %>%
+  as.data.frame() %>%
+  rename(val = ".") %>%
+  mutate(group = 2)
+
+hov <- rbind(g1, g2)
+
+ggplot(data = hov,
+       aes(val)) +
+  geom_density(adjust = 1.5) +
+  ylab("") +
+  xlab("") + 
+  scale_y_continuous(breaks = NULL) +
+  facet_wrap(vars(group))
+```
+
+---
+
+## Homogeneity of variances
+
+Unequal variances or heterogeneity of variances (assumption not met):
+
+```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
+g1 <- rnorm(n = 100, mean = 0, sd = 1) %>%
+  as.data.frame() %>%
+  rename(val = ".") %>%
+  mutate(group = 1)
+g2 <- rnorm(n = 100, mean = 0, sd = 2)  %>%
+  as.data.frame() %>%
+  rename(val = ".") %>%
+  mutate(group = 2)
+
+hov <- rbind(g1, g2)
+
+ggplot(data = hov,
+       aes(val)) +
+  geom_density(adjust = 1.5) +
+  ylab("") +
+  xlab("") + 
+  scale_y_continuous(breaks = NULL) +
+  facet_wrap(vars(group))
+```
+
+---
+
+## Independent data
+
+This cannot be explicitly tested, but is a function of you knowing your data. 
+
+--
+
+- Are some data points more related to one another?
+
+--
+
+- Are some participants related to one another more than with other participants?
+
+--
+
+- Do you have nested data?
+
+--
+
+If you said "yes" to any of these questions, you likely violate this assumption.
+
+---
+
+## Interval or ratio data
+
+Interval and ratio data are:
+
+--
+
+- Ordered variables
+
+--
+
+- That have proportionate intervals between variables
+
+--
+
+- (Ratio variables can accommodate an absolute zero)
+
+--
+
+Ordinal variables *do not have proportionate intervals between intervals.*
+
+--
+
+People working with likert-scales (e.g., on a 1-7 scale) often *assume* that people respond to them as if response options are proportionate, but research suggests they are *not* proportionate. 
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Read through the documents for more information on the importance of testing the assumptions of the statistics you perform. 
+
+---
+
+class: center, middle, dk-section-title
+
+# Testing for normality
+
+---
+
+## Testing for normality
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Pick 1-2 of the previous analyses we performed in the Your Turn segments and add `tidy()` to the end of your analysis to get the tidied version of the output.
+
+```{r include = FALSE}
+
+## TESTING NORMALITY ANSWERS ##
+
+```
+
+---
+
+class: center, middle, dk-section-title
+
+# Testing for homogeneity of variance
+
+---
+
+## Testing for homogeneity of variance
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Pick 1-2 of the previous analyses we performed in the Your Turn segments and add `tidy()` to the end of your analysis to get the tidied version of the output.
+
+```{r include = FALSE}
+
+## TESTING NORMALITY ANSWERS ##
+
+```
+
