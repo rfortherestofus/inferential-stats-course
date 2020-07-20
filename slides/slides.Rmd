@@ -23,6 +23,8 @@ library(janitor) ## for chi-square: tabyl for chi-squares
 library(correlation) ## for correlation: tidy correlation results
 library(lm.beta) ## for regression: standardized coefficients
 library(psych) ## for reliability: omega and alpha
+library(broom) ## for extracting output using broom
+library(apa) ## for reporting results in APA format
 
 college <- read_csv("../Data/college.csv")
 ```
@@ -423,7 +425,7 @@ class: inverse
 
 --
 
-1. Filter your dataset to only people who have the `political` party of Democrat or Republican. Perform an independent samples t-test to test whether there is a difference in `age` by `political` party. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
+1. Filter your dataset to only people who have the `gender` of Male or Female (alternative, filter out those who are Trans*). Perform an independent samples t-test to test whether there is a difference in `act_english` by `gender` party. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
 
 ```{r, include = FALSE}
 
@@ -2125,7 +2127,50 @@ class: center, middle, dk-section-title
 
 ---
 
-## Broom
+## Independent t-test
+
+```{r}
+college %>%
+  t.test(weight_2 ~ smokes, ., var.equal = TRUE)
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  t.test(weight_2 ~ smokes, ., var.equal = TRUE)
+```
+
+---
+
+## Independent t-test with broom
+
+```{r}
+college %>%
+  t.test(weight_2 ~ smokes, ., var.equal = TRUE) %>%
+  tidy() #<<
+```
+--
+
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  t.test(weight_2 ~ smokes, ., var.equal = TRUE) %>%
+  tidy()
+```
+
+---
+
+## Which stats work with broom?
+
+- **t-test** (`t.test`)
+- **ANOVA** (`aov`)
+- **Chi-square** (`chis.test` in both the stats and janitor packages)
+- **Correlation** (`cor.test` in the stats package and `rcorr` in the Hmisc package)
+- **Regression** (`lm`)
+
+### Do not work with broom:
+- **Correlation** (`correlation` in the correlation package *because it is already tidy*) 
+- **Reliability** (`omega` and `alpha`)
 
 ---
 
@@ -2139,21 +2184,72 @@ class: inverse
 
 --
 
-1. Perform a test of internal consistency using omega on the SWLS scale at time 2. Extract the `omega.tot` information from the list. Round it to two decimals. What is your omega value?
+1. Pick 1-2 of the previous analyses we performed in the Your Turn segments and add `tidy()` to the end of your analysis to get the tidied version of the output.
+
+---
+
+class: inverse
+
+## Your Turn: Examples
+
+- **Independent t-test**: Perform an independent samples t-test to test whether there is a difference in `exam_1` by `athlete`. Use `var.equal = TRUE`. 
+- **Dependent t-test**: Perform a  dependent samples t-test to test whether there is a difference in exam scores: `exam_1` and `exam_2`.
+- **One-way ANOVA**: Perform a one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. 
+- **Chi-square**: Perform a chi-square to examine how `grade_class` relates to `live_on_campus`.
+- **Linear regression**: Perform a linear regression examining how `iq` predicts `act_reading`.
+- **Multiple regression**: Perform a multiple regression examining how both `iq` and `act_science` predict `act_reading`. 
 
 ```{r include = FALSE}
 
-### EXTRACTING BASE R ANSWERS
+### BROOM ANSWERS
 
-## 2 ##
-relomega <- college %>%
-  select(starts_with("swls_time2")) %>%
-  omega()
+## Independent t-test ##
+# Perform an independent samples t-test to test whether there is a difference in `exam_1` by `athlete`. Use `var.equal = TRUE`. 
 
-relomega$omega.tot %>%
-  round(2)
+college %>%
+  t.test(exam_1 ~ athlete, ., var.equal = TRUE) %>%
+  tidy()
 
-  ## .98
+## Dependent t-test ##
+# Perform a  dependent samples t-test to test whether there is a difference in exam scores: `exam_1` and `exam_2`. 
+
+t.test(college$exam_1, college$exam_2, paired = TRUE) %>%
+  tidy()
+
+## One-way ANOVA ##
+# Perform a one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. 
+
+college %>%
+  aov(hs_gpa ~ grade_class, data = .) %>%
+  tidy()
+
+## Chi-Square ##
+# Perform a chi-square to examine how `grade_class` relates to `live_on_campus`. 
+
+college %>%
+  tabyl(grade_class, live_on_campus) %>%
+  chisq.test() %>%
+  tidy()
+
+## Linear Regression ##
+# Perform a linear regression examining how `iq` predicts `act_reading`. 
+
+college %>%
+  lm(act_reading ~ iq, 
+     data = .) %>%
+  lm() %>%  #NOTE: will not work with lm.beta
+  summary() %>%
+  tidy()
+
+## Multiple Regression ##
+# Perform a multiple regression examining how both `iq` and `act_science` predict `act_reading`. 
+
+college %>%
+  lm(act_reading ~ iq + act_science, 
+     data = .) %>%
+  lm() %>% 
+  summary() %>%
+  tidy()
 
 ```
 
@@ -2165,7 +2261,88 @@ class: center, middle, dk-section-title
 
 ---
 
-## apa
+## apa Package
+
+The apa package functions help you format statistical tests according to the American Psychological Association (APA) guidelines. It supports the following tests:
+
+--
+
+- t-test (`t.test`) --> **t_apa**
+- ANOVA (`aov`) --> **anova_apa**
+- chi-square (`chisq.test`) --> **chisq_apa**
+- correlation (`cor.test` but not `correlation`) --> **cor_apa**
+
+---
+
+## apa: Independent samples t-test
+
+```{r eval = TRUE}
+college %>%
+  t.test(exam_1 ~ athlete, ., var.equal = TRUE) %>%
+  t_apa() #<<
+```
+
+---
+
+## apa: Dependent samples t-test
+
+```{r eval = TRUE}
+t.test(college$exam_1, college$exam_2, paired = TRUE) %>%
+  t_apa() #<<
+```
+
+---
+
+## apa: One-way ANOVA
+
+```{r eval = TRUE}
+college %>%
+  aov(hs_gpa ~ grade_class, data = .) %>%
+  anova_apa() #<<
+```
+
+--
+
+```{r eval = TRUE}
+college %>%
+  aov(hs_gpa ~ grade_class, data = .) %>%
+  anova_apa(effect = "grade_class") #<<
+```
+---
+
+## apa: Chi-square
+
+```{r eval = TRUE}
+college %>%
+  tabyl(grade_class, live_on_campus) %>%
+  chisq.test() %>%
+  chisq_apa() #<<
+```
+
+---
+
+## apa: Correlation
+
+```{r eval = TRUE}
+cor.test(college$exam_1, college$exam_2) %>%
+  cor_apa()
+```
+
+---
+
+## apa: inline code
+
+If you're writing your results directly in R, you can use inline code to embed your statistics in your text wrapping the statistic with `apa()`.
+
+### For example
+
+**This**: 
+There was a strong, positive relationship between exam 1 and exam 2 scores, `'r apa(cor.test(college$exam_1, college$exam_2))'`.  
+.small[*Note*: use backticks, not apostrophes.]
+
+**Turns into this**:
+There was a strong, positive relationship between exam 1 and exam 2 scores, `r apa(cor.test(college$exam_1, college$exam_2))`. 
+
 
 ---
 
@@ -2179,20 +2356,32 @@ class: inverse
 
 --
 
-1. Perform a test of internal consistency using omega on the SWLS scale at time 2. Extract the `omega.tot` information from the list. Round it to two decimals. What is your omega value?
+2. Pick one of the previous analyses that the apa package works with and try writing out inline code. Note that you write this in the text portion (white background) of an R Markdown file, not a code portion (grey background). Surround the `apa()` code with backticks followed by the letter r to indicate that the code within should be analyzed using the r language. 
 
-```{r include = FALSE}
+---
 
-### EXTRACTING BASE R ANSWERS
+class: center, middle, dk-section-title
 
-## 2 ##
-relomega <- college %>%
-  select(starts_with("swls_time2")) %>%
-  omega()
+# Testing assumptions
 
-relomega$omega.tot %>%
-  round(2)
+---
 
-  ## .98
+## Testing assumptions
 
-```
+Our parametric statistics all have four main assumptions that we should test and verify *before* running our statistical analyses:
+
+--
+
+1. Our data is **normally distributed**.
+
+--
+
+1. Data between groups have **equal (homogeneous) variances**.
+
+--
+
+1. Scores are **independent** from one another. .small[*Note*: this is not an assumption of between groups designs like the dependent t-test or repeated measures ANOVA.]
+
+--
+
+1. Data is at the **interval or ratio** level. .small[*Note*: likert-scale data is *technically* at the ordinal level, and there is research to suggest it shouldn't be analyzed at the interval/ratio level.]
