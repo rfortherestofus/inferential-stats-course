@@ -1780,21 +1780,137 @@ alpha(dat)
 
 ## An example: omega
 
-```{r eval = TRUE}
+```{r}
 college %>%
   select(starts_with("swls_time1")) %>%
   omega()
+```
+
+--
+
+![](images/omega1.png)
+
+---
+
+## An example: omega
+
+```{r}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  omega()
+```
+
+![](images/omega2.png)
+
+---
+
+## An example: omega
+
+```{r}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  omega()
+```
+
+![](images/omega3.png)
+
+---
+
+## An example: omega
+
+```{r}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  omega()
+```
+
+![](images/omega4.jpg)
+
+---
+
+## An example: alpha
+
+```{r}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  alpha()
+```
+
+![](images/alpha1.png)
+???
+
+1. Shows us the call, the Cronbach's alpha with 95% CI. Reliability if an item is dropped is blank because our reliability is good with this scale. Then it'll provide some item statistics, including the frequency of response at each level of the scale and missing data information, but we're not missing any data. I'll show that next.
+
+---
+
+## An example: alpha
+
+```{r}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  alpha()
+```
+
+```{r eval = TRUE, echo = FALSE}
+temp <- college %>%
+  select(starts_with("swls_time1")) %>%
+  alpha()
+
+temp[["response.freq"]]
 ```
 
 ---
 
 ## An example: alpha
 
-```{r eval = TRUE}
+```{r}
 college %>%
   select(starts_with("swls_time1")) %>%
   alpha()
 ```
+
+```{r eval = TRUE, echo = FALSE}
+temp$total
+```
+
+???
+2. The second data frame is the total alpha, and provides the raw and standardized alpha values, along with a lot of other information you probably don't need.
+
+---
+
+## An example: alpha
+
+```{r}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  alpha()
+```
+
+```{r eval = TRUE, echo = FALSE}
+temp$alpha.drop
+```
+
+???
+
+3. The third table is really helpful and provides the alpha value if an item is dropped. This is useful in case you have a value that needs to be recoded or dropped. 
+
+---
+
+## An example: alpha
+
+```{r}
+college %>%
+  select(starts_with("swls_time1")) %>%
+  alpha()
+```
+
+```{r eval = TRUE, echo = FALSE}
+temp$item.stats
+```
+
+???
+
+4. The last table provides the item statistics, including the item-total correlations which are often used to determine the discrimination values of items.
 
 ---
 
@@ -1812,7 +1928,7 @@ class: inverse
 
 --
 
-1. Read the article by McNeish (2018) explaining why omega is often a better measure of internal consistency than alpha. 
+1. (Optional) Read the article by McNeish (2018) explaining why omega is often a better measure of internal consistency than alpha. 
 
 ```{r include = FALSE}
 
@@ -1840,4 +1956,50 @@ class: center, middle, dk-section-title
 
 ---
 
-## 
+## Extracing Output
+
+.center[
+So you've got your output... 
+what next?
+]
+
+
+
+
+
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Perform a test of internal consistency using both omega and alpha on the SWLS scale at time 2. Does the scale have good internal consistency at time 2, as well?
+
+--
+
+1. (Optional) Read the article by McNeish (2018) explaining why omega is often a better measure of internal consistency than alpha. 
+
+```{r include = FALSE}
+
+### RELIABILITY ANSWERS
+
+## 2 ##
+college %>%
+  select(starts_with("swls_time2")) %>%
+  omega()
+
+college %>%
+  select(starts_with("swls_time2")) %>%
+  alpha()
+
+  # Yes, it has good internal consistency. 
+  # Should use omega, which is .98. Alpha is .95
+
+```
