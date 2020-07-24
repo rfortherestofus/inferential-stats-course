@@ -1344,6 +1344,8 @@ college %>%
   correlation() %>%
   summary()
 
+
+
 # Highest: act_english & act_mathematics r = .83***
 # Lowest: act_english & act_reading r = .38***
 
@@ -2407,16 +2409,15 @@ ggplot(data = data.frame(x = c(-3, 3)),
 Positively skewed:
 
 ```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
-
 skew <- rbeta(100, 2, 5)
 skew <- as.data.frame(rescale(skew, to = c(-2, 2))) %>%
   rename(data = `rescale(skew, to = c(-2, 2))`)
 
-ggplot(data = skew, 
+ggplot(data = skew,
        aes(data)) +
   geom_density(adjust = 2) +
   ylab("") +
-  xlab("") + 
+  xlab("") +
   scale_y_continuous(breaks = NULL)
 ```
 
@@ -2427,17 +2428,16 @@ ggplot(data = skew,
 Negatively skewed:
 
 ```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
-
 skew2 <- rbeta(100, 2, 5)
 skew2 <- as.data.frame(rescale(skew2, to = c(-2, 2))) %>%
   rename(data = `rescale(skew2, to = c(-2, 2))`) %>%
   mutate(data = data * -1)
 
-ggplot(data = skew2, 
+ggplot(data = skew2,
        aes(data)) +
   geom_density(adjust = 2) +
   ylab("") +
-  xlab("") + 
+  xlab("") +
   scale_y_continuous(breaks = NULL)
 ```
 
