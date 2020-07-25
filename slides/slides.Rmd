@@ -25,6 +25,8 @@ library(correlation) ## for correlation: tidy correlation results
 library(lm.beta) ## for regression: standardized coefficients
 library(psych) ## for reliability: omega and alpha
 library(apa) ## for reporting results in APA format
+library(ggpubr) ## for qq plots
+library(rstatix) ## for shapiro_test that is pipe-friendly
 
 college <- read_csv("../Data/college.csv")
 ```
@@ -64,19 +66,23 @@ This course will cover seven topics.
 
 --
 
-4. regression
+4. correlation
 
 --
 
-5. reliability (internal consistency)
+5. regression
 
 --
 
-6. how to report statistics in R
+6. reliability (internal consistency)
 
 --
 
-7. how to test parametric assumptions
+7. reporting statistics in R
+
+--
+
+8. testing parametric assumptions
 
 ---
 
@@ -93,15 +99,45 @@ This course will cover seven topics.
 --
 
 3. Packages: [insert packages here]
+  + tidyverse, skimr, summarytools
   + broom
-  + apa
-  + psych
+  + janitor
+  + correlation
   + lm.beta
-  + etc.
+  + psych
+  + apa
+  + ggpubr
+  + rstatix
+  
+???
+
+library(tidyverse) ## because tidyverse = life
+library(skimr) ## looking at the data
+library(summarytools) ## looking at the data
+library(broom) ## for extracting output using broom
+library(janitor) ## for chi-square: tabyl for chi-squares
+library(correlation) ## for correlation: tidy correlation results
+library(lm.beta) ## for regression: standardized coefficients
+library(psych) ## for reliability: omega and alpha
+library(apa) ## for reporting results in APA format
+library(ggpubr) ## for qq plots
+library(rstatix) ## for shapiro_test that is pipe-friendly
 
 ---
 
 ## How this course will work
+
+--
+
+- Each video will walk through the topic, showing you relevant R code and output.
+
+--
+
+- At the end of each video will be an opportunity for you to practice what you've learned. 
+
+--
+
+- You can check your answers to the Your Turn activities on the R for the Rest of Us website. 
 
 ---
 
@@ -232,7 +268,7 @@ Both t-tests are performed using the `t.test()` function in the **stats** packag
 
 ```{r}
 dat %>%
-  t.test(DV ~ IV, .)
+  t.test(DV ~ IV, data = .)
 ```
 
 ???
@@ -245,7 +281,7 @@ This is the basic syntax of the independent t-test using the tidyverse. There ar
 
 ```{r}
 dat %>%
-  t.test(DV ~ IV, `.`)
+  t.test(DV ~ IV, `data = .`)
 ```
 
 ???
@@ -256,7 +292,7 @@ One of the arguments is the data argument. In the t.test function, the dataset a
 
 ```{r}
 dat %>%
-  t.test(., DV ~ IV)
+  t.test(data = ., DV ~ IV)
 ```
 
 --
@@ -277,14 +313,14 @@ Let's try running an independent samples t-test with our `college` dataset.
 
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, .)
+  t.test(weight_2 ~ smokes, data = .)
 ```
 
 --
 
 ```{r eval = TRUE, echo = FALSE}
 college %>%
-  t.test(weight_2 ~ smokes, .)
+  t.test(weight_2 ~ smokes, data = .)
 ```
 
 --
@@ -297,7 +333,7 @@ The t-test defaults to assuming the variances between groups is *not* equal.
 
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, ., `var.equal = TRUE`)
+  t.test(weight_2 ~ smokes, data = ., `var.equal = TRUE`)
 ```
 
 ???
@@ -308,7 +344,7 @@ Add the argument `var.equal = TRUE` to specify that we assume the variances betw
 
 ```{r eval = TRUE, echo = FALSE}
 college %>%
-  t.test(weight_2 ~ smokes, ., var.equal = TRUE)
+  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE)
 ```
 
 ---
@@ -319,7 +355,7 @@ The default alternative hypothesis is a **two-sided hypothesis** that the mean d
 
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, ., var.equal = TRUE, `alternative = "two.sided"`)
+  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE, `alternative = "two.sided"`)
 ```
 
 --
@@ -330,12 +366,12 @@ What if you have a **one-sided hypothesis**?
 
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, ., var.equal = TRUE, `alternative = "greater"`)
+  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE, `alternative = "greater"`)
 ```
 
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, ., var.equal = TRUE, `alternative = "less"`)
+  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE, `alternative = "less"`)
 ```
 
 ???
@@ -349,7 +385,7 @@ The alternative argument lets you specify either **less** or **greater** than 0.
 .pull-left[
 ```{r, eval = TRUE}
 college %>%
-  t.test(weight_2 ~ smokes, ., 
+  t.test(weight_2 ~ smokes, data = ., 
          var.equal = TRUE, 
          alternative = "two.sided")
 ```
@@ -360,7 +396,7 @@ college %>%
 .pull-right[
 ```{r, eval = TRUE}
 college %>%
-  t.test(weight_2 ~ smokes, ., 
+  t.test(weight_2 ~ smokes, data = ., 
          var.equal = TRUE, 
          alternative = "greater")
 ```
@@ -376,12 +412,12 @@ Notice that the p-value is half of the previous value of .2305.
 .pull-left[
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, ., 
+  t.test(weight_2 ~ smokes, data = ., 
          `mu = 1`)
 ```
 ```{r eval = TRUE, echo = FALSE}
 college %>%
-  t.test(weight_2 ~ smokes, ., 
+  t.test(weight_2 ~ smokes, data = ., 
          mu = 1)
 ```
 ]
@@ -395,12 +431,12 @@ mu is a greek symbol for the population mean, or in this case the mean differenc
 .pull-right[
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, ., 
+  t.test(weight_2 ~ smokes, data = ., 
          `conf.level = .99`)
 ```
 ```{r eval = TRUE, echo = FALSE}
 college %>%
-  t.test(weight_2 ~ smokes, ., 
+  t.test(weight_2 ~ smokes, data = ., 
          conf.level = .99)
 ```
 ]
@@ -433,12 +469,12 @@ class: inverse
 
 ## 2 ##
 college %>%
-  t.test(exam_1 ~ athlete, ., var.equal = TRUE)
+  t.test(exam_1 ~ athlete, data = ., var.equal = TRUE)
 
 ## 3 ##
 college %>%
   filter(gender != "Trans*") %>%
-  t.test(act_english ~ gender, ., var.equal = FALSE)
+  t.test(act_english ~ gender, data = ., var.equal = FALSE)
 ```
 
 ---
@@ -497,7 +533,7 @@ Each *case or pair* is a row, and the DV is in two different columns.
 .pull-right[
 ```{r}
 dat %>%
-  t.test(`DV ~ IV`, paired = TRUE, .)
+  t.test(`DV ~ IV`, paired = TRUE, data = .)
 ```
 Used when the data are in **long** format.
 
@@ -728,7 +764,7 @@ For that, we need post hoc comparisons.*
 
 There are many post hoc comparisons possible (e.g., Fisher's LSD, Bonferroni, Newman-Keuls, Scheffe), but we're going to focus on **Tukey's HSD** because it's easy to calculate and does a good job protecting against Type I errors without being too conservative. 
 
-??
+???
 
 Tukey's Honest Significant Differences
 
@@ -2395,10 +2431,13 @@ Our parametric statistics all have four main assumptions that we should test and
 Normally distributed:
 
 ```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
-ggplot(data = data.frame(x = c(-3, 3)), 
-       aes(x)) +
+norm <- as.data.frame(rnorm(100, 0, 1)) %>%
+  rename(data = `rnorm(100, 0, 1)`)
+
+ggplot(data = norm, 
+       aes(data)) +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) + 
-  ylab("") +
+  ylab("") + xlab("") +
   scale_y_continuous(breaks = NULL)
 ```
 
@@ -2410,10 +2449,10 @@ Positively skewed:
 
 ```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
 skew <- rbeta(100, 2, 5)
-skew <- as.data.frame(rescale(skew, to = c(-2, 2))) %>%
-  rename(data = `rescale(skew, to = c(-2, 2))`)
+posskew <- as.data.frame(scales::rescale(skew, to = c(-2, 2))) %>%
+  rename(data = `scales::rescale(skew, to = c(-2, 2))`)
 
-ggplot(data = skew,
+ggplot(data = posskew,
        aes(data)) +
   geom_density(adjust = 2) +
   ylab("") +
@@ -2429,11 +2468,11 @@ Negatively skewed:
 
 ```{r eval = TRUE, echo = FALSE, fig.height = 5, fig.width = 12}
 skew2 <- rbeta(100, 2, 5)
-skew2 <- as.data.frame(rescale(skew2, to = c(-2, 2))) %>%
-  rename(data = `rescale(skew2, to = c(-2, 2))`) %>%
+negskew <- as.data.frame(scales::rescale(skew2, to = c(-2, 2))) %>%
+  rename(data = `scales::rescale(skew2, to = c(-2, 2))`) %>%
   mutate(data = data * -1)
 
-ggplot(data = skew2,
+ggplot(data = negskew,
        aes(data)) +
   geom_density(adjust = 2) +
   ylab("") +
@@ -2451,15 +2490,15 @@ Equal variances or homogeneity of variances (assumption met):
 g1 <- rnorm(n = 100, mean = 0, sd = 1) %>%
   as.data.frame() %>%
   rename(val = ".") %>%
-  mutate(group = 1)
+  mutate(group = "Group 1: sd = 1")
 g2 <- rnorm(n = 100, mean = 0, sd = 1)  %>%
   as.data.frame() %>%
   rename(val = ".") %>%
-  mutate(group = 2)
+  mutate(group = "Group 2: sd = 1")
 
-hov <- rbind(g1, g2)
+homvar <- rbind(g1, g2)
 
-ggplot(data = hov,
+ggplot(data = homvar,
        aes(val)) +
   geom_density(adjust = 1.5) +
   ylab("") +
@@ -2478,15 +2517,15 @@ Unequal variances or heterogeneity of variances (assumption not met):
 g1 <- rnorm(n = 100, mean = 0, sd = 1) %>%
   as.data.frame() %>%
   rename(val = ".") %>%
-  mutate(group = 1)
+  mutate(group = "Group 1: sd = 1")
 g2 <- rnorm(n = 100, mean = 0, sd = 2)  %>%
   as.data.frame() %>%
   rename(val = ".") %>%
-  mutate(group = 2)
+  mutate(group = "Group 2: sd = 2")
 
-hov <- rbind(g1, g2)
+hetvar <- rbind(g1, g2)
 
-ggplot(data = hov,
+ggplot(data = hetvar,
        aes(val)) +
   geom_density(adjust = 1.5) +
   ylab("") +
@@ -2563,6 +2602,62 @@ class: center, middle, dk-section-title
 
 ## Testing for normality
 
+There are a few basic ways to test whether your DV is normally distributed:
+
+--
+
+1. Histogram or density plots
+
+--
+
+2. q-q plots
+
+--
+
+3. Shapiro-Wilks test
+
+---
+
+## Histogram and density plots
+
+.pull-left[
+```{r eval = TRUE, fig.height = 5}
+college %>%
+  ggplot(aes(act_reading)) +
+  geom_histogram()
+```
+]
+
+.pull-right[
+```{r eval = TRUE, fig.height = 5}
+college %>%
+  ggplot(aes(act_reading)) +
+  geom_density()
+```
+]
+
+---
+
+## q-q plots
+
+```{r eval = TRUE, fig.height = 5, fig.width = 7}
+college %>%
+  ggqqplot("act_reading") ## ggpubr package
+```
+
+---
+
+## Shapiro-Wilks test
+
+```{r eval = TRUE}
+college %>%
+  shapiro_test(act_reading) ## rstatix package
+```
+
+--
+
+When Shapiro-Wilks is *not statistically significant* then you have evidence that the data is normally distributed. 
+
 ---
 
 class: inverse
@@ -2575,11 +2670,24 @@ class: inverse
 
 --
 
-1. Pick 1-2 of the previous analyses we performed in the Your Turn segments and add `tidy()` to the end of your analysis to get the tidied version of the output.
+1. Using each of the three methods, test whether `age` is normally distributed. Come to a conclusion: is age normally distributed? 
 
 ```{r include = FALSE}
 
 ## TESTING NORMALITY ANSWERS ##
+
+# Plot #
+college %>%
+  ggplot(aes(age)) +
+  geom_density()
+
+# q-q plot #
+college %>%
+  ggqqplot("age")
+
+# Shapiro-Wilks test #
+college %>%
+  shapiro_test(age)
 
 ```
 
@@ -2593,6 +2701,50 @@ class: center, middle, dk-section-title
 
 ## Testing for homogeneity of variance
 
+Two basic methods for testing for homogeneity of variance:
+
+--
+
+- Graph the data by groups 
+
+--
+
+- Levene's test
+
+---
+
+## Graph the data by groups
+
+.pull-left[
+```{r}
+college %>%
+  ggplot(aes(gender, act_reading)) +
+  geom_jitter(width = .1) +
+  geom_boxplot(alpha = .8)
+```
+]
+
+.pull-right[
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  mutate(gender = as.factor(gender)) %>%
+  ggplot(aes(gender, act_reading)) +
+  geom_jitter(width = .1) +
+  geom_boxplot(alpha = .8)
+```
+]
+
+---
+
+## Levene's test
+
+```{r eval = TRUE}
+college %>%
+  levene_test(act_reading ~ gender) ## rstatix package
+```
+
+Just like Shapiro-Wilk's test, when Levene's test is *not statistically significant* then you have evidence that the data has homogeneous (equal) variances. 
+
 ---
 
 class: inverse
@@ -2605,11 +2757,22 @@ class: inverse
 
 --
 
-1. Pick 1-2 of the previous analyses we performed in the Your Turn segments and add `tidy()` to the end of your analysis to get the tidied version of the output.
+1. Using each of the two methods, test whether the variance of `weight_1` differs by whether someone smokes. Come to a conclusion: is there homogeneity of variance in weight by smoking status? 
 
 ```{r include = FALSE}
 
-## TESTING NORMALITY ANSWERS ##
+## TESTING HOMOGENEITY OF VARIANCE ANSWERS ##
+
+# Graph the data #
+college %>%
+  mutate(smokes = as.factor(smokes)) %>%
+  ggplot(aes(smokes, weight_1)) +
+  geom_jitter(width = .1) +
+  geom_boxplot(alpha = .8)
+
+# Levene's test # 
+college %>%
+  levene_test(weight_1 ~ as.factor(smokes))
 
 ```
 
