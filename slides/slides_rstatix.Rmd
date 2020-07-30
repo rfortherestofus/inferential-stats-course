@@ -21,7 +21,6 @@ library(skimr) ## looking at the data
 library(summarytools) ## looking at the data
 library(broom) ## for extracting output using broom
 library(janitor) ## for chi-square: tabyl for chi-squares
-library(correlation) ## for correlation: tidy correlation results
 library(lm.beta) ## for regression: standardized coefficients
 library(psych) ## for reliability: omega and alpha
 library(apa) ## for reporting results in APA format
@@ -101,12 +100,11 @@ This course will cover seven topics.
 3. Packages:
   + tidyverse, broom, janitor
   + skimr, summarytools
-  + correlation
+  + rstatix
   + lm.beta
   + psych
   + apa
   + ggpubr
-  + rstatix
   
 ???
 
@@ -259,7 +257,7 @@ class: center, middle, dk-section-title
 
 --
 
-Both t-tests are performed using the `t.test()` function in the **stats** package
+Both t-tests are performed using the `t_test()` function in the **rstatix** package.
 
 ---
 
@@ -267,40 +265,12 @@ Both t-tests are performed using the `t.test()` function in the **stats** packag
 
 ```{r}
 dat %>%
-  t.test(DV ~ IV, data = .)
+  t_test(DV ~ IV)
 ```
 
 ???
 
-This is the basic syntax of the independent t-test using the tidyverse. There are a lot of other arguments in the t.test function that we'll slowly learn about. 
-
----
-
-## Independent t-test in R
-
-```{r}
-dat %>%
-  t.test(DV ~ IV, `data = .`)
-```
-
-???
-
-One of the arguments is the data argument. In the t.test function, the dataset argument comes second. This is why the dot comes second instead of first.
-
---
-
-```{r}
-dat %>%
-  t.test(data = ., DV ~ IV)
-```
-
---
-
-`## Error: Can't combine id <character> and athlete <double>.`
-
-???
-
-If you put the dot first, indicating to put the dataset at the beginning, it won't work
+This is the basic syntax of the independent t-test using the tidyverse. 
 
 ---
 
@@ -310,21 +280,36 @@ Let's try running an independent samples t-test with our `college` dataset.
 
 --
 
+Let's test whether weight at time 2 differs by smoking status. 
+
+--
+
+.pull-left[
+```{r}
+dat %>%
+  t_test(DV ~ IV)
+```
+]
+
+--
+
+.pull-right[
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, data = .)
+  t_test(weight_2 ~ smokes)
 ```
+]
 
 --
 
 ```{r eval = TRUE, echo = FALSE}
 college %>%
-  t.test(weight_2 ~ smokes, data = .)
+  t_test(weight_2 ~ smokes)
 ```
 
 --
 
-The t-test defaults to assuming the variances between groups is *not* equal.
+Notice the degrees of freedom has decimals. This is because the `t_test()` function defaults to var.equal = FALSE.
 
 ---
 
@@ -332,7 +317,7 @@ The t-test defaults to assuming the variances between groups is *not* equal.
 
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., `var.equal = TRUE`)
+  t_test(weight_2 ~ smokes, `var.equal = TRUE`)
 ```
 
 ???
@@ -343,8 +328,35 @@ Add the argument `var.equal = TRUE` to specify that we assume the variances betw
 
 ```{r eval = TRUE, echo = FALSE}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE)
+  t_test(weight_2 ~ smokes, var.equal = TRUE)
 ```
+
+---
+
+## Detailed t-test results
+
+You can also asked for detailed results.
+
+```{r}
+college %>%
+  t_test(weight_2 ~ smokes, 
+         `detailed = TRUE`)
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  t_test(weight_2 ~ smokes, 
+         detailed = TRUE)
+```
+
+???
+
+Adds the mean values of the two groups and the mean difference between the two groups, what method was used, the alternative hypothesis, and the confidence intervals.
+
+Notice how it says that the variances are unequal. 
+
 
 ---
 
@@ -354,7 +366,7 @@ The default alternative hypothesis is a **two-sided hypothesis** that the mean d
 
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE, `alternative = "two.sided"`)
+  t_test(weight_2 ~ smokes, var.equal = TRUE, `alternative = "two.sided"`)
 ```
 
 --
@@ -365,12 +377,12 @@ What if you have a **one-sided hypothesis**?
 
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE, `alternative = "greater"`)
+  t_test(weight_2 ~ smokes, var.equal = TRUE, `alternative = "greater"`)
 ```
 
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE, `alternative = "less"`)
+  t_test(weight_2 ~ smokes, var.equal = TRUE, `alternative = "less"`)
 ```
 
 ???
@@ -384,9 +396,10 @@ The alternative argument lets you specify either **less** or **greater** than 0.
 .pull-left[
 ```{r, eval = TRUE}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., 
+  t_test(weight_2 ~ smokes, 
          var.equal = TRUE, 
-         alternative = "two.sided")
+         detailed = TRUE,
+         alternative = "two.sided") #<<
 ```
 ]
 
@@ -395,31 +408,31 @@ college %>%
 .pull-right[
 ```{r, eval = TRUE}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., 
-         var.equal = TRUE, 
-         alternative = "greater")
+  t_test(weight_2 ~ smokes,  
+         var.equal = TRUE,  
+         detailed = TRUE,
+         alternative = "greater") #<<
 ```
 ]
 
 ???
 
-Notice that the p-value is half of the previous value of .2305. 
+Notice that the p-value is half of the previous value. 
 
 ---
 
 ## Other arguments in the t-test
-.pull-left[
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., 
-         `mu = 1`)
+  t_test(weight_2 ~ smokes, detailed = TRUE, `mu = 1`)
 ```
+
+--
+
 ```{r eval = TRUE, echo = FALSE}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., 
-         mu = 1)
+  t_test(weight_2 ~ smokes, detailed = TRUE, mu = 1)
 ```
-]
 
 ???
 
@@ -427,18 +440,17 @@ mu is a greek symbol for the population mean, or in this case the mean differenc
 
 --
 
-.pull-right[
 ```{r}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., 
-         `conf.level = .99`)
+  t_test(weight_2 ~ smokes, detailed = TRUE, `conf.level = .99`)
 ```
+
+--
+
 ```{r eval = TRUE, echo = FALSE}
 college %>%
-  t.test(weight_2 ~ smokes, data = ., 
-         conf.level = .99)
+  t_test(weight_2 ~ smokes, detailed = TRUE, conf.level = .99)
 ```
-]
 
 ???
 
@@ -460,7 +472,7 @@ class: inverse
 
 --
 
-1. Filter your dataset to only people who have the `gender` of Male or Female (alternative, filter out those who are Trans*). Perform an independent samples t-test to test whether there is a difference in `act_english` by `gender` party. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
+1. Perform an independent samples t-test to test whether there is a difference in `act_english` by `gender`, but only for male or female students. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
 
 ```{r, include = FALSE}
 
@@ -468,12 +480,18 @@ class: inverse
 
 ## 2 ##
 college %>%
-  t.test(exam_1 ~ athlete, data = ., var.equal = TRUE)
+  t_test(exam_1 ~ athlete, var.equal = TRUE)
 
 ## 3 ##
 college %>%
   filter(gender != "Trans*") %>%
-  t.test(act_english ~ gender, data = ., var.equal = FALSE)
+  t_test(act_english ~ gender, var.equal = FALSE)
+
+## Alternative 3: this is not covered ##
+college %>%
+  t_test(act_english ~ gender, var.equal = FALSE,
+         comparisons = list(c("Male", "Female")))
+
 ```
 
 ---
@@ -506,83 +524,63 @@ class: center, middle, dk-section-title
 
 ## Dependent t-test in R
 
-The dependent t-test adds a new argument to the `t.test` function: 
+The dependent t-test adds a new argument to the `t_test` function: 
 
 .center[`paired = TRUE`]
 
---
-
-.pull-left[
-```{r}
-t.test(`dat$DV1, dat$DV2`, 
-       paired = TRUE)
-```
-
-
-Used when the data are in **wide** format.
-
-Each *case or pair* is a row, and the DV is in two different columns.
-(This is most common.)
-
-<font size = "3">Note that piping the dataset doesn't work here. You have to explicitly type out data$DV.</font>
-]
-
---
-
-.pull-right[
 ```{r}
 dat %>%
-  t.test(`DV ~ IV`, paired = TRUE, data = .)
+  t_test(DV ~ IV, `paired = TRUE`)
 ```
-Used when the data are in **long** format.
-
-Each *observation* is a row, and the DV is in one column and the case or pair ID is in another column.
-]
 
 ???
 
 This is the basic syntax of the dependent t-test using the tidyverse. Notice the inclusion of paired = TRUE argument. This tells R the data is a paired samples or dependent samples t-test. 
 
-There are two ways of inputting the data. If your data is in wide format, with each person representing a row and two columns of data per person, then you'll use the first set of code. However, if your data is in long format, with each person's data at two time points representing a row (therefore having double the rows of data) then you'll use the second set of code. 
-
----
-
-## An example
-
-```{r}
-t.test(college$weight_1, college$weight_2, paired = TRUE)
-```
-
---
-
-```{r, eval = TRUE, echo = FALSE, highlight.output = 5}
-t.test(college$weight_1, college$weight_2, paired = TRUE)
-```
+Unfortunately, data *has* to be in long format. Often dependent t-test data is in wide format. So we'll cover how to convert data to long format easily.
 
 ---
 
 ## Converting wide to long format
 
-```{r}
+.pull-left[
+```{r eval = TRUE}
 college %>%
   select(weight_1, weight_2) %>%
-  pivot_longer(cols = starts_with("weight"), 
+  gather(key = "time", value = "weight")
+```
+]
+
+--
+
+.pull-right[
+```{r eval = TRUE}
+college %>%
+  select(weight_1, weight_2) %>%
+  pivot_longer(everything(), 
                names_to = "time",
                values_to = "weight",
-               names_prefix = "weight_") %>%
-  `t.test(weight ~ time, data = ., paired = TRUE)`
+               names_prefix = "weight_")
+```
+]
+
+---
+
+```{r eval = TRUE}
+college %>%
+  select(weight_1, weight_2) %>%
+  gather(key = "time", value = "weight") %>%
+  t_test(weight ~ time, paired = TRUE) #<<
 ```
 
 --
 
-```{r, eval = TRUE, echo = FALSE, highlight.output = 5}
+```{r eval = TRUE}
 college %>%
   select(weight_1, weight_2) %>%
-  pivot_longer(cols = starts_with("weight"), 
-               names_to = "time",
-               values_to = "weight",
-               names_prefix = "weight_") %>%
-  t.test(weight ~ time, data = ., paired = TRUE)
+  pivot_longer(everything(), names_to = "time",
+               values_to = "weight", names_prefix = "weight_") %>%
+  t_test(weight ~ time, paired = TRUE) #<<
 ```
 
 ---
@@ -603,30 +601,21 @@ class: inverse
 
 1. Perform a dependent samples t-test to test whether there is a difference in `act_science` and `act_mathematics` scores. Is there a difference? What is the p-value?
 
---
-
-**Bonus!!!**
-
-Using `pivot_longer` pivot your data so it is in long form. Perform a dependent samples t-test to test whether there is a difference in `act_science` and `act_english` scores using the long-data t.test code.
-
 ```{r, include = FALSE}
 
 ### T-TEST ANSWERS
 
 ## 2 ##
-t.test(college$exam_1, college$exam_2, paired = TRUE)
+college %>%
+  select(exam_1, exam_2) %>%
+  gather(key = "time", value = "score") %>%
+  t_test(exam ~ time, paired = TRUE)
 
 ## 3 ##
-t.test(college$act_science, college$act_mathematics, paired = TRUE)
-
-## BONUS ##
 college %>%
-  select(act_science, act_english) %>%
-  pivot_longer(cols = starts_with("act"), 
-               names_to = "act",
-               values_to = "score",
-               names_prefix = "act_") %>%
-  t.test(score ~ act, data = ., paired = TRUE)
+  select(exam_1, exam_2) %>%
+  gather(key = "act_test", value = "score") %>%
+  t_test(score ~ act_test, paired = TRUE)
 
 ```
 
@@ -663,52 +652,111 @@ class: center, middle, dk-section-title
 
 ## One-way ANOVA in R
 
+The formatting for the one-way ANOVA is similar to that of `t_test` except we replace it with `anova_test`.
+
+--
+
 ```{r}
 dat %>%
-  `aov`(DV ~ IV, data = .) %>%
-  summary()
+  `anova_test`(DV ~ IV)
 ```
-
-The formatting for the one-way ANOVA is similar to that of `t.test` except we replace it with `aov`.
 
 ---
 
 ## An example
 
-```{r, eval = TRUE}
-college %>%
-  aov(exam_1 ~ grade_class, data = .)
-```
+Let's try running an one-way ANOVA with our `college` dataset. 
 
 --
 
-The output is not very useful. For that reason, we need to ask for the summary of the model. 
+Let's test whether exam 1 scores differ by grade rank (`grade_class`).
 
----
+--
 
-## An example
+.pull-left[ 
+```{r}
+dat %>%
+  anova_test(DV ~ IV)
+```
+]
 
+--
+
+.pull-right[ 
 ```{r}
 college %>%
-  aov(age ~ grade_class, data = .) %>%
-  summary() #<<
+  anova_test(exam_1 ~ grade_class)
+```
+]
+
+--
+
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  anova_test(exam_1 ~ grade_class)
+```
+
+---
+
+## Detailed ANOVA results
+
+```{r, eval = TRUE}
+college %>% anova_test(exam_1 ~ grade_class)
 ```
 
 --
 
-```{r, eval = TRUE, echo = FALSE}
+```{r}
+college %>% anova_test(exam_1 ~ grade_class, `detailed = TRUE`)
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE}
 college %>%
-  aov(age ~ grade_class, data = .) %>%
-  summary()
+  anova_test(exam_1 ~ grade_class, detailed = TRUE)
 ```
 
-```{r, eval = TRUE, echo = FALSE}
-modelsummary <- summary(aov(age ~ grade_class, data = college))
+---
+
+## hccm???
+
+```{r message = TRUE, eval = TRUE, warning = TRUE}
+college %>%
+  anova_test(exam_1 ~ grade_class)
 ```
 
-The `summary()` output provides the F-value (`r round(modelsummary[[1]]$"F value"[1], 2)`), df (`r modelsummary[[1]]$Df`), and p-value (`r round(modelsummary[[1]]$"Pr(>F)"[1], 3)`) you need to report the statistical values. 
+--
 
-The summary will add asterisks if there are any statistically significant p-values (e.g., `‘*’ 0.05`).
+The warning `Coefficient covariances computed by hccm()` just tells us that it is using a heteroscedasticity-corrected coefficient covariance matrix. 
+
+Nothing for us to worry about!
+
+---
+
+## Effect sizes
+
+`ges` is generalized eta squared. We can change `effect.size = "pes"` for partial eta squared.
+
+--
+
+.pull-left[
+```{r eval = TRUE}
+college %>%
+  anova_test(exam_1 ~ grade_class, 
+             effect.size = "ges") #<<
+```
+]
+
+--
+
+.pull-left[
+```{r eval = TRUE}
+college %>%
+  anova_test(exam_1 ~ grade_class, 
+             effect.size = "pes") #<<
+```
+]
 
 ---
 
@@ -734,13 +782,11 @@ class: inverse
 
 ## 2 ##
 college %>%
-  aov(hs_gpa ~ grade_class, data = .) %>%
-  summary()
+  anova_test(hs_gpa ~ grade_class)
 
 ## 3 ##
 college %>%
-  aov(act_english ~ race, data = .) %>%
-  summary()
+  anova_test(act_english ~ race)
 ```
 
 ---
@@ -761,7 +807,7 @@ For that, we need post hoc comparisons.*
 
 --
 
-There are many post hoc comparisons possible (e.g., Fisher's LSD, Bonferroni, Newman-Keuls, Scheffe), but we're going to focus on **Tukey's HSD** because it's easy to calculate and does a good job protecting against Type I errors without being too conservative. 
+.small[There are many post hoc comparisons possible (e.g., Fisher's LSD, Bonferroni, Newman-Keuls, Scheffe), but we're going to focus on **Tukey's HSD** because it and does a good job protecting against Type I errors without being too conservative.]
 
 ???
 
@@ -773,49 +819,36 @@ Tukey's Honest Significant Differences
 
 ```{r}
 dat %>%
-  aov(DV ~ IV, data = .) %>%
-  `TukeyHSD()`
+  `tukey_hsd`(DV ~ IV)
 ```
 
 ---
 
 ## An example
 
+Using our previous example, let's run Tukey's HSD by testing whether exam 1 scores differ by grade rank (`grade_class`).
+.pull-left[
+```{r}
+dat %>%
+  `tukey_hsd`(DV ~ IV)
+```
+]
+
+--
+
+.pull-right[
 ```{r}
 college %>%
-  aov(act_reading ~ gender, data = .) %>%
-  summary()
+  tukey_hsd(exam_1 ~ grade_class)
 ```
+]
 
 --
 
-```{r, eval = TRUE, echo = FALSE}
+```{r eval = TRUE, echo = FALSE, rows.print = 10}
 college %>%
-  aov(act_reading ~ gender, data = .) %>%
-  summary()
+  tukey_hsd(exam_1 ~ grade_class)
 ```
-
----
-
-## An example
-
-```{r}
-college %>%
-  aov(act_reading ~ gender, data = .) %>%
-  TukeyHSD()
-```
-
---
-
-```{r, eval = TRUE, echo = FALSE, highlight.output = 8}
-college %>%
-  aov(act_reading ~ gender, data = .) %>%
-  TukeyHSD()
-```
-
---
-
-Female students tend to have higher ACT reading scores than male students. There are no differences in ACT reading scores between male and female students with Trans* students.
 
 ---
 
@@ -833,7 +866,7 @@ class: inverse
 
 --
 
-1. Perform one-way ANOVA to test whether there is a difference in `weight_1` by `gender`. Is there a difference? If so, perform a Tukey's HSD to test where the differences are. Describe the differences. 
+1. Perform one-way ANOVA to test whether there is a difference in `weight_2` by `gender`. Is there a difference? If so, perform a Tukey's HSD to test where the differences are. Describe the differences. 
 
 ```{r include = FALSE}
 
@@ -841,19 +874,18 @@ class: inverse
 
 ## 2 ##
 college %>%
-  aov(hs_gpa ~ grade_class, data = .) %>%
-  summary()
-# No Tukey's HSD because there is no statistically significant difference.
+  anova_test(hs_gpa ~ grade_class)
+
+college %>%
+  tukey_hsd(hs_gpa ~ grade_class)
 
 ## 3 ##
 college %>%
-  aov(weight_1 ~ gender, data = .) %>%
-  summary()
+  anova_test(weight_2 ~ gender)
 
 college %>%
-  aov(weight_1 ~ gender, data = .) %>%
-  TukeyHSD
-# 
+  tukey_hsd(weight_2 ~ gender)
+
 ```
 
 ---
@@ -866,64 +898,107 @@ class: center, middle, dk-section-title
 
 ## Repeated measures ANOVA
 
-Repeated Measures ANOVA allows us to examine designs in which the same people or samples contributed to the different means (within-groups design). This means that all participants or cases participated in all conditions of an experiment or IV. 
+Repeated Measures ANOVA allows us to examine designs in which the same people or samples contributed to the different means (within-groups design). 
 
-**Example**: Let's examine how exam scores (`exam_1`, `exam_2`, and `exam_3`) differ within individuals across time. 
+This means that all participants or cases participated in all conditions of an experiment or IV. 
+
+---
+
+## Repeated measures ANOVA in R
+
+There are two ways to write the R code for a repeated measures ANOVA using `anova_test`: by the equation, or by specifying which variables are the DV, between- or within-subjects IVs, and wid (within-subjects identifier).
+
+--
+
+**Option 1**:
+
+```{r}
+dat %>%
+  anova_test(DV ~ IV + Error(id/IV))
+```
+
+--
+
+**Option 2**:
+
+```{r}
+dat %>%
+  anova_test(dv = DV, wid = id, within = IV)
+```
 
 ---
 
 ### An example
 
-First, we need to convert our data to long format.
+Let's examine how exam scores (`exam_1`, `exam_2`, and `exam_3`) differ within individuals across time. 
 
+Notice that we'll need to make our data into *long format* to make this work, since we need the DV into into variable. Recall there are two ways to do this:
+
+--
+
+.pull-left[
+**gather**:
+```{r}
+college %>%
+  select(exam_1:exam_3, id) %>%
+  gather(-id, 
+         key = "exam", 
+         value = "score")
+```
+]
+
+--
+
+.pull-right[
+**pivot_longer**:
 ```{r}
 college %>%
   select(starts_with("exam"), id) %>%
-  pivot_longer(cols = starts_with("exam"), 
+  pivot_longer(-id, 
                names_to = "exam",
                values_to = "score",
                names_prefix = "exam_")
 ```
+]
+
+---
+
+## An example: Option 1
+
+```{r}
+college %>%
+  select(exam_1:exam_3, id) %>%
+  gather(-id, key = "exam", value = "score") %>%
+  anova_test(score ~ exam + Error(id/exam)) #<<
+```
 
 --
 
-```{r, eval = TRUE, echo = FALSE}
+```{r eval = TRUE, echo = FALSE}
 college %>%
-  select(starts_with("exam"), id) %>%
-  pivot_longer(cols = starts_with("exam"), 
-               names_to = "exam",
-               values_to = "score",
-               names_prefix = "exam_")
+  select(exam_1:exam_3, id) %>%
+  gather(-id, key = "exam", value = "score") %>%
+  anova_test(score ~ exam + Error(id/exam))
 ```
 
 ---
 
-### An example
-
-Then we can run our repeated measures ANOVA.
+## An example: Option 2
 
 ```{r}
 college %>%
-  select(starts_with("exam"), id) %>%
-  pivot_longer(cols = starts_with("exam"), 
-               names_to = "exam",
-               values_to = "score",
-               names_prefix = "exam_") %>%
-  aov(score ~ exam + Error(id), data = .) %>% #<<
-  summary() #<<
+  select(exam_1:exam_3, id) %>%
+  gather(-id, key = "exam", value = "score") %>%
+  anova_test(dv = score, wid = exam, within = exam) #<<
 ```
 
 --
 
-```{r, eval = TRUE, echo = FALSE, highlight.output = 8}
+```{r eval = TRUE, echo = FALSE}
 college %>%
-  select(starts_with("exam"), id) %>%
-  pivot_longer(cols = starts_with("exam"), 
-               names_to = "exam",
-               values_to = "score",
-               names_prefix = "exam_") %>%
-  aov(score ~ exam + Error(id), data = .) %>%
-  summary()
+  select(exam_1:exam_3, id) %>%
+  gather(-id, key = "exam", value = "score") %>%
+  anova_test(dv = score, wid = exam, within = exam)
 ```
 
 ---
@@ -948,20 +1023,28 @@ Factorial ANOVA allows us to examine two or more independent variables (IVs) sim
 
 ## Factorial ANOVA
 
-To perform a factorial ANOVA in R, all you need to do is add more variables to the right hand of the tilde (~) in the ANOVA equation using either a + (does not add an interaction term) or * (adds an interaction term).
+To perform a factorial ANOVA in R, all you need to do is add more variables to the right hand of the tilde (~) in the ANOVA equation using either a + (does not add an interaction term) or * (adds an interaction term). 
 
 ---
 
 ## Example independent factorial design
 
+**Formula without interaction**:
+
 ```{r, eval = TRUE}
-college %>% aov(weight_1 ~ gender + smokes, data = .) %>% summary() # NO INTERACTION
+college %>%
+  anova_test(hs_gpa ~ grade_class + smokes) # NO INTERACTION
 ```
 
---
+---
 
-```{r, eval = TRUE}
-college %>% aov(weight_1 ~ gender * smokes, data = .) %>% summary() #  INTERACTION 
+## Example independent factorial design
+
+**Formula with interaction**:
+
+```{r eval = TRUE}
+college %>% 
+  anova_test(hs_gpa ~ grade_class * smokes) #  INTERACTION 
 ```
 
 ---
@@ -972,12 +1055,7 @@ class: inverse
 
 --
 
-Read more about how to conduct repeated measures and factorial ANOVA designs using the resources below.
-
-
-
-
-
+Read more about how to conduct repeated measures and factorial ANOVA designs using the resources on the R for the Rest of Us website.
 
 ---
 
@@ -1010,12 +1088,12 @@ college %>%
 
 ## Chi-square in R
 
-Two methods: the `janitor` package or the `stats` package
+Two methods: the `janitor` package or the `rstatix` package
 
 --
 
 .pull-left[
-###Janitor Package
+**janitor package**:
 ```{r, eval = TRUE, highlight.output = 5}
 college %>%
   tabyl(smokes, athlete) %>%
@@ -1027,11 +1105,16 @@ college %>%
 --
 
 .pull-right[
-###stats Package
-```{r, eval = TRUE, highlight.output = 5}
-stats::chisq.test(college$smokes, college$athlete)
+**rstatix package**:
+```{r, eval = TRUE}
+table(college$smokes, college$athlete) %>%
+  chisq_test()
 ```
 ]
+
+???
+
+Prefer janitor because it's more tidyverse friendly than chisq_test is. There is a submitted issue on GitHub for the rstatix package to make this function pipe friendly, but until then janitor works great. 
 
 ---
 
@@ -1042,6 +1125,10 @@ The standardized residuals tell us for that cell if the expected and observed fr
 --
 
 ```{r}
+tab <- college %>%
+  tabyl(smokes, athlete) %>%
+  janitor::chisq.test()
+
 tab$stdres #<<
 ```
 
@@ -1050,7 +1137,7 @@ tab$stdres #<<
 ```{r, eval = TRUE, echo = FALSE}
 tab <- college %>%
   tabyl(smokes, athlete) %>%
-  janitor::chisq.test(.)
+  janitor::chisq.test()
 
 tab$stdres
 ```
@@ -1066,7 +1153,7 @@ Similarly, we can ask for the observed and expected counts.
 .pull-left[
 ### Observed
 ```{r, eval = TRUE}
-tab$observed
+tab$observed #<<
 ```
 ]
 
@@ -1075,7 +1162,7 @@ tab$observed
 .pull-left[
 ### Expected
 ```{r, eval = TRUE}
-tab$expected
+tab$expected #<<
 ```
 ]
 
@@ -1179,6 +1266,10 @@ college %>%
   chisq.test()  #<<
 ```
 
+???
+
+Somtimes this works. In this case, it isn't sufficient. So let's go back. 
+
 ---
 
 ## 2. Combine rows or columns so there are larger cells
@@ -1217,6 +1308,10 @@ college %>%
   tabyl(URM, gender) %>%
   chisq.test()  #<<
 ```
+
+???
+
+In this case, it works, but sometimes it doesn't. Let's see our third option just in case this doesn't work in future cases.
 
 ---
 
@@ -1261,62 +1356,57 @@ class: center, middle, dk-section-title
 
 Tests the relationship between two (usually) continuous variables.
 
---
-
-There are three methods you can use to test correlations.
-
---
-
-1. **`cor()` and `cor.test()` in the `stats` package**. `cor()` can do a correlation matrix, but no p-values. `cor.test()` can provide p-values, but can't do so with a correlation matrix.
-
---
-
-2. **`rcorr()` in the `Hmisc` package**. `rcorr()` can provide a correlation matrix with p-values, but not in a tidy format.
-
---
-
-3. **`correlation()` in the `correlation` package**. `correlation()` can provide a correlation matrix with p-values, but it can also do so in a tidy format.
-
 ---
 
 ## Correlation in R
 
+```{r}
+dat %>%
+  cor_test(var1, var2) #<<
+```
+
+---
+
+## An example
+
+Let's look at the correlation between `exam_1` and `exam_2`.
+
+.pull-left[
+```{r}
+dat %>%
+  cor_test(var1, var2)
+```
+]
+
 --
 
+.pull-right[
 ```{r}
 college %>%
-  select(exam_1, exam_2) %>%
-  correlation() #<<
+  cor_test(exam_1, exam_2) 
 ```
+]
 
 --
 
 ```{r, eval = TRUE, echo = FALSE}
 college %>%
-  select(exam_1, exam_2) %>%
-  correlation()
+  cor_test(exam_1, exam_2)
 ```
 
 ---
 
-## Correlation in R
-
---
+## Multiple correlations in R
 
 ```{r}
 college %>%
-  select(exam_1, exam_2) %>%
-  correlation() %>%
-  select(r, p) #<<
+  cor_test(starts_with("exam")) #<<
 ```
-
 --
 
 ```{r, eval = TRUE, echo = FALSE}
 college %>%
-  select(exam_1, exam_2) %>%
-  correlation() %>%
-  select(r, p)
+  cor_test(starts_with("exam"))
 ```
 
 ---
@@ -1325,34 +1415,62 @@ college %>%
 
 ```{r}
 college %>%
-  select(starts_with("exam")) %>% #<<
-  correlation()
+  `cor_mat`(starts_with("exam"))
 ```
 --
 
 ```{r, eval = TRUE, echo = FALSE}
 college %>%
-  select(starts_with("exam")) %>%
-  correlation()
+  cor_mat(starts_with("exam"))
 ```
 
 ---
 
-## Correlation Matrix in R
+## Correlation Matrix in R: upper or lower triangle
 
 ```{r}
 college %>%
-  select(starts_with("exam")) %>%
-  correlation() %>%
-  summary() #<<
+  cor_mat(starts_with("exam")) %>%
+  `pull_lower_triangle`()
 ```
 --
 
 ```{r, eval = TRUE, echo = FALSE}
 college %>%
-  select(starts_with("exam")) %>%
-  correlation() %>%
-  summary()
+  cor_mat(starts_with("exam")) %>%
+  pull_lower_triangle()
+```
+
+---
+
+## Correlation Matrix in R: p-values
+
+```{r}
+college %>%
+  `cor_pmat`(starts_with("exam"))
+```
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  cor_pmat(starts_with("exam"))
+```
+
+---
+
+## Correlation Matrix in R: combined
+
+```{r}
+college %>%
+  cor_mat(starts_with("exam")) %>%
+  `cor_mark_significant`()
+```
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  cor_mat(starts_with("exam")) %>%
+  cor_mark_significant()
 ```
 
 ---
@@ -1375,11 +1493,8 @@ class: inverse
 
 ## 2 ##
 college %>%
-  select(starts_with("act")) %>%
-  correlation() %>%
-  summary()
-
-
+  cor_mat(starts_with("act")) %>%
+  cor_mark_significant()
 
 # Highest: act_english & act_mathematics r = .83***
 # Lowest: act_english & act_reading r = .38***

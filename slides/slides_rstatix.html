@@ -102,12 +102,11 @@ This course will cover seven topics.
 3. Packages:
   + tidyverse, broom, janitor
   + skimr, summarytools
-  + correlation
+  + rstatix
   + lm.beta
   + psych
   + apa
   + ggpubr
-  + rstatix
   
 ???
 
@@ -184,7 +183,7 @@ college
 Mean : 0.3
 Max : 1</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">209</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">69.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">91</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">30.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAIoAAABCBAMAAAB6ElOOAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAE5JREFUWMPt1TENACAMRNFaQALgAPx7Y2EjNCTXAcj/At7QDmdGu4rWVGpXaigoKCgoKBcpMduYtL5VnMvlc8X5NAoKCgoKymNKzDbS2gDWUigEYKMa8wAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxMDo0OTozOS0wNTowMD5rXhwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDBPNuagAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAIoAAABCBAMAAAB6ElOOAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUrnf05AgAAAE5JREFUWMPt1TENACAMRNFaQALgAPx7Y2EjNCTXAcj/At7QDmdGu4rWVGpXaigoKCgoKBcpMduYtL5VnMvlc8X5NAoKCgoKymNKzDbS2gDWUigEYKMa8wAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxNDowNTo0My0wNTowMPqC8dEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTQ6MDU6NDMtMDU6MDCL30ltAAAAAElFTkSuQmCC"></td>
     </tr>
     <tr>
       <td align="left">smokes
@@ -193,7 +192,7 @@ Max : 1</td>
 Mean : 0.2
 Max : 1</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">236</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">78.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">64</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">21.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJoAAABCBAMAAABdvNJmAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAE9JREFUWMPt1bENwCAQBEFaoASbDnD/vZE4JAGdRMBsARO8XrpStNub6dfal6jTaDQajUaLadmtr5mu0yYXffa1yYfQaDQajUY7qmW3XusNfKJG1EOEILQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDA+a14cAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwTzbmoAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJoAAABCBAMAAABdvNJmAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUrnf05AgAAAE9JREFUWMPt1bENwCAQBEFaoASbDnD/vZE4JAGdRMBsARO8XrpStNub6dfal6jTaDQajUaLadmtr5mu0yYXffa1yYfQaDQajUY7qmW3XusNfKJG1EOEILQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTQ6MDU6NDMtMDU6MDD6gvHRAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDE0OjA1OjQzLTA1OjAwi99JbQAAAABJRU5ErkJggg=="></td>
     </tr>
     <tr>
       <td align="left">live_on_campus
@@ -202,7 +201,7 @@ Max : 1</td>
 Mean : 0.6
 Max : 1</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">0</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">122</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">40.7%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 0 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">178</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">59.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHcAAABCBAMAAACfoFSnAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAExJREFUSMdjYBiZQIkYIIgGBKCalY0JA6NRzaOaRzWPah7VPDw0U1RjCJIDhrhmogIMHSiQEFUYYFTzqOZRzaOaRzUPTc0U1RgjDQAAxOEFIEFVoPYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDA+a14cAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwTzbmoAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHcAAABCBAMAAACfoFSnAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUrnf05AgAAAExJREFUSMdjYBiZQIkYIIgGBKCalY0JA6NRzaOaRzWPah7VPDw0U1RjCJIDhrhmogIMHSiQEFUYYFTzqOZRzaOaRzUPTc0U1RgjDQAAxOEFIEFVoPYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTQ6MDU6NDMtMDU6MDD6gvHRAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDE0OjA1OjQzLTA1OjAwi99JbQAAAABJRU5ErkJggg=="></td>
     </tr>
     <tr>
       <td align="left">race
@@ -214,7 +213,7 @@ Max : 1</td>
 5. Native
 6. White</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">13</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">13.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">51</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">17.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">183</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">61.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHoAAAC1BAMAAABiyfa2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAJtJREFUaN7t2MEJwCAMhWFXcAR1A91/t1poaQ8eTCK0xP+d/S4JJMEQ9k3uSVGcS5fWGhqNRqP/oG3zXA596F40gy6totFoNNqBtm0DDfWg8ytJrM+r5w4ajUajv9S2eT4P0HFYc0HZB/0WtByNRqPRy7Vtnk++dqc1H9iPLmg0Go12oW3bQGUd6KzL+OqZTEWj0Wj0cm2b5zvmAKOLlNKBxAupAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwPmteHAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0zMFQxMDo0OTozOS0wNTowME825qAAAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHoAAAC1BAMAAABiyfa2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUrnf05AgAAAJtJREFUaN7t2MEJwCAMhWFXcAR1A91/t1poaQ8eTCK0xP+d/S4JJMEQ9k3uSVGcS5fWGhqNRqP/oG3zXA596F40gy6totFoNNqBtm0DDfWg8ytJrM+r5w4ajUajv9S2eT4P0HFYc0HZB/0WtByNRqPRy7Vtnk++dqc1H9iPLmg0Go12oW3bQGUd6KzL+OqZTEWj0Wj0cm2b5zvmAKOLlNKBxAupAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTMwVDE0OjA1OjQzLTA1OjAw+oLx0QAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0zMFQxNDowNTo0My0wNTowMIvfSW0AAAAASUVORK5CYII="></td>
     </tr>
   </tbody>
 </table>
@@ -243,7 +242,7 @@ Max : 1</td>
 2. Male
 3. Trans*</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">154</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">51.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">132</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">44.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">14</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGkAAABfBAMAAAAZj/S5AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAFpJREFUWMPt1LsJACAMRVFH0A38bKD77yYBGzuTQjTc258mgReC36qqvFQbmlAoFMqvsq1oUhWdq9Pr7erwXx2FQqH+UbY9fH/nbyq5T1Er+RcKhUKhrCvqsQne6jOObOtQzgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxMDo0OTozOS0wNTowMD5rXhwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDBPNuagAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGkAAABfBAMAAAAZj/S5AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUrnf05AgAAAFpJREFUWMPt1LsJACAMRVFH0A38bKD77yYBGzuTQjTc258mgReC36qqvFQbmlAoFMqvsq1oUhWdq9Pr7erwXx2FQqH+UbY9fH/nbyq5T1Er+RcKhUKhrCvqsQne6jOObOtQzgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxNDowNTo0My0wNTowMPqC8dEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTQ6MDU6NDMtMDU6MDCL30ltAAAAAElFTkSuQmCC"></td>
     </tr>
     <tr>
       <td align="left">grade_class
@@ -253,7 +252,7 @@ Max : 1</td>
 3. Senior
 4. Sophomore</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">82</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">27.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">71</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">23.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">71</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">23.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">76</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">25.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAD4AAAB8BAMAAADDfx4QAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAFFJREFUSMft07ENACAIBVFXcARxA91/NxsTG5RONNxvXwPFpeQ/2W167foajgdwq4+82yVXbyvL1f9wPIhbfdAvjr/rX/Yrcv6vNxwP4VYfnhvsJuiIxHlGrAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxMDo0OTozOS0wNTowMD5rXhwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDBPNuagAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAD4AAAB8BAMAAADDfx4QAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUrnf05AgAAAFFJREFUSMft07ENACAIBVFXcARxA91/NxsTG5RONNxvXwPFpeQ/2W167foajgdwq4+82yVXbyvL1f9wPIhbfdAvjr/rX/Yrcv6vNxwP4VYfnhvsJuiIxHlGrAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxNDowNTo0My0wNTowMPqC8dEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTQ6MDU6NDMtMDU6MDCL30ltAAAAAElFTkSuQmCC"></td>
     </tr>
     <tr>
       <td align="left">political
@@ -262,7 +261,7 @@ Max : 1</td>
 2. Other
 3. Republican</td>
       <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">171</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">57.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">125</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">41.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHMAAABfBAMAAAApA+WYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAFdJREFUWMPt1rEVABAMRdGMwAbIBuy/m0apEKHKe/1t//kisWr2yqI6zEGhUCj0IXVMeLaXAtJWr6lCoVAo1E8dO2yGMenZfdjSowfToVAoFPqLOiY8ShMYwlWO2akd4AAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxMDo0OTozOS0wNTowMD5rXhwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDBPNuagAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHMAAABfBAMAAAApA+WYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqb39/f///+DdZCQAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUrnf05AgAAAFdJREFUWMPt1rEVABAMRdGMwAbIBuy/m0apEKHKe/1t//kisWr2yqI6zEGhUCj0IXVMeLaXAtJWr6lCoVAo1E8dO2yGMenZfdjSowfToVAoFPqLOiY8ShMYwlWO2akd4AAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxNDowNTo0My0wNTowMPqC8dEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTQ6MDU6NDMtMDU6MDCL30ltAAAAAElFTkSuQmCC"></td>
     </tr>
     <tr>
       <td align="left">height
@@ -272,7 +271,7 @@ min < med < max:
 61 < 69 < 83
 IQR (CV) : 5 (0.1)</td>
       <td align="left" style="vertical-align:middle">20 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAALQAAACCBAMAAAAdwP+xAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAKRJREFUaN7t2MsNgzAQQEG3QAkhHYT+e4sUfEFCy/KxlYR5F99Ge7BsQynq2RA0zj2GnSXo5/QJjUajv4auR14LuppoNBqNRjen63XWgp6XFxqNRqPRP0nnr8jd9JQevje9/My9lF4z0Wg0Go1Go9E96eCxd5YOTDQajUa3oxP/Lo7SieHRaPR96O135GF62/wnOjq2T9LR8Hemx7WW+/rSinr2Bmdkdh32d8MYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwPmteHAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0zMFQxMDo0OTozOS0wNTowME825qAAAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAALQAAACCBAMAAAAdwP+xAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUrnf05AgAAAKRJREFUaN7t2MsNgzAQQEG3QAkhHYT+e4sUfEFCy/KxlYR5F99Ge7BsQynq2RA0zj2GnSXo5/QJjUajv4auR14LuppoNBqNRjen63XWgp6XFxqNRqPRP0nnr8jd9JQevje9/My9lF4z0Wg0Go1Go9E96eCxd5YOTDQajUa3oxP/Lo7SieHRaPR96O135GF62/wnOjq2T9LR8Hemx7WW+/rSinr2Bmdkdh32d8MYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTMwVDE0OjA1OjQzLTA1OjAw+oLx0QAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0zMFQxNDowNTo0My0wNTowMIvfSW0AAAAASUVORK5CYII="></td>
     </tr>
   </tbody>
 </table>
@@ -302,7 +301,7 @@ min < med < max:
 78 < 104 < 125
 IQR (CV) : 13 (0.1)</td>
       <td align="left" style="vertical-align:middle">46 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAJdJREFUaN7t1sEJgDAMheGuoBtYN7D77ybYeAiEaGugiv+79NJ8hFBIUyI9mS4z5xrvzn2sHNnAwMDAwMDABmHeYm/GvAbBzsjIY7BVKWBgYGBgYJGY+UvwMCkwMbNBD6tK+SamR/cQ0w2CgYGBgYH9CpOdurRiUqcxKW/G5AALwtSX8SlmHWBgL8OsN9+NOcpgLIckkZ7shU9oZLZpezMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDA+a14cAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwTzbmoAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUrnf05AgAAAJdJREFUaN7t1sEJgDAMheGuoBtYN7D77ybYeAiEaGugiv+79NJ8hFBIUyI9mS4z5xrvzn2sHNnAwMDAwMDABmHeYm/GvAbBzsjIY7BVKWBgYGBgYJGY+UvwMCkwMbNBD6tK+SamR/cQ0w2CgYGBgYH9CpOdurRiUqcxKW/G5AALwtSX8SlmHWBgL8OsN9+NOcpgLIckkZ7shU9oZLZpezMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTQ6MDU6NDMtMDU6MDD6gvHRAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDE0OjA1OjQzLTA1OjAwi99JbQAAAABJRU5ErkJggg=="></td>
     </tr>
     <tr>
       <td align="left">hs_gpa
@@ -312,7 +311,7 @@ min < med < max:
 2.3 < 3.1 < 3.9
 IQR (CV) : 0.4 (0.1)</td>
       <td align="left" style="vertical-align:middle">300 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAJVJREFUaN7t2M0JwCAMhmFXaDdo3aDuv5tQkoNSf6pBSnm/iyDmIQdRiHNkJFs9p6RxrA/z4c4FBrYCa1zed1iodwgGBgYGBrYA06/NBBMkgIGBgYF9GtvTt38SSxGwX2Nycw4TTFYwMDAwMDAwsAzLh/BTmG6vwLRxE8w/ngYDs8EK88BOTKsFK1R1YrqddTYXR0YSAedcWSuxe140AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwPmteHAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0zMFQxMDo0OTozOS0wNTowME825qAAAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUsA5msoQAAAJVJREFUaN7t2M0JwCAMhmFXaDdo3aDuv5tQkoNSf6pBSnm/iyDmIQdRiHNkJFs9p6RxrA/z4c4FBrYCa1zed1iodwgGBgYGBrYA06/NBBMkgIGBgYF9GtvTt38SSxGwX2Nycw4TTFYwMDAwMDAwsAzLh/BTmG6vwLRxE8w/ngYDs8EK88BOTKsFK1R1YrqddTYXR0YSAedcWSuxe140AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTMwVDE0OjA1OjQ0LTA1OjAwPyXPXwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0zMFQxNDowNTo0NC0wNTowME54d+MAAAAASUVORK5CYII="></td>
     </tr>
     <tr>
       <td align="left">age
@@ -322,7 +321,7 @@ min < med < max:
 17 < 20 < 28
 IQR (CV) : 3 (0.1)</td>
       <td align="left" style="vertical-align:middle">12 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAKlJREFUaN7t2csNgCAQRVFawA6EDrT/3kyAxRgx8plgCPctWCAeJpH4QWNIS6zI5kJ2W50cdoaAjcTiBXQ6mA/nH2BgYGBg62LxsaKEiRYMDAysEpOvud2YvF+CgT2xmtX2idXUBwYGBgYGNi1WtqlciMWuDHabpRfz8gDYTFhmtbVj/lkf2F9Y+julhGWK1cHSt6kOlsaCDcGc3Obsxfxr11qYU4khLbkAyDpnFFaX6k0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDA+a14cAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwTzbmoAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUsA5msoQAAAKlJREFUaN7t2csNgCAQRVFawA6EDrT/3kyAxRgx8plgCPctWCAeJpH4QWNIS6zI5kJ2W50cdoaAjcTiBXQ6mA/nH2BgYGBg62LxsaKEiRYMDAysEpOvud2YvF+CgT2xmtX2idXUBwYGBgYGNi1WtqlciMWuDHabpRfz8gDYTFhmtbVj/lkf2F9Y+julhGWK1cHSt6kOlsaCDcGc3Obsxfxr11qYU4khLbkAyDpnFFaX6k0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTQ6MDU6NDQtMDU6MDA/Jc9fAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDE0OjA1OjQ0LTA1OjAwTnh34wAAAABJRU5ErkJggg=="></td>
     </tr>
   </tbody>
 </table>
@@ -352,7 +351,7 @@ min < med < max:
 1 < 18 < 36
 IQR (CV) : 9 (0.4)</td>
       <td align="left" style="vertical-align:middle">33 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAIhJREFUaN7t2bEJwCAQQFFXMBtEN8jtv1uKeBaR40QtFP6vhOAjzRVqCDRSNEta9LOwS40sX88MVgwBAzsX65irfkz8XwQDAwMDAwMDAwMDAwMDA3MwPavfKzBdgG2P1UuaFVizFwwMDAxsQyw1b1Y+1t7pFyybe22sfgEDOw6ro/Afp6kCjfQC/3yJfNlrTyoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDA+a14cAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwTzbmoAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUsA5msoQAAAIhJREFUaN7t2bEJwCAQQFFXMBtEN8jtv1uKeBaR40QtFP6vhOAjzRVqCDRSNEta9LOwS40sX88MVgwBAzsX65irfkz8XwQDAwMDAwMDAwMDAwMDA3MwPavfKzBdgG2P1UuaFVizFwwMDAxsQyw1b1Y+1t7pFyybe22sfgEDOw6ro/Afp6kCjfQC/3yJfNlrTyoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTQ6MDU6NDQtMDU6MDA/Jc9fAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDE0OjA1OjQ0LTA1OjAwTnh34wAAAABJRU5ErkJggg=="></td>
     </tr>
     <tr>
       <td align="left">act_science
@@ -362,7 +361,7 @@ min < med < max:
 1 < 18 < 36
 IQR (CV) : 9 (0.4)</td>
       <td align="left" style="vertical-align:middle">33 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAIhJREFUaN7t2UEKgCAQQFGvYDdIb5D3v5uLmFkkw8goQfT/Soh5BFGgpUSRslmRsp+L1XZ3gYGBbcMmXtJ5rPm3CLYPO+TZbcFkFgwMDAwMDAwMDAwMDAzsg5jskU8X06MQG5OFjw2zYGBgYD/GinleGcCqOQsGBvYCNv47WsD0iqrPr8ZSiSJ1gmNrdyijOBQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDA+a14cAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwTzbmoAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUsA5msoQAAAIhJREFUaN7t2UEKgCAQQFGvYDdIb5D3v5uLmFkkw8goQfT/Soh5BFGgpUSRslmRsp+L1XZ3gYGBbcMmXtJ5rPm3CLYPO+TZbcFkFgwMDAwMDAwMDAwMDAzsg5jskU8X06MQG5OFjw2zYGBgYD/GinleGcCqOQsGBvYCNv47WsD0iqrPr8ZSiSJ1gmNrdyijOBQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTQ6MDU6NDQtMDU6MDA/Jc9fAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDE0OjA1OjQ0LTA1OjAwTnh34wAAAABJRU5ErkJggg=="></td>
     </tr>
     <tr>
       <td align="left">act_mathematics
@@ -372,7 +371,7 @@ min < med < max:
 1 < 21 < 36
 IQR (CV) : 9 (0.3)</td>
       <td align="left" style="vertical-align:middle">32 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAIhJREFUaN7t2cENgDAIhWFW0A1sN9D9d/MiHGyIClxq/ndq0vKl4URaERLJ8pi1afwz77Hjyp7A7EIVWFcDDAwMDAwM7FeYzgtbBaYLMLA0ZsN1CaYlYGBgYGBgYGBgYGBgX7DhkT2DDbUzYuM/SAKzHTAwsDmw5r7WBLDu1k6NWY/uPUtFSCQniKGHayGjccgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDA+a14cAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDEwOjQ5OjM5LTA1OjAwTzbmoAAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUsA5msoQAAAIhJREFUaN7t2cENgDAIhWFW0A1sN9D9d/MiHGyIClxq/ndq0vKl4URaERLJ8pi1afwz77Hjyp7A7EIVWFcDDAwMDAwM7FeYzgtbBaYLMLA0ZsN1CaYlYGBgYGBgYGBgYGBgX7DhkT2DDbUzYuM/SAKzHTAwsDmw5r7WBLDu1k6NWY/uPUtFSCQniKGHayGjccgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTQ6MDU6NDQtMDU6MDA/Jc9fAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDE0OjA1OjQ0LTA1OjAwTnh34wAAAABJRU5ErkJggg=="></td>
     </tr>
     <tr>
       <td align="left">act_english
@@ -382,7 +381,7 @@ min < med < max:
 1 < 18 < 36
 IQR (CV) : 9 (0.3)</td>
       <td align="left" style="vertical-align:middle">32 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEnJnt/ugAAAIpJREFUaN7t2EEKgCAQQFGvYDdIb5D3v5uLmFkkw4hji+L/VRDzCEEqU6KVslmRsp+L1XZ3gYGBgYGBgc1jE2/jeaz5jwgGBvY6dsi23oLJLBgYGBgYGNg/MflwOF1Mfx1sTC58bJgFAwMDAwMD24GNR30BTO+AxbFintYsYNWc/TSma/Rcs1CJVuog6kqanMcAaAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxMDo0OTozOS0wNTowMD5rXhwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTA6NDk6MzktMDU6MDBPNuagAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUsA5msoQAAAIpJREFUaN7t2EEKgCAQQFGvYDdIb5D3v5uLmFkkw4hji+L/VRDzCEEqU6KVslmRsp+L1XZ3gYGBgYGBgc1jE2/jeaz5jwgGBvY6dsi23oLJLBgYGBgYGNg/MflwOF1Mfx1sTC58bJgFAwMDAwMD24GNR30BTO+AxbFintYsYNWc/TSma/Rcs1CJVuog6kqanMcAaAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxNDowNTo0NC0wNTowMD8lz18AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTQ6MDU6NDQtMDU6MDBOeHfjAAAAAElFTkSuQmCC"></td>
     </tr>
   </tbody>
 </table>
@@ -422,7 +421,7 @@ min < med < max:
 0 < 52 < 100
 IQR (CV) : 26 (0.4)</td>
       <td align="left" style="vertical-align:middle">78 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEotsRiKwAAAJdJREFUaN7t18ENgCAMQFFWwBFwA9l/NzX00qSpiNWo+f/CyZceFDAlGik7lVY+rgOb695yAzZ5c57GqjMnGBjY1zHZLmKwqhawr2HyMsRgTalgYGBgv8bMS/coZg4IBgYGFoCpW95VTClgYGBgYGBgD2DWUe5i+kdFY5biYnpAMDCwLeej7MHkccEcpQeTBewdWAkp0Ugrz12uAHkzulAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTA6NDk6NDAtMDU6MDChNhLWAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDEwOjQ5OjQwLTA1OjAw0GuqagAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUsA5msoQAAAJdJREFUaN7t18ENgCAMQFFWwBFwA9l/NzX00qSpiNWo+f/CyZceFDAlGik7lVY+rgOb695yAzZ5c57GqjMnGBjY1zHZLmKwqhawr2HyMsRgTalgYGBgv8bMS/coZg4IBgYGFoCpW95VTClgYGBgYGBgD2DWUe5i+kdFY5biYnpAMDCwLeej7MHkccEcpQeTBewdWAkp0Ugrz12uAHkzulAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTQ6MDU6NDQtMDU6MDA/Jc9fAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDE0OjA1OjQ0LTA1OjAwTnh34wAAAABJRU5ErkJggg=="></td>
     </tr>
     <tr>
       <td align="left">exam_2
@@ -432,7 +431,7 @@ min < med < max:
 0 < 50 < 100
 IQR (CV) : 28 (0.4)</td>
       <td align="left" style="vertical-align:middle">80 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEotsRiKwAAAJdJREFUaN7t18EJwCAMQFFXsCPYDer+u5ViLoGQVo0thf8v3h4RFDQlGik7lVa+7wG216tjAbZ5c3Zj1ZnzNUx2FIM1pYKB/RWT+xCDVbWAgYGBgYGBgf0GM389o5g5oImpr8ksphQwMDAwMDAwMLC1mH5ATmJ6QI1ZT8ZhzFI+xpz99WOOAgY2gckxjcFkAQPzsRJSopFOJdfP4CH9DJUAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTA6NDk6NDAtMDU6MDChNhLWAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDEwOjQ5OjQwLTA1OjAw0GuqagAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUsA5msoQAAAJdJREFUaN7t18EJwCAMQFFXsCPYDer+u5ViLoGQVo0thf8v3h4RFDQlGik7lVa+7wG216tjAbZ5c3Zj1ZnzNUx2FIM1pYKB/RWT+xCDVbWAgYGBgYGBgf0GM389o5g5oImpr8ksphQwMDAwMDAwMLC1mH5ATmJ6QI1ZT8ZhzFI+xpz99WOOAgY2gckxjcFkAQPzsRJSopFOJdfP4CH9DJUAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDctMzBUMTQ6MDU6NDQtMDU6MDA/Jc9fAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA3LTMwVDE0OjA1OjQ0LTA1OjAwTnh34wAAAABJRU5ErkJggg=="></td>
     </tr>
     <tr>
       <td align="left">exam_3
@@ -442,7 +441,7 @@ min < med < max:
 0 < 57 < 100
 IQR (CV) : 28 (0.3)</td>
       <td align="left" style="vertical-align:middle">81 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceBTEotsRiKwAAAI1JREFUaN7t1s0JwCAMQGFXcAW7Qd1/t1L0Egj+xBysfe/i7SMIBkMgS7FRKsV+A9iV326weSyJFrEsDjAwMLBTMHVHWjF1QDAwMLBNsboAfbCiZDAwsJ9j8me1iMkBwcDAwHbDxF9qFRMKGBhYD6vvzwerBxjYEKYtfzOmKSdhjcuaxxoK2Oew5FIgSw8pusvyfVxpEwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxMDo0OTo0MC0wNTowMKE2EtYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTA6NDk6NDAtMDU6MDDQa6pqAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent"><img style="border:none;background-color:transparent;padding:0" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqby8vL///8shn5hAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5AceCQUsA5msoQAAAI1JREFUaN7t1s0JwCAMQGFXcAW7Qd1/t1L0Egj+xBysfe/i7SMIBkMgS7FRKsV+A9iV326weSyJFrEsDjAwMLBTMHVHWjF1QDAwMLBNsboAfbCiZDAwsJ9j8me1iMkBwcDAwHbDxF9qFRMKGBhYD6vvzwerBxjYEKYtfzOmKSdhjcuaxxoK2Oew5FIgSw8pusvyfVxpEwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wNy0zMFQxNDowNTo0NC0wNTowMD8lz18AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDctMzBUMTQ6MDU6NDQtMDU6MDBOeHfjAAAAAElFTkSuQmCC"></td>
     </tr>
   </tbody>
 </table>
@@ -503,7 +502,7 @@ class: center, middle, dk-section-title
 
 --
 
-Both t-tests are performed using the `t.test()` function in the **stats** package
+Both t-tests are performed using the `t_test()` function in the **rstatix** package.
 
 ---
 
@@ -512,42 +511,12 @@ Both t-tests are performed using the `t.test()` function in the **stats** packag
 
 ```r
 dat %&gt;%
-  t.test(DV ~ IV, data = .)
+  t_test(DV ~ IV)
 ```
 
 ???
 
-This is the basic syntax of the independent t-test using the tidyverse. There are a lot of other arguments in the t.test function that we'll slowly learn about. 
-
----
-
-## Independent t-test in R
-
-
-```r
-dat %&gt;%
-  t.test(DV ~ IV, `data = .`)
-```
-
-???
-
-One of the arguments is the data argument. In the t.test function, the dataset argument comes second. This is why the dot comes second instead of first.
-
---
-
-
-```r
-dat %&gt;%
-  t.test(data = ., DV ~ IV)
-```
-
---
-
-`## Error: Can't combine id &lt;character&gt; and athlete &lt;double&gt;.`
-
-???
-
-If you put the dot first, indicating to put the dataset at the beginning, it won't work
+This is the basic syntax of the independent t-test using the tidyverse. 
 
 ---
 
@@ -557,32 +526,39 @@ Let's try running an independent samples t-test with our `college` dataset.
 
 --
 
+Let's test whether weight at time 2 differs by smoking status. 
+
+--
+
+.pull-left[
+
+```r
+dat %&gt;%
+  t_test(DV ~ IV)
+```
+]
+
+--
+
+.pull-right[
 
 ```r
 college %&gt;%
-  t.test(weight_2 ~ smokes, data = .)
+  t_test(weight_2 ~ smokes)
 ```
+]
 
 --
 
-
-```
-## 
-## 	Welch Two Sample t-test
-## 
-## data:  weight_2 by smokes
-## t = 0.12164, df = 102.7, p-value = 0.9034
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -3.785782  4.280485
-## sample estimates:
-## mean in group 0 mean in group 1 
-##        175.9661        175.7188
-```
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":[".y."],"name":[1],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[2],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[3],"type":["chr"],"align":["left"]},{"label":["n1"],"name":[4],"type":["int"],"align":["right"]},{"label":["n2"],"name":[5],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"weight_2","2":"0","3":"1","4":"236","5":"64","6":"0.1216377","7":"102.6969","8":"0.903","_rn_":"1","_row":"t"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
 --
 
-The t-test defaults to assuming the variances between groups is *not* equal.
+Notice the degrees of freedom has decimals. This is because the `t_test()` function defaults to var.equal = FALSE.
 
 ---
 
@@ -591,7 +567,7 @@ The t-test defaults to assuming the variances between groups is *not* equal.
 
 ```r
 college %&gt;%
-  t.test(weight_2 ~ smokes, data = ., `var.equal = TRUE`)
+  t_test(weight_2 ~ smokes, `var.equal = TRUE`)
 ```
 
 ???
@@ -600,20 +576,39 @@ Add the argument `var.equal = TRUE` to specify that we assume the variances betw
 
 --
 
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":[".y."],"name":[1],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[2],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[3],"type":["chr"],"align":["left"]},{"label":["n1"],"name":[4],"type":["int"],"align":["right"]},{"label":["n2"],"name":[5],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"weight_2","2":"0","3":"1","4":"236","5":"64","6":"0.1191742","7":"298","8":"0.905","_rn_":"1","_row":"t"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
+---
+
+## Detailed t-test results
+
+You can also asked for detailed results.
+
+
+```r
+college %&gt;%
+  t_test(weight_2 ~ smokes, 
+         `detailed = TRUE`)
 ```
-## 
-## 	Two Sample t-test
-## 
-## data:  weight_2 by smokes
-## t = 0.11917, df = 298, p-value = 0.9052
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -3.837234  4.331938
-## sample estimates:
-## mean in group 0 mean in group 1 
-##        175.9661        175.7188
-```
+
+--
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["estimate"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["estimate2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".y."],"name":[4],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[5],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[6],"type":["chr"],"align":["left"]},{"label":["n1"],"name":[7],"type":["int"],"align":["right"]},{"label":["n2"],"name":[8],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["method"],"name":[14],"type":["chr"],"align":["left"]},{"label":["alternative"],"name":[15],"type":["chr"],"align":["left"]}],"data":[{"1":"0.2473517","2":"175.9661","3":"175.7188","4":"weight_2","5":"0","6":"1","7":"236","8":"64","9":"0.1216377","10":"0.903","11":"102.6969","12":"-3.785782","13":"4.280485","14":"T-test","15":"two.sided","_rn_":"1","_row":"t"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+
+???
+
+Adds the mean values of the two groups and the mean difference between the two groups, what method was used, the alternative hypothesis, and the confidence intervals.
+
+Notice how it says that the variances are unequal. 
+
 
 ---
 
@@ -624,7 +619,7 @@ The default alternative hypothesis is a **two-sided hypothesis** that the mean d
 
 ```r
 college %&gt;%
-  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE, `alternative = "two.sided"`)
+  t_test(weight_2 ~ smokes, var.equal = TRUE, `alternative = "two.sided"`)
 ```
 
 --
@@ -636,13 +631,13 @@ What if you have a **one-sided hypothesis**?
 
 ```r
 college %&gt;%
-  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE, `alternative = "greater"`)
+  t_test(weight_2 ~ smokes, var.equal = TRUE, `alternative = "greater"`)
 ```
 
 
 ```r
 college %&gt;%
-  t.test(weight_2 ~ smokes, data = ., var.equal = TRUE, `alternative = "less"`)
+  t_test(weight_2 ~ smokes, var.equal = TRUE, `alternative = "less"`)
 ```
 
 ???
@@ -657,24 +652,17 @@ The alternative argument lets you specify either **less** or **greater** than 0.
 
 ```r
 college %&gt;%
-  t.test(weight_2 ~ smokes, data = ., 
+  t_test(weight_2 ~ smokes, 
          var.equal = TRUE, 
-         alternative = "two.sided")
+         detailed = TRUE,
+*        alternative = "two.sided")
 ```
 
-```
-## 
-## 	Two Sample t-test
-## 
-## data:  weight_2 by smokes
-## t = 0.11917, df = 298, p-value = 0.9052
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -3.837234  4.331938
-## sample estimates:
-## mean in group 0 mean in group 1 
-##        175.9661        175.7188
-```
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["estimate1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":[".y."],"name":[3],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[4],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[5],"type":["chr"],"align":["left"]},{"label":["n1"],"name":[6],"type":["int"],"align":["right"]},{"label":["n2"],"name":[7],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["method"],"name":[13],"type":["chr"],"align":["left"]},{"label":["alternative"],"name":[14],"type":["chr"],"align":["left"]}],"data":[{"1":"175.9661","2":"175.7188","3":"weight_2","4":"0","5":"1","6":"236","7":"64","8":"0.1191742","9":"0.905","10":"298","11":"-3.837234","12":"4.331938","13":"T-test","14":"two.sided","_rn_":"1","_row":"t"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 ]
 
 --
@@ -683,55 +671,39 @@ college %&gt;%
 
 ```r
 college %&gt;%
-  t.test(weight_2 ~ smokes, data = ., 
-         var.equal = TRUE, 
-         alternative = "greater")
+  t_test(weight_2 ~ smokes,  
+         var.equal = TRUE,  
+         detailed = TRUE,
+*        alternative = "greater")
 ```
 
-```
-## 
-## 	Two Sample t-test
-## 
-## data:  weight_2 by smokes
-## t = 0.11917, df = 298, p-value = 0.4526
-## alternative hypothesis: true difference in means is greater than 0
-## 95 percent confidence interval:
-##  -3.177265       Inf
-## sample estimates:
-## mean in group 0 mean in group 1 
-##        175.9661        175.7188
-```
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["estimate1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":[".y."],"name":[3],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[4],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[5],"type":["chr"],"align":["left"]},{"label":["n1"],"name":[6],"type":["int"],"align":["right"]},{"label":["n2"],"name":[7],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["method"],"name":[13],"type":["chr"],"align":["left"]},{"label":["alternative"],"name":[14],"type":["chr"],"align":["left"]}],"data":[{"1":"175.9661","2":"175.7188","3":"weight_2","4":"0","5":"1","6":"236","7":"64","8":"0.1191742","9":"0.453","10":"298","11":"-3.177265","12":"Inf","13":"T-test","14":"greater","_rn_":"1","_row":"t"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 ]
 
 ???
 
-Notice that the p-value is half of the previous value of .2305. 
+Notice that the p-value is half of the previous value. 
 
 ---
 
 ## Other arguments in the t-test
-.pull-left[
 
 ```r
 college %&gt;%
-  t.test(weight_2 ~ smokes, data = ., 
-         `mu = 1`)
+  t_test(weight_2 ~ smokes, detailed = TRUE, `mu = 1`)
 ```
 
-```
-## 
-## 	Welch Two Sample t-test
-## 
-## data:  weight_2 by smokes
-## t = -0.37012, df = 102.7, p-value = 0.7121
-## alternative hypothesis: true difference in means is not equal to 1
-## 95 percent confidence interval:
-##  -3.785782  4.280485
-## sample estimates:
-## mean in group 0 mean in group 1 
-##        175.9661        175.7188
-```
-]
+--
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["estimate"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["estimate2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".y."],"name":[4],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[5],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[6],"type":["chr"],"align":["left"]},{"label":["n1"],"name":[7],"type":["int"],"align":["right"]},{"label":["n2"],"name":[8],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["method"],"name":[14],"type":["chr"],"align":["left"]},{"label":["alternative"],"name":[15],"type":["chr"],"align":["left"]}],"data":[{"1":"0.2473517","2":"175.9661","3":"175.7188","4":"weight_2","5":"0","6":"1","7":"236","8":"64","9":"-0.3701223","10":"0.712","11":"102.6969","12":"-3.785782","13":"4.280485","14":"T-test","15":"two.sided","_rn_":"1","_row":"t"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
 ???
 
@@ -739,28 +711,19 @@ mu is a greek symbol for the population mean, or in this case the mean differenc
 
 --
 
-.pull-right[
 
 ```r
 college %&gt;%
-  t.test(weight_2 ~ smokes, data = ., 
-         `conf.level = .99`)
+  t_test(weight_2 ~ smokes, detailed = TRUE, `conf.level = .99`)
 ```
 
-```
-## 
-## 	Welch Two Sample t-test
-## 
-## data:  weight_2 by smokes
-## t = 0.12164, df = 102.7, p-value = 0.9034
-## alternative hypothesis: true difference in means is not equal to 0
-## 99 percent confidence interval:
-##  -5.089709  5.584412
-## sample estimates:
-## mean in group 0 mean in group 1 
-##        175.9661        175.7188
-```
-]
+--
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["estimate"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimate1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["estimate2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".y."],"name":[4],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[5],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[6],"type":["chr"],"align":["left"]},{"label":["n1"],"name":[7],"type":["int"],"align":["right"]},{"label":["n2"],"name":[8],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["method"],"name":[14],"type":["chr"],"align":["left"]},{"label":["alternative"],"name":[15],"type":["chr"],"align":["left"]}],"data":[{"1":"0.2473517","2":"175.9661","3":"175.7188","4":"weight_2","5":"0","6":"1","7":"236","8":"64","9":"0.1216377","10":"0.903","11":"102.6969","12":"-5.089709","13":"5.584412","14":"T-test","15":"two.sided","_rn_":"1","_row":"t"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
 ???
 
@@ -782,7 +745,7 @@ class: inverse
 
 --
 
-1. Filter your dataset to only people who have the `gender` of Male or Female (alternative, filter out those who are Trans*). Perform an independent samples t-test to test whether there is a difference in `act_english` by `gender` party. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
+1. Perform an independent samples t-test to test whether there is a difference in `act_english` by `gender`, but only for male or female students. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
 
 
 
@@ -816,26 +779,39 @@ class: center, middle, dk-section-title
 
 ## Dependent t-test in R
 
-The dependent t-test adds a new argument to the `t.test` function: 
+The dependent t-test adds a new argument to the `t_test` function: 
 
 .center[`paired = TRUE`]
 
---
+
+```r
+dat %&gt;%
+  t_test(DV ~ IV, `paired = TRUE`)
+```
+
+???
+
+This is the basic syntax of the dependent t-test using the tidyverse. Notice the inclusion of paired = TRUE argument. This tells R the data is a paired samples or dependent samples t-test. 
+
+Unfortunately, data *has* to be in long format. Often dependent t-test data is in wide format. So we'll cover how to convert data to long format easily.
+
+---
+
+## Converting wide to long format
 
 .pull-left[
 
 ```r
-t.test(`dat$DV1, dat$DV2`, 
-       paired = TRUE)
+college %&gt;%
+  select(weight_1, weight_2) %&gt;%
+  gather(key = "time", value = "weight")
 ```
 
-
-Used when the data are in **wide** format.
-
-Each *case or pair* is a row, and the DV is in two different columns.
-(This is most common.)
-
-&lt;font size = "3"&gt;Note that piping the dataset doesn't work here. You have to explicitly type out data$DV.&lt;/font&gt;
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":["time"],"name":[1],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"weight_1","2":"156"},{"1":"weight_1","2":"176"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"167"},{"1":"weight_1","2":"186"},{"1":"weight_1","2":"183"},{"1":"weight_1","2":"191"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"193"},{"1":"weight_1","2":"174"},{"1":"weight_1","2":"155"},{"1":"weight_1","2":"165"},{"1":"weight_1","2":"190"},{"1":"weight_1","2":"156"},{"1":"weight_1","2":"170"},{"1":"weight_1","2":"164"},{"1":"weight_1","2":"182"},{"1":"weight_1","2":"153"},{"1":"weight_1","2":"176"},{"1":"weight_1","2":"204"},{"1":"weight_1","2":"180"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"190"},{"1":"weight_1","2":"187"},{"1":"weight_1","2":"159"},{"1":"weight_1","2":"143"},{"1":"weight_1","2":"176"},{"1":"weight_1","2":"152"},{"1":"weight_1","2":"198"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"155"},{"1":"weight_1","2":"181"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"160"},{"1":"weight_1","2":"165"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"172"},{"1":"weight_1","2":"154"},{"1":"weight_1","2":"160"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"154"},{"1":"weight_1","2":"207"},{"1":"weight_1","2":"162"},{"1":"weight_1","2":"159"},{"1":"weight_1","2":"181"},{"1":"weight_1","2":"161"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"190"},{"1":"weight_1","2":"165"},{"1":"weight_1","2":"156"},{"1":"weight_1","2":"181"},{"1":"weight_1","2":"150"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"153"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"189"},{"1":"weight_1","2":"166"},{"1":"weight_1","2":"172"},{"1":"weight_1","2":"167"},{"1":"weight_1","2":"172"},{"1":"weight_1","2":"200"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"149"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"182"},{"1":"weight_1","2":"200"},{"1":"weight_1","2":"190"},{"1":"weight_1","2":"146"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"184"},{"1":"weight_1","2":"149"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"156"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"172"},{"1":"weight_1","2":"160"},{"1":"weight_1","2":"172"},{"1":"weight_1","2":"190"},{"1":"weight_1","2":"164"},{"1":"weight_1","2":"190"},{"1":"weight_1","2":"180"},{"1":"weight_1","2":"166"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"157"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"179"},{"1":"weight_1","2":"180"},{"1":"weight_1","2":"139"},{"1":"weight_1","2":"177"},{"1":"weight_1","2":"194"},{"1":"weight_1","2":"185"},{"1":"weight_1","2":"188"},{"1":"weight_1","2":"189"},{"1":"weight_1","2":"176"},{"1":"weight_1","2":"164"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"159"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"144"},{"1":"weight_1","2":"138"},{"1":"weight_1","2":"149"},{"1":"weight_1","2":"166"},{"1":"weight_1","2":"193"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"181"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"161"},{"1":"weight_1","2":"160"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"154"},{"1":"weight_1","2":"166"},{"1":"weight_1","2":"179"},{"1":"weight_1","2":"160"},{"1":"weight_1","2":"167"},{"1":"weight_1","2":"165"},{"1":"weight_1","2":"176"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"166"},{"1":"weight_1","2":"182"},{"1":"weight_1","2":"213"},{"1":"weight_1","2":"158"},{"1":"weight_1","2":"152"},{"1":"weight_1","2":"189"},{"1":"weight_1","2":"166"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"174"},{"1":"weight_1","2":"176"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"198"},{"1":"weight_1","2":"131"},{"1":"weight_1","2":"184"},{"1":"weight_1","2":"162"},{"1":"weight_1","2":"188"},{"1":"weight_1","2":"176"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"179"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"187"},{"1":"weight_1","2":"187"},{"1":"weight_1","2":"139"},{"1":"weight_1","2":"145"},{"1":"weight_1","2":"182"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"189"},{"1":"weight_1","2":"170"},{"1":"weight_1","2":"160"},{"1":"weight_1","2":"189"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"144"},{"1":"weight_1","2":"156"},{"1":"weight_1","2":"150"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"174"},{"1":"weight_1","2":"184"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"161"},{"1":"weight_1","2":"149"},{"1":"weight_1","2":"142"},{"1":"weight_1","2":"153"},{"1":"weight_1","2":"190"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"147"},{"1":"weight_1","2":"190"},{"1":"weight_1","2":"165"},{"1":"weight_1","2":"184"},{"1":"weight_1","2":"162"},{"1":"weight_1","2":"174"},{"1":"weight_1","2":"149"},{"1":"weight_1","2":"167"},{"1":"weight_1","2":"186"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"156"},{"1":"weight_1","2":"150"},{"1":"weight_1","2":"160"},{"1":"weight_1","2":"165"},{"1":"weight_1","2":"152"},{"1":"weight_1","2":"162"},{"1":"weight_1","2":"183"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"170"},{"1":"weight_1","2":"181"},{"1":"weight_1","2":"166"},{"1":"weight_1","2":"153"},{"1":"weight_1","2":"152"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"166"},{"1":"weight_1","2":"157"},{"1":"weight_1","2":"174"},{"1":"weight_1","2":"161"},{"1":"weight_1","2":"146"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"177"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"167"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"150"},{"1":"weight_1","2":"167"},{"1":"weight_1","2":"163"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"147"},{"1":"weight_1","2":"164"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"181"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"167"},{"1":"weight_1","2":"188"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"139"},{"1":"weight_1","2":"184"},{"1":"weight_1","2":"164"},{"1":"weight_1","2":"177"},{"1":"weight_1","2":"144"},{"1":"weight_1","2":"157"},{"1":"weight_1","2":"190"},{"1":"weight_1","2":"182"},{"1":"weight_1","2":"180"},{"1":"weight_1","2":"163"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"193"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"165"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"186"},{"1":"weight_1","2":"184"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"148"},{"1":"weight_1","2":"205"},{"1":"weight_1","2":"155"},{"1":"weight_1","2":"200"},{"1":"weight_1","2":"189"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"157"},{"1":"weight_1","2":"153"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"166"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"186"},{"1":"weight_1","2":"163"},{"1":"weight_1","2":"193"},{"1":"weight_1","2":"180"},{"1":"weight_1","2":"151"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"177"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"167"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"143"},{"1":"weight_1","2":"178"},{"1":"weight_1","2":"176"},{"1":"weight_1","2":"163"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"188"},{"1":"weight_1","2":"185"},{"1":"weight_1","2":"154"},{"1":"weight_1","2":"163"},{"1":"weight_1","2":"158"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"169"},{"1":"weight_1","2":"171"},{"1":"weight_1","2":"179"},{"1":"weight_1","2":"155"},{"1":"weight_1","2":"176"},{"1":"weight_1","2":"164"},{"1":"weight_1","2":"179"},{"1":"weight_1","2":"194"},{"1":"weight_1","2":"159"},{"1":"weight_1","2":"183"},{"1":"weight_1","2":"181"},{"1":"weight_1","2":"191"},{"1":"weight_1","2":"157"},{"1":"weight_1","2":"163"},{"1":"weight_1","2":"195"},{"1":"weight_1","2":"175"},{"1":"weight_1","2":"144"},{"1":"weight_1","2":"164"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"168"},{"1":"weight_1","2":"170"},{"1":"weight_1","2":"173"},{"1":"weight_1","2":"160"},{"1":"weight_1","2":"189"},{"1":"weight_1","2":"165"},{"1":"weight_1","2":"172"},{"1":"weight_1","2":"180"},{"1":"weight_1","2":"182"},{"1":"weight_1","2":"183"},{"1":"weight_2","2":"158"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"170"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"194"},{"1":"weight_2","2":"192"},{"1":"weight_2","2":"197"},{"1":"weight_2","2":"172"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"192"},{"1":"weight_2","2":"173"},{"1":"weight_2","2":"158"},{"1":"weight_2","2":"172"},{"1":"weight_2","2":"202"},{"1":"weight_2","2":"161"},{"1":"weight_2","2":"173"},{"1":"weight_2","2":"169"},{"1":"weight_2","2":"194"},{"1":"weight_2","2":"162"},{"1":"weight_2","2":"171"},{"1":"weight_2","2":"207"},{"1":"weight_2","2":"183"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"199"},{"1":"weight_2","2":"190"},{"1":"weight_2","2":"158"},{"1":"weight_2","2":"143"},{"1":"weight_2","2":"182"},{"1":"weight_2","2":"158"},{"1":"weight_2","2":"206"},{"1":"weight_2","2":"184"},{"1":"weight_2","2":"154"},{"1":"weight_2","2":"198"},{"1":"weight_2","2":"178"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"162"},{"1":"weight_2","2":"171"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"153"},{"1":"weight_2","2":"155"},{"1":"weight_2","2":"183"},{"1":"weight_2","2":"161"},{"1":"weight_2","2":"212"},{"1":"weight_2","2":"168"},{"1":"weight_2","2":"168"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"163"},{"1":"weight_2","2":"180"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"195"},{"1":"weight_2","2":"172"},{"1":"weight_2","2":"165"},{"1":"weight_2","2":"189"},{"1":"weight_2","2":"164"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"160"},{"1":"weight_2","2":"187"},{"1":"weight_2","2":"190"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"177"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"172"},{"1":"weight_2","2":"207"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"153"},{"1":"weight_2","2":"183"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"200"},{"1":"weight_2","2":"190"},{"1":"weight_2","2":"145"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"153"},{"1":"weight_2","2":"184"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"167"},{"1":"weight_2","2":"189"},{"1":"weight_2","2":"173"},{"1":"weight_2","2":"158"},{"1":"weight_2","2":"177"},{"1":"weight_2","2":"201"},{"1":"weight_2","2":"166"},{"1":"weight_2","2":"196"},{"1":"weight_2","2":"192"},{"1":"weight_2","2":"160"},{"1":"weight_2","2":"180"},{"1":"weight_2","2":"165"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"189"},{"1":"weight_2","2":"184"},{"1":"weight_2","2":"144"},{"1":"weight_2","2":"180"},{"1":"weight_2","2":"195"},{"1":"weight_2","2":"183"},{"1":"weight_2","2":"197"},{"1":"weight_2","2":"200"},{"1":"weight_2","2":"181"},{"1":"weight_2","2":"164"},{"1":"weight_2","2":"185"},{"1":"weight_2","2":"163"},{"1":"weight_2","2":"163"},{"1":"weight_2","2":"146"},{"1":"weight_2","2":"140"},{"1":"weight_2","2":"149"},{"1":"weight_2","2":"168"},{"1":"weight_2","2":"199"},{"1":"weight_2","2":"183"},{"1":"weight_2","2":"194"},{"1":"weight_2","2":"177"},{"1":"weight_2","2":"170"},{"1":"weight_2","2":"164"},{"1":"weight_2","2":"161"},{"1":"weight_2","2":"169"},{"1":"weight_2","2":"173"},{"1":"weight_2","2":"181"},{"1":"weight_2","2":"158"},{"1":"weight_2","2":"178"},{"1":"weight_2","2":"176"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"168"},{"1":"weight_2","2":"170"},{"1":"weight_2","2":"190"},{"1":"weight_2","2":"211"},{"1":"weight_2","2":"169"},{"1":"weight_2","2":"158"},{"1":"weight_2","2":"208"},{"1":"weight_2","2":"173"},{"1":"weight_2","2":"174"},{"1":"weight_2","2":"181"},{"1":"weight_2","2":"187"},{"1":"weight_2","2":"173"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"200"},{"1":"weight_2","2":"132"},{"1":"weight_2","2":"192"},{"1":"weight_2","2":"172"},{"1":"weight_2","2":"194"},{"1":"weight_2","2":"177"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"174"},{"1":"weight_2","2":"191"},{"1":"weight_2","2":"191"},{"1":"weight_2","2":"150"},{"1":"weight_2","2":"148"},{"1":"weight_2","2":"188"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"195"},{"1":"weight_2","2":"173"},{"1":"weight_2","2":"168"},{"1":"weight_2","2":"197"},{"1":"weight_2","2":"178"},{"1":"weight_2","2":"183"},{"1":"weight_2","2":"154"},{"1":"weight_2","2":"156"},{"1":"weight_2","2":"161"},{"1":"weight_2","2":"182"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"188"},{"1":"weight_2","2":"173"},{"1":"weight_2","2":"171"},{"1":"weight_2","2":"164"},{"1":"weight_2","2":"148"},{"1":"weight_2","2":"161"},{"1":"weight_2","2":"199"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"188"},{"1":"weight_2","2":"152"},{"1":"weight_2","2":"182"},{"1":"weight_2","2":"170"},{"1":"weight_2","2":"184"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"182"},{"1":"weight_2","2":"149"},{"1":"weight_2","2":"174"},{"1":"weight_2","2":"191"},{"1":"weight_2","2":"174"},{"1":"weight_2","2":"159"},{"1":"weight_2","2":"156"},{"1":"weight_2","2":"158"},{"1":"weight_2","2":"167"},{"1":"weight_2","2":"157"},{"1":"weight_2","2":"165"},{"1":"weight_2","2":"184"},{"1":"weight_2","2":"172"},{"1":"weight_2","2":"187"},{"1":"weight_2","2":"174"},{"1":"weight_2","2":"187"},{"1":"weight_2","2":"167"},{"1":"weight_2","2":"154"},{"1":"weight_2","2":"159"},{"1":"weight_2","2":"178"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"165"},{"1":"weight_2","2":"169"},{"1":"weight_2","2":"168"},{"1":"weight_2","2":"147"},{"1":"weight_2","2":"190"},{"1":"weight_2","2":"180"},{"1":"weight_2","2":"171"},{"1":"weight_2","2":"176"},{"1":"weight_2","2":"184"},{"1":"weight_2","2":"154"},{"1":"weight_2","2":"177"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"186"},{"1":"weight_2","2":"177"},{"1":"weight_2","2":"145"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"176"},{"1":"weight_2","2":"182"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"169"},{"1":"weight_2","2":"178"},{"1":"weight_2","2":"172"},{"1":"weight_2","2":"197"},{"1":"weight_2","2":"185"},{"1":"weight_2","2":"148"},{"1":"weight_2","2":"194"},{"1":"weight_2","2":"166"},{"1":"weight_2","2":"192"},{"1":"weight_2","2":"153"},{"1":"weight_2","2":"162"},{"1":"weight_2","2":"191"},{"1":"weight_2","2":"190"},{"1":"weight_2","2":"189"},{"1":"weight_2","2":"163"},{"1":"weight_2","2":"178"},{"1":"weight_2","2":"194"},{"1":"weight_2","2":"174"},{"1":"weight_2","2":"166"},{"1":"weight_2","2":"171"},{"1":"weight_2","2":"200"},{"1":"weight_2","2":"180"},{"1":"weight_2","2":"165"},{"1":"weight_2","2":"154"},{"1":"weight_2","2":"211"},{"1":"weight_2","2":"159"},{"1":"weight_2","2":"197"},{"1":"weight_2","2":"191"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"181"},{"1":"weight_2","2":"169"},{"1":"weight_2","2":"156"},{"1":"weight_2","2":"157"},{"1":"weight_2","2":"178"},{"1":"weight_2","2":"170"},{"1":"weight_2","2":"188"},{"1":"weight_2","2":"191"},{"1":"weight_2","2":"170"},{"1":"weight_2","2":"199"},{"1":"weight_2","2":"183"},{"1":"weight_2","2":"151"},{"1":"weight_2","2":"180"},{"1":"weight_2","2":"181"},{"1":"weight_2","2":"177"},{"1":"weight_2","2":"171"},{"1":"weight_2","2":"174"},{"1":"weight_2","2":"144"},{"1":"weight_2","2":"176"},{"1":"weight_2","2":"184"},{"1":"weight_2","2":"168"},{"1":"weight_2","2":"169"},{"1":"weight_2","2":"190"},{"1":"weight_2","2":"189"},{"1":"weight_2","2":"160"},{"1":"weight_2","2":"174"},{"1":"weight_2","2":"155"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"169"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"178"},{"1":"weight_2","2":"154"},{"1":"weight_2","2":"181"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"188"},{"1":"weight_2","2":"199"},{"1":"weight_2","2":"166"},{"1":"weight_2","2":"181"},{"1":"weight_2","2":"184"},{"1":"weight_2","2":"195"},{"1":"weight_2","2":"172"},{"1":"weight_2","2":"170"},{"1":"weight_2","2":"195"},{"1":"weight_2","2":"179"},{"1":"weight_2","2":"155"},{"1":"weight_2","2":"173"},{"1":"weight_2","2":"176"},{"1":"weight_2","2":"175"},{"1":"weight_2","2":"181"},{"1":"weight_2","2":"178"},{"1":"weight_2","2":"159"},{"1":"weight_2","2":"195"},{"1":"weight_2","2":"170"},{"1":"weight_2","2":"182"},{"1":"weight_2","2":"184"},{"1":"weight_2","2":"193"},{"1":"weight_2","2":"191"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 ]
 
 --
@@ -843,77 +819,53 @@ Each *case or pair* is a row, and the DV is in two different columns.
 .pull-right[
 
 ```r
-dat %&gt;%
-  t.test(`DV ~ IV`, paired = TRUE, data = .)
+college %&gt;%
+  select(weight_1, weight_2) %&gt;%
+  pivot_longer(everything(), 
+               names_to = "time",
+               values_to = "weight",
+               names_prefix = "weight_")
 ```
-Used when the data are in **long** format.
 
-Each *observation* is a row, and the DV is in one column and the case or pair ID is in another column.
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":["time"],"name":[1],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"156"},{"1":"2","2":"158"},{"1":"1","2":"176"},{"1":"2","2":"179"},{"1":"1","2":"169"},{"1":"2","2":"170"},{"1":"1","2":"167"},{"1":"2","2":"175"},{"1":"1","2":"186"},{"1":"2","2":"194"},{"1":"1","2":"183"},{"1":"2","2":"192"},{"1":"1","2":"191"},{"1":"2","2":"197"},{"1":"1","2":"173"},{"1":"2","2":"172"},{"1":"1","2":"173"},{"1":"2","2":"179"},{"1":"1","2":"193"},{"1":"2","2":"192"},{"1":"1","2":"174"},{"1":"2","2":"173"},{"1":"1","2":"155"},{"1":"2","2":"158"},{"1":"1","2":"165"},{"1":"2","2":"172"},{"1":"1","2":"190"},{"1":"2","2":"202"},{"1":"1","2":"156"},{"1":"2","2":"161"},{"1":"1","2":"170"},{"1":"2","2":"173"},{"1":"1","2":"164"},{"1":"2","2":"169"},{"1":"1","2":"182"},{"1":"2","2":"194"},{"1":"1","2":"153"},{"1":"2","2":"162"},{"1":"1","2":"176"},{"1":"2","2":"171"},{"1":"1","2":"204"},{"1":"2","2":"207"},{"1":"1","2":"180"},{"1":"2","2":"183"},{"1":"1","2":"175"},{"1":"2","2":"175"},{"1":"1","2":"190"},{"1":"2","2":"199"},{"1":"1","2":"187"},{"1":"2","2":"190"},{"1":"1","2":"159"},{"1":"2","2":"158"},{"1":"1","2":"143"},{"1":"2","2":"143"},{"1":"1","2":"176"},{"1":"2","2":"182"},{"1":"1","2":"152"},{"1":"2","2":"158"},{"1":"1","2":"198"},{"1":"2","2":"206"},{"1":"1","2":"178"},{"1":"2","2":"184"},{"1":"1","2":"155"},{"1":"2","2":"154"},{"1":"1","2":"181"},{"1":"2","2":"198"},{"1":"1","2":"175"},{"1":"2","2":"178"},{"1":"1","2":"173"},{"1":"2","2":"179"},{"1":"1","2":"160"},{"1":"2","2":"162"},{"1":"1","2":"165"},{"1":"2","2":"171"},{"1":"1","2":"175"},{"1":"2","2":"186"},{"1":"1","2":"172"},{"1":"2","2":"179"},{"1":"1","2":"154"},{"1":"2","2":"153"},{"1":"1","2":"160"},{"1":"2","2":"155"},{"1":"1","2":"178"},{"1":"2","2":"183"},{"1":"1","2":"154"},{"1":"2","2":"161"},{"1":"1","2":"207"},{"1":"2","2":"212"},{"1":"1","2":"162"},{"1":"2","2":"168"},{"1":"1","2":"159"},{"1":"2","2":"168"},{"1":"1","2":"181"},{"1":"2","2":"186"},{"1":"1","2":"161"},{"1":"2","2":"163"},{"1":"1","2":"173"},{"1":"2","2":"180"},{"1":"1","2":"173"},{"1":"2","2":"179"},{"1":"1","2":"190"},{"1":"2","2":"195"},{"1":"1","2":"165"},{"1":"2","2":"172"},{"1":"1","2":"156"},{"1":"2","2":"165"},{"1":"1","2":"181"},{"1":"2","2":"189"},{"1":"1","2":"150"},{"1":"2","2":"164"},{"1":"1","2":"175"},{"1":"2","2":"186"},{"1":"1","2":"153"},{"1":"2","2":"160"},{"1":"1","2":"173"},{"1":"2","2":"187"},{"1":"1","2":"189"},{"1":"2","2":"190"},{"1":"1","2":"166"},{"1":"2","2":"179"},{"1":"1","2":"172"},{"1":"2","2":"177"},{"1":"1","2":"167"},{"1":"2","2":"179"},{"1":"1","2":"172"},{"1":"2","2":"172"},{"1":"1","2":"200"},{"1":"2","2":"207"},{"1":"1","2":"173"},{"1":"2","2":"179"},{"1":"1","2":"149"},{"1":"2","2":"153"},{"1":"1","2":"171"},{"1":"2","2":"183"},{"1":"1","2":"182"},{"1":"2","2":"186"},{"1":"1","2":"200"},{"1":"2","2":"200"},{"1":"1","2":"190"},{"1":"2","2":"190"},{"1":"1","2":"146"},{"1":"2","2":"145"},{"1":"1","2":"171"},{"1":"2","2":"179"},{"1":"1","2":"184"},{"1":"2","2":"186"},{"1":"1","2":"149"},{"1":"2","2":"153"},{"1":"1","2":"171"},{"1":"2","2":"184"},{"1":"1","2":"171"},{"1":"2","2":"179"},{"1":"1","2":"156"},{"1":"2","2":"167"},{"1":"1","2":"178"},{"1":"2","2":"189"},{"1":"1","2":"172"},{"1":"2","2":"173"},{"1":"1","2":"160"},{"1":"2","2":"158"},{"1":"1","2":"172"},{"1":"2","2":"177"},{"1":"1","2":"190"},{"1":"2","2":"201"},{"1":"1","2":"164"},{"1":"2","2":"166"},{"1":"1","2":"190"},{"1":"2","2":"196"},{"1":"1","2":"180"},{"1":"2","2":"192"},{"1":"1","2":"166"},{"1":"2","2":"160"},{"1":"1","2":"171"},{"1":"2","2":"180"},{"1":"1","2":"157"},{"1":"2","2":"165"},{"1":"1","2":"175"},{"1":"2","2":"175"},{"1":"1","2":"179"},{"1":"2","2":"189"},{"1":"1","2":"180"},{"1":"2","2":"184"},{"1":"1","2":"139"},{"1":"2","2":"144"},{"1":"1","2":"177"},{"1":"2","2":"180"},{"1":"1","2":"194"},{"1":"2","2":"195"},{"1":"1","2":"185"},{"1":"2","2":"183"},{"1":"1","2":"188"},{"1":"2","2":"197"},{"1":"1","2":"189"},{"1":"2","2":"200"},{"1":"1","2":"176"},{"1":"2","2":"181"},{"1":"1","2":"164"},{"1":"2","2":"164"},{"1":"1","2":"175"},{"1":"2","2":"185"},{"1":"1","2":"159"},{"1":"2","2":"163"},{"1":"1","2":"168"},{"1":"2","2":"163"},{"1":"1","2":"144"},{"1":"2","2":"146"},{"1":"1","2":"138"},{"1":"2","2":"140"},{"1":"1","2":"149"},{"1":"2","2":"149"},{"1":"1","2":"166"},{"1":"2","2":"168"},{"1":"1","2":"193"},{"1":"2","2":"199"},{"1":"1","2":"175"},{"1":"2","2":"183"},{"1":"1","2":"181"},{"1":"2","2":"194"},{"1":"1","2":"171"},{"1":"2","2":"177"},{"1":"1","2":"161"},{"1":"2","2":"170"},{"1":"1","2":"160"},{"1":"2","2":"164"},{"1":"1","2":"168"},{"1":"2","2":"161"},{"1":"1","2":"154"},{"1":"2","2":"169"},{"1":"1","2":"166"},{"1":"2","2":"173"},{"1":"1","2":"179"},{"1":"2","2":"181"},{"1":"1","2":"160"},{"1":"2","2":"158"},{"1":"1","2":"167"},{"1":"2","2":"178"},{"1":"1","2":"165"},{"1":"2","2":"176"},{"1":"1","2":"176"},{"1":"2","2":"186"},{"1":"1","2":"169"},{"1":"2","2":"168"},{"1":"1","2":"166"},{"1":"2","2":"170"},{"1":"1","2":"182"},{"1":"2","2":"190"},{"1":"1","2":"213"},{"1":"2","2":"211"},{"1":"1","2":"158"},{"1":"2","2":"169"},{"1":"1","2":"152"},{"1":"2","2":"158"},{"1":"1","2":"189"},{"1":"2","2":"208"},{"1":"1","2":"166"},{"1":"2","2":"173"},{"1":"1","2":"168"},{"1":"2","2":"174"},{"1":"1","2":"175"},{"1":"2","2":"181"},{"1":"1","2":"174"},{"1":"2","2":"187"},{"1":"1","2":"176"},{"1":"2","2":"173"},{"1":"1","2":"178"},{"1":"2","2":"186"},{"1":"1","2":"198"},{"1":"2","2":"200"},{"1":"1","2":"131"},{"1":"2","2":"132"},{"1":"1","2":"184"},{"1":"2","2":"192"},{"1":"1","2":"162"},{"1":"2","2":"172"},{"1":"1","2":"188"},{"1":"2","2":"194"},{"1":"1","2":"176"},{"1":"2","2":"177"},{"1":"1","2":"178"},{"1":"2","2":"186"},{"1":"1","2":"179"},{"1":"2","2":"186"},{"1":"1","2":"171"},{"1":"2","2":"174"},{"1":"1","2":"187"},{"1":"2","2":"191"},{"1":"1","2":"187"},{"1":"2","2":"191"},{"1":"1","2":"139"},{"1":"2","2":"150"},{"1":"1","2":"145"},{"1":"2","2":"148"},{"1":"1","2":"182"},{"1":"2","2":"188"},{"1":"1","2":"169"},{"1":"2","2":"179"},{"1":"1","2":"189"},{"1":"2","2":"195"},{"1":"1","2":"170"},{"1":"2","2":"173"},{"1":"1","2":"160"},{"1":"2","2":"168"},{"1":"1","2":"189"},{"1":"2","2":"197"},{"1":"1","2":"178"},{"1":"2","2":"178"},{"1":"1","2":"169"},{"1":"2","2":"183"},{"1":"1","2":"144"},{"1":"2","2":"154"},{"1":"1","2":"156"},{"1":"2","2":"156"},{"1":"1","2":"150"},{"1":"2","2":"161"},{"1":"1","2":"171"},{"1":"2","2":"182"},{"1":"1","2":"174"},{"1":"2","2":"175"},{"1":"1","2":"184"},{"1":"2","2":"188"},{"1":"1","2":"169"},{"1":"2","2":"173"},{"1":"1","2":"161"},{"1":"2","2":"171"},{"1":"1","2":"149"},{"1":"2","2":"164"},{"1":"1","2":"142"},{"1":"2","2":"148"},{"1":"1","2":"153"},{"1":"2","2":"161"},{"1":"1","2":"190"},{"1":"2","2":"199"},{"1":"1","2":"175"},{"1":"2","2":"179"},{"1":"1","2":"178"},{"1":"2","2":"188"},{"1":"1","2":"147"},{"1":"2","2":"152"},{"1":"1","2":"190"},{"1":"2","2":"182"},{"1":"1","2":"165"},{"1":"2","2":"170"},{"1":"1","2":"184"},{"1":"2","2":"184"},{"1":"1","2":"162"},{"1":"2","2":"175"},{"1":"1","2":"174"},{"1":"2","2":"182"},{"1":"1","2":"149"},{"1":"2","2":"149"},{"1":"1","2":"167"},{"1":"2","2":"174"},{"1":"1","2":"186"},{"1":"2","2":"191"},{"1":"1","2":"175"},{"1":"2","2":"174"},{"1":"1","2":"156"},{"1":"2","2":"159"},{"1":"1","2":"150"},{"1":"2","2":"156"},{"1":"1","2":"160"},{"1":"2","2":"158"},{"1":"1","2":"165"},{"1":"2","2":"167"},{"1":"1","2":"152"},{"1":"2","2":"157"},{"1":"1","2":"162"},{"1":"2","2":"165"},{"1":"1","2":"183"},{"1":"2","2":"184"},{"1":"1","2":"168"},{"1":"2","2":"172"},{"1":"1","2":"178"},{"1":"2","2":"187"},{"1":"1","2":"170"},{"1":"2","2":"174"},{"1":"1","2":"181"},{"1":"2","2":"187"},{"1":"1","2":"166"},{"1":"2","2":"167"},{"1":"1","2":"153"},{"1":"2","2":"154"},{"1":"1","2":"152"},{"1":"2","2":"159"},{"1":"1","2":"173"},{"1":"2","2":"178"},{"1":"1","2":"166"},{"1":"2","2":"179"},{"1":"1","2":"157"},{"1":"2","2":"165"},{"1":"1","2":"174"},{"1":"2","2":"169"},{"1":"1","2":"161"},{"1":"2","2":"168"},{"1":"1","2":"146"},{"1":"2","2":"147"},{"1":"1","2":"178"},{"1":"2","2":"190"},{"1":"1","2":"177"},{"1":"2","2":"180"},{"1":"1","2":"168"},{"1":"2","2":"171"},{"1":"1","2":"167"},{"1":"2","2":"176"},{"1":"1","2":"175"},{"1":"2","2":"184"},{"1":"1","2":"150"},{"1":"2","2":"154"},{"1":"1","2":"167"},{"1":"2","2":"177"},{"1":"1","2":"163"},{"1":"2","2":"175"},{"1":"1","2":"175"},{"1":"2","2":"186"},{"1":"1","2":"173"},{"1":"2","2":"177"},{"1":"1","2":"147"},{"1":"2","2":"145"},{"1":"1","2":"164"},{"1":"2","2":"175"},{"1":"1","2":"175"},{"1":"2","2":"175"},{"1":"1","2":"173"},{"1":"2","2":"176"},{"1":"1","2":"173"},{"1":"2","2":"182"},{"1":"1","2":"169"},{"1":"2","2":"179"},{"1":"1","2":"181"},{"1":"2","2":"169"},{"1":"1","2":"171"},{"1":"2","2":"178"},{"1":"1","2":"167"},{"1":"2","2":"172"},{"1":"1","2":"188"},{"1":"2","2":"197"},{"1":"1","2":"178"},{"1":"2","2":"185"},{"1":"1","2":"139"},{"1":"2","2":"148"},{"1":"1","2":"184"},{"1":"2","2":"194"},{"1":"1","2":"164"},{"1":"2","2":"166"},{"1":"1","2":"177"},{"1":"2","2":"192"},{"1":"1","2":"144"},{"1":"2","2":"153"},{"1":"1","2":"157"},{"1":"2","2":"162"},{"1":"1","2":"190"},{"1":"2","2":"191"},{"1":"1","2":"182"},{"1":"2","2":"190"},{"1":"1","2":"180"},{"1":"2","2":"189"},{"1":"1","2":"163"},{"1":"2","2":"163"},{"1":"1","2":"175"},{"1":"2","2":"178"},{"1":"1","2":"193"},{"1":"2","2":"194"},{"1":"1","2":"169"},{"1":"2","2":"174"},{"1":"1","2":"165"},{"1":"2","2":"166"},{"1":"1","2":"168"},{"1":"2","2":"171"},{"1":"1","2":"186"},{"1":"2","2":"200"},{"1":"1","2":"184"},{"1":"2","2":"180"},{"1":"1","2":"168"},{"1":"2","2":"165"},{"1":"1","2":"148"},{"1":"2","2":"154"},{"1":"1","2":"205"},{"1":"2","2":"211"},{"1":"1","2":"155"},{"1":"2","2":"159"},{"1":"1","2":"200"},{"1":"2","2":"197"},{"1":"1","2":"189"},{"1":"2","2":"191"},{"1":"1","2":"178"},{"1":"2","2":"175"},{"1":"1","2":"178"},{"1":"2","2":"181"},{"1":"1","2":"168"},{"1":"2","2":"169"},{"1":"1","2":"157"},{"1":"2","2":"156"},{"1":"1","2":"153"},{"1":"2","2":"157"},{"1":"1","2":"171"},{"1":"2","2":"178"},{"1":"1","2":"166"},{"1":"2","2":"170"},{"1":"1","2":"178"},{"1":"2","2":"188"},{"1":"1","2":"186"},{"1":"2","2":"191"},{"1":"1","2":"163"},{"1":"2","2":"170"},{"1":"1","2":"193"},{"1":"2","2":"199"},{"1":"1","2":"180"},{"1":"2","2":"183"},{"1":"1","2":"151"},{"1":"2","2":"151"},{"1":"1","2":"168"},{"1":"2","2":"180"},{"1":"1","2":"177"},{"1":"2","2":"181"},{"1":"1","2":"169"},{"1":"2","2":"177"},{"1":"1","2":"167"},{"1":"2","2":"171"},{"1":"1","2":"168"},{"1":"2","2":"174"},{"1":"1","2":"143"},{"1":"2","2":"144"},{"1":"1","2":"178"},{"1":"2","2":"176"},{"1":"1","2":"176"},{"1":"2","2":"184"},{"1":"1","2":"163"},{"1":"2","2":"168"},{"1":"1","2":"171"},{"1":"2","2":"169"},{"1":"1","2":"188"},{"1":"2","2":"190"},{"1":"1","2":"185"},{"1":"2","2":"189"},{"1":"1","2":"154"},{"1":"2","2":"160"},{"1":"1","2":"163"},{"1":"2","2":"174"},{"1":"1","2":"158"},{"1":"2","2":"155"},{"1":"1","2":"169"},{"1":"2","2":"179"},{"1":"1","2":"169"},{"1":"2","2":"169"},{"1":"1","2":"171"},{"1":"2","2":"175"},{"1":"1","2":"179"},{"1":"2","2":"178"},{"1":"1","2":"155"},{"1":"2","2":"154"},{"1":"1","2":"176"},{"1":"2","2":"181"},{"1":"1","2":"164"},{"1":"2","2":"179"},{"1":"1","2":"179"},{"1":"2","2":"188"},{"1":"1","2":"194"},{"1":"2","2":"199"},{"1":"1","2":"159"},{"1":"2","2":"166"},{"1":"1","2":"183"},{"1":"2","2":"181"},{"1":"1","2":"181"},{"1":"2","2":"184"},{"1":"1","2":"191"},{"1":"2","2":"195"},{"1":"1","2":"157"},{"1":"2","2":"172"},{"1":"1","2":"163"},{"1":"2","2":"170"},{"1":"1","2":"195"},{"1":"2","2":"195"},{"1":"1","2":"175"},{"1":"2","2":"179"},{"1":"1","2":"144"},{"1":"2","2":"155"},{"1":"1","2":"164"},{"1":"2","2":"173"},{"1":"1","2":"173"},{"1":"2","2":"176"},{"1":"1","2":"168"},{"1":"2","2":"175"},{"1":"1","2":"170"},{"1":"2","2":"181"},{"1":"1","2":"173"},{"1":"2","2":"178"},{"1":"1","2":"160"},{"1":"2","2":"159"},{"1":"1","2":"189"},{"1":"2","2":"195"},{"1":"1","2":"165"},{"1":"2","2":"170"},{"1":"1","2":"172"},{"1":"2","2":"182"},{"1":"1","2":"180"},{"1":"2","2":"184"},{"1":"1","2":"182"},{"1":"2","2":"193"},{"1":"1","2":"183"},{"1":"2","2":"191"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 ]
 
-???
-
-This is the basic syntax of the dependent t-test using the tidyverse. Notice the inclusion of paired = TRUE argument. This tells R the data is a paired samples or dependent samples t-test. 
-
-There are two ways of inputting the data. If your data is in wide format, with each person representing a row and two columns of data per person, then you'll use the first set of code. However, if your data is in long format, with each person's data at two time points representing a row (therefore having double the rows of data) then you'll use the second set of code. 
-
 ---
-
-## An example
-
-
-```r
-t.test(college$weight_1, college$weight_2, paired = TRUE)
-```
-
---
-
-
-```
-## 
-## 	Paired t-test
-## 
-## data:  college$weight_1 and college$weight_2
-*## t = -18.737, df = 299, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -5.7351 -4.6449
-## sample estimates:
-## mean of the differences 
-##                   -5.19
-```
-
----
-
-## Converting wide to long format
 
 
 ```r
 college %&gt;%
   select(weight_1, weight_2) %&gt;%
-  pivot_longer(cols = starts_with("weight"), 
-               names_to = "time",
-               values_to = "weight",
-               names_prefix = "weight_") %&gt;%
-  `t.test(weight ~ time, data = ., paired = TRUE)`
+  gather(key = "time", value = "weight") %&gt;%
+* t_test(weight ~ time, paired = TRUE)
 ```
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":[".y."],"name":[1],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[2],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[3],"type":["chr"],"align":["left"]},{"label":["n1"],"name":[4],"type":["int"],"align":["right"]},{"label":["n2"],"name":[5],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"weight","2":"weight_1","3":"weight_2","4":"300","5":"300","6":"-18.73704","7":"299","8":"2.35e-52","_rn_":"1","_row":"t"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
 --
 
 
+```r
+college %&gt;%
+  select(weight_1, weight_2) %&gt;%
+  pivot_longer(everything(), names_to = "time",
+               values_to = "weight", names_prefix = "weight_") %&gt;%
+* t_test(weight ~ time, paired = TRUE)
 ```
-## 
-## 	Paired t-test
-## 
-## data:  weight by time
-*## t = -18.737, df = 299, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -5.7351 -4.6449
-## sample estimates:
-## mean of the differences 
-##                   -5.19
-```
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":[".y."],"name":[1],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[2],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[3],"type":["chr"],"align":["left"]},{"label":["n1"],"name":[4],"type":["int"],"align":["right"]},{"label":["n2"],"name":[5],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"weight","2":"1","3":"2","4":"300","5":"300","6":"-18.73704","7":"299","8":"2.35e-52","_rn_":"1","_row":"t"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
 ---
 
@@ -932,12 +884,6 @@ class: inverse
 --
 
 1. Perform a dependent samples t-test to test whether there is a difference in `act_science` and `act_mathematics` scores. Is there a difference? What is the p-value?
-
---
-
-**Bonus!!!**
-
-Using `pivot_longer` pivot your data so it is in long form. Perform a dependent samples t-test to test whether there is a difference in `act_science` and `act_english` scores using the long-data t.test code.
 
 
 
@@ -974,69 +920,149 @@ class: center, middle, dk-section-title
 
 ## One-way ANOVA in R
 
+The formatting for the one-way ANOVA is similar to that of `t_test` except we replace it with `anova_test`.
+
+--
+
 
 ```r
 dat %&gt;%
-  `aov`(DV ~ IV, data = .) %&gt;%
-  summary()
+  `anova_test`(DV ~ IV)
 ```
-
-The formatting for the one-way ANOVA is similar to that of `t.test` except we replace it with `aov`.
 
 ---
 
 ## An example
 
-
-```r
-college %&gt;%
-  aov(exam_1 ~ grade_class, data = .)
-```
-
-```
-## Call:
-##    aov(formula = exam_1 ~ grade_class, data = .)
-## 
-## Terms:
-##                 grade_class Residuals
-## Sum of Squares       788.87 108684.88
-## Deg. of Freedom           3       296
-## 
-## Residual standard error: 19.16191
-## Estimated effects may be unbalanced
-```
+Let's try running an one-way ANOVA with our `college` dataset. 
 
 --
 
-The output is not very useful. For that reason, we need to ask for the summary of the model. 
+Let's test whether exam 1 scores differ by grade rank (`grade_class`).
+
+--
+
+.pull-left[ 
+
+```r
+dat %&gt;%
+  anova_test(DV ~ IV)
+```
+]
+
+--
+
+.pull-right[ 
+
+```r
+college %&gt;%
+  anova_test(exam_1 ~ grade_class)
+```
+]
+
+--
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["DFn"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["DFd"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p&lt;.05"],"name":[6],"type":["chr"],"align":["left"]},{"label":["ges"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"grade_class","2":"3","3":"296","4":"0.716","5":"0.543","6":"","7":"0.007","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
 ---
 
-## An example
+## Detailed ANOVA results
 
 
 ```r
-college %&gt;%
-  aov(age ~ grade_class, data = .) %&gt;%
-* summary()
+college %&gt;% anova_test(exam_1 ~ grade_class)
 ```
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["DFn"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["DFd"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p&lt;.05"],"name":[6],"type":["chr"],"align":["left"]},{"label":["ges"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"grade_class","2":"3","3":"296","4":"0.716","5":"0.543","6":"","7":"0.007","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
 --
 
 
-```
-##              Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## grade_class   3 1479.2   493.1   167.7 &lt;2e-16 ***
-## Residuals   296  870.5     2.9                   
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```r
+college %&gt;% anova_test(exam_1 ~ grade_class, `detailed = TRUE`)
 ```
 
+--
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["SSn"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SSd"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["DFn"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["DFd"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["p&lt;.05"],"name":[8],"type":["chr"],"align":["left"]},{"label":["ges"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"grade_class","2":"788.871","3":"108684.9","4":"3","5":"296","6":"0.716","7":"0.543","8":"","9":"0.007","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+
+---
+
+## hccm???
 
 
-The `summary()` output provides the F-value (167.66), df (3, 296), and p-value (0) you need to report the statistical values. 
+```r
+college %&gt;%
+  anova_test(exam_1 ~ grade_class)
+```
 
-The summary will add asterisks if there are any statistically significant p-values (e.g., `‘*’ 0.05`).
+```
+## Coefficient covariances computed by hccm()
+```
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["DFn"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["DFd"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p&lt;.05"],"name":[6],"type":["chr"],"align":["left"]},{"label":["ges"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"grade_class","2":"3","3":"296","4":"0.716","5":"0.543","6":"","7":"0.007","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+
+--
+
+The warning `Coefficient covariances computed by hccm()` just tells us that it is using a heteroscedasticity-corrected coefficient covariance matrix. 
+
+Nothing for us to worry about!
+
+---
+
+## Effect sizes
+
+`ges` is generalized eta squared. We can change `effect.size = "pes"` for partial eta squared.
+
+--
+
+.pull-left[
+
+```r
+college %&gt;%
+  anova_test(exam_1 ~ grade_class, 
+*            effect.size = "ges")
+```
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["DFn"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["DFd"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p&lt;.05"],"name":[6],"type":["chr"],"align":["left"]},{"label":["ges"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"grade_class","2":"3","3":"296","4":"0.716","5":"0.543","6":"","7":"0.007","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+]
+
+--
+
+.pull-left[
+
+```r
+college %&gt;%
+  anova_test(exam_1 ~ grade_class, 
+*            effect.size = "pes")
+```
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["DFn"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["DFd"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p&lt;.05"],"name":[6],"type":["chr"],"align":["left"]},{"label":["pes"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"grade_class","2":"3","3":"296","4":"0.716","5":"0.543","6":"","7":"0.007","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+]
 
 ---
 
@@ -1076,7 +1102,7 @@ For that, we need post hoc comparisons.*
 
 --
 
-There are many post hoc comparisons possible (e.g., Fisher's LSD, Bonferroni, Newman-Keuls, Scheffe), but we're going to focus on **Tukey's HSD** because it's easy to calculate and does a good job protecting against Type I errors without being too conservative. 
+.small[There are many post hoc comparisons possible (e.g., Fisher's LSD, Bonferroni, Newman-Keuls, Scheffe), but we're going to focus on **Tukey's HSD** because it and does a good job protecting against Type I errors without being too conservative.]
 
 ???
 
@@ -1089,62 +1115,39 @@ Tukey's Honest Significant Differences
 
 ```r
 dat %&gt;%
-  aov(DV ~ IV, data = .) %&gt;%
-  `TukeyHSD()`
+  `tukey_hsd`(DV ~ IV)
 ```
 
 ---
 
 ## An example
 
+Using our previous example, let's run Tukey's HSD by testing whether exam 1 scores differ by grade rank (`grade_class`).
+.pull-left[
+
+```r
+dat %&gt;%
+  `tukey_hsd`(DV ~ IV)
+```
+]
+
+--
+
+.pull-right[
 
 ```r
 college %&gt;%
-  aov(act_reading ~ gender, data = .) %&gt;%
-  summary()
+  tukey_hsd(exam_1 ~ grade_class)
 ```
+]
 
 --
 
-
-```
-##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## gender        2   1079   539.6   13.75 1.94e-06 ***
-## Residuals   297  11653    39.2                     
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-```
-
----
-
-## An example
-
-
-```r
-college %&gt;%
-  aov(act_reading ~ gender, data = .) %&gt;%
-  TukeyHSD()
-```
-
---
-
-
-```
-##   Tukey multiple comparisons of means
-##     95% family-wise confidence level
-## 
-## Fit: aov(formula = act_reading ~ gender, data = .)
-## 
-## $gender
-##                    diff       lwr       upr     p adj
-*## Male-Female   -3.892857 -5.642959 -2.142756 0.0000009
-## Trans*-Female -2.194805 -6.313483  1.923872 0.4217539
-## Trans*-Male    1.698052 -2.449129  5.845233 0.5999190
-```
-
---
-
-Female students tend to have higher ACT reading scores than male students. There are no differences in ACT reading scores between male and female students with Trans* students.
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["group1"],"name":[2],"type":["chr"],"align":["left"]},{"label":["group2"],"name":[3],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["p.adj"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["p.adj.signif"],"name":[8],"type":["chr"],"align":["left"]}],"data":[{"1":"grade_class","2":"Freshman","3":"Junior","4":"-0.39591206","5":"-8.421702","6":"7.629878","7":"0.999","8":"ns","_rn_":"1"},{"1":"grade_class","2":"Freshman","3":"Senior","4":"3.02662315","5":"-4.999167","6":"11.052413","7":"0.764","8":"ns","_rn_":"2"},{"1":"grade_class","2":"Freshman","3":"Sophomore","4":"3.06739409","5":"-4.815632","6":"10.950421","7":"0.746","8":"ns","_rn_":"3"},{"1":"grade_class","2":"Junior","3":"Senior","4":"3.42253521","5":"-4.886756","6":"11.731826","7":"0.712","8":"ns","_rn_":"4"},{"1":"grade_class","2":"Junior","3":"Sophomore","4":"3.46330615","5":"-4.708176","6":"11.634789","7":"0.693","8":"ns","_rn_":"5"},{"1":"grade_class","2":"Senior","3":"Sophomore","4":"0.04077094","5":"-8.130712","6":"8.212253","7":"1.000","8":"ns","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
 ---
 
@@ -1162,7 +1165,7 @@ class: inverse
 
 --
 
-1. Perform one-way ANOVA to test whether there is a difference in `weight_1` by `gender`. Is there a difference? If so, perform a Tukey's HSD to test where the differences are. Describe the differences. 
+1. Perform one-way ANOVA to test whether there is a difference in `weight_2` by `gender`. Is there a difference? If so, perform a Tukey's HSD to test where the differences are. Describe the differences. 
 
 
 
@@ -1176,67 +1179,137 @@ class: center, middle, dk-section-title
 
 ## Repeated measures ANOVA
 
-Repeated Measures ANOVA allows us to examine designs in which the same people or samples contributed to the different means (within-groups design). This means that all participants or cases participated in all conditions of an experiment or IV. 
+Repeated Measures ANOVA allows us to examine designs in which the same people or samples contributed to the different means (within-groups design). 
 
-**Example**: Let's examine how exam scores (`exam_1`, `exam_2`, and `exam_3`) differ within individuals across time. 
+This means that all participants or cases participated in all conditions of an experiment or IV. 
+
+---
+
+## Repeated measures ANOVA in R
+
+There are two ways to write the R code for a repeated measures ANOVA using `anova_test`: by the equation, or by specifying which variables are the DV, between- or within-subjects IVs, and wid (within-subjects identifier).
+
+--
+
+**Option 1**:
+
+
+```r
+dat %&gt;%
+  anova_test(DV ~ IV + Error(id/IV))
+```
+
+--
+
+**Option 2**:
+
+
+```r
+dat %&gt;%
+  anova_test(dv = DV, wid = id, within = IV)
+```
 
 ---
 
 ### An example
 
-First, we need to convert our data to long format.
+Let's examine how exam scores (`exam_1`, `exam_2`, and `exam_3`) differ within individuals across time. 
 
+Notice that we'll need to make our data into *long format* to make this work, since we need the DV into into variable. Recall there are two ways to do this:
+
+--
+
+.pull-left[
+**gather**:
+
+```r
+college %&gt;%
+  select(exam_1:exam_3, id) %&gt;%
+  gather(-id, 
+         key = "exam", 
+         value = "score")
+```
+]
+
+--
+
+.pull-right[
+**pivot_longer**:
 
 ```r
 college %&gt;%
   select(starts_with("exam"), id) %&gt;%
-  pivot_longer(cols = starts_with("exam"), 
+  pivot_longer(-id, 
                names_to = "exam",
                values_to = "score",
                names_prefix = "exam_")
 ```
-
---
-
-&lt;div data-pagedtable="false"&gt;
-  &lt;script data-pagedtable-source type="application/json"&gt;
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["exam"],"name":[2],"type":["chr"],"align":["left"]},{"label":["score"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"1","3":"67"},{"1":"1","2":"2","3":"78"},{"1":"1","2":"3","3":"91"},{"1":"2","2":"1","3":"59"},{"1":"2","2":"2","3":"63"},{"1":"2","2":"3","3":"72"},{"1":"3","2":"1","3":"76"},{"1":"3","2":"2","3":"78"},{"1":"3","2":"3","3":"85"},{"1":"4","2":"1","3":"67"},{"1":"4","2":"2","3":"54"},{"1":"4","2":"3","3":"64"},{"1":"5","2":"1","3":"11"},{"1":"5","2":"2","3":"24"},{"1":"5","2":"3","3":"36"},{"1":"6","2":"1","3":"27"},{"1":"6","2":"2","3":"24"},{"1":"6","2":"3","3":"50"},{"1":"7","2":"1","3":"37"},{"1":"7","2":"2","3":"42"},{"1":"7","2":"3","3":"47"},{"1":"8","2":"1","3":"44"},{"1":"8","2":"2","3":"43"},{"1":"8","2":"3","3":"51"},{"1":"9","2":"1","3":"86"},{"1":"9","2":"2","3":"100"},{"1":"9","2":"3","3":"99"},{"1":"10","2":"1","3":"6"},{"1":"10","2":"2","3":"5"},{"1":"10","2":"3","3":"20"},{"1":"11","2":"1","3":"64"},{"1":"11","2":"2","3":"68"},{"1":"11","2":"3","3":"70"},{"1":"12","2":"1","3":"55"},{"1":"12","2":"2","3":"40"},{"1":"12","2":"3","3":"37"},{"1":"13","2":"1","3":"76"},{"1":"13","2":"2","3":"70"},{"1":"13","2":"3","3":"75"},{"1":"14","2":"1","3":"55"},{"1":"14","2":"2","3":"66"},{"1":"14","2":"3","3":"61"},{"1":"15","2":"1","3":"20"},{"1":"15","2":"2","3":"25"},{"1":"15","2":"3","3":"43"},{"1":"16","2":"1","3":"78"},{"1":"16","2":"2","3":"75"},{"1":"16","2":"3","3":"72"},{"1":"17","2":"1","3":"77"},{"1":"17","2":"2","3":"73"},{"1":"17","2":"3","3":"87"},{"1":"18","2":"1","3":"78"},{"1":"18","2":"2","3":"63"},{"1":"18","2":"3","3":"82"},{"1":"19","2":"1","3":"33"},{"1":"19","2":"2","3":"45"},{"1":"19","2":"3","3":"69"},{"1":"20","2":"1","3":"46"},{"1":"20","2":"2","3":"47"},{"1":"20","2":"3","3":"54"},{"1":"21","2":"1","3":"48"},{"1":"21","2":"2","3":"47"},{"1":"21","2":"3","3":"49"},{"1":"22","2":"1","3":"89"},{"1":"22","2":"2","3":"85"},{"1":"22","2":"3","3":"91"},{"1":"23","2":"1","3":"69"},{"1":"23","2":"2","3":"62"},{"1":"23","2":"3","3":"68"},{"1":"24","2":"1","3":"47"},{"1":"24","2":"2","3":"56"},{"1":"24","2":"3","3":"77"},{"1":"25","2":"1","3":"56"},{"1":"25","2":"2","3":"43"},{"1":"25","2":"3","3":"54"},{"1":"26","2":"1","3":"31"},{"1":"26","2":"2","3":"11"},{"1":"26","2":"3","3":"15"},{"1":"27","2":"1","3":"65"},{"1":"27","2":"2","3":"62"},{"1":"27","2":"3","3":"79"},{"1":"28","2":"1","3":"59"},{"1":"28","2":"2","3":"41"},{"1":"28","2":"3","3":"36"},{"1":"29","2":"1","3":"38"},{"1":"29","2":"2","3":"21"},{"1":"29","2":"3","3":"32"},{"1":"30","2":"1","3":"33"},{"1":"30","2":"2","3":"53"},{"1":"30","2":"3","3":"64"},{"1":"31","2":"1","3":"66"},{"1":"31","2":"2","3":"63"},{"1":"31","2":"3","3":"63"},{"1":"32","2":"1","3":"63"},{"1":"32","2":"2","3":"48"},{"1":"32","2":"3","3":"54"},{"1":"33","2":"1","3":"11"},{"1":"33","2":"2","3":"10"},{"1":"33","2":"3","3":"8"},{"1":"34","2":"1","3":"44"},{"1":"34","2":"2","3":"54"},{"1":"34","2":"3","3":"73"},{"1":"35","2":"1","3":"41"},{"1":"35","2":"2","3":"40"},{"1":"35","2":"3","3":"40"},{"1":"36","2":"1","3":"59"},{"1":"36","2":"2","3":"57"},{"1":"36","2":"3","3":"56"},{"1":"37","2":"1","3":"54"},{"1":"37","2":"2","3":"43"},{"1":"37","2":"3","3":"51"},{"1":"38","2":"1","3":"75"},{"1":"38","2":"2","3":"79"},{"1":"38","2":"3","3":"84"},{"1":"39","2":"1","3":"38"},{"1":"39","2":"2","3":"25"},{"1":"39","2":"3","3":"28"},{"1":"40","2":"1","3":"62"},{"1":"40","2":"2","3":"65"},{"1":"40","2":"3","3":"57"},{"1":"41","2":"1","3":"78"},{"1":"41","2":"2","3":"57"},{"1":"41","2":"3","3":"61"},{"1":"42","2":"1","3":"79"},{"1":"42","2":"2","3":"78"},{"1":"42","2":"3","3":"87"},{"1":"43","2":"1","3":"29"},{"1":"43","2":"2","3":"33"},{"1":"43","2":"3","3":"43"},{"1":"44","2":"1","3":"34"},{"1":"44","2":"2","3":"36"},{"1":"44","2":"3","3":"45"},{"1":"45","2":"1","3":"84"},{"1":"45","2":"2","3":"76"},{"1":"45","2":"3","3":"89"},{"1":"46","2":"1","3":"45"},{"1":"46","2":"2","3":"34"},{"1":"46","2":"3","3":"42"},{"1":"47","2":"1","3":"31"},{"1":"47","2":"2","3":"35"},{"1":"47","2":"3","3":"52"},{"1":"48","2":"1","3":"67"},{"1":"48","2":"2","3":"61"},{"1":"48","2":"3","3":"59"},{"1":"49","2":"1","3":"23"},{"1":"49","2":"2","3":"33"},{"1":"49","2":"3","3":"48"},{"1":"50","2":"1","3":"51"},{"1":"50","2":"2","3":"66"},{"1":"50","2":"3","3":"69"},{"1":"51","2":"1","3":"42"},{"1":"51","2":"2","3":"37"},{"1":"51","2":"3","3":"34"},{"1":"52","2":"1","3":"44"},{"1":"52","2":"2","3":"45"},{"1":"52","2":"3","3":"50"},{"1":"53","2":"1","3":"65"},{"1":"53","2":"2","3":"53"},{"1":"53","2":"3","3":"65"},{"1":"54","2":"1","3":"66"},{"1":"54","2":"2","3":"51"},{"1":"54","2":"3","3":"47"},{"1":"55","2":"1","3":"58"},{"1":"55","2":"2","3":"50"},{"1":"55","2":"3","3":"65"},{"1":"56","2":"1","3":"8"},{"1":"56","2":"2","3":"3"},{"1":"56","2":"3","3":"7"},{"1":"57","2":"1","3":"65"},{"1":"57","2":"2","3":"65"},{"1":"57","2":"3","3":"60"},{"1":"58","2":"1","3":"68"},{"1":"58","2":"2","3":"59"},{"1":"58","2":"3","3":"73"},{"1":"59","2":"1","3":"61"},{"1":"59","2":"2","3":"77"},{"1":"59","2":"3","3":"74"},{"1":"60","2":"1","3":"57"},{"1":"60","2":"2","3":"56"},{"1":"60","2":"3","3":"74"},{"1":"61","2":"1","3":"84"},{"1":"61","2":"2","3":"74"},{"1":"61","2":"3","3":"67"},{"1":"62","2":"1","3":"56"},{"1":"62","2":"2","3":"43"},{"1":"62","2":"3","3":"43"},{"1":"63","2":"1","3":"48"},{"1":"63","2":"2","3":"51"},{"1":"63","2":"3","3":"63"},{"1":"64","2":"1","3":"39"},{"1":"64","2":"2","3":"35"},{"1":"64","2":"3","3":"42"},{"1":"65","2":"1","3":"38"},{"1":"65","2":"2","3":"35"},{"1":"65","2":"3","3":"40"},{"1":"66","2":"1","3":"59"},{"1":"66","2":"2","3":"49"},{"1":"66","2":"3","3":"47"},{"1":"67","2":"1","3":"11"},{"1":"67","2":"2","3":"17"},{"1":"67","2":"3","3":"36"},{"1":"68","2":"1","3":"46"},{"1":"68","2":"2","3":"40"},{"1":"68","2":"3","3":"53"},{"1":"69","2":"1","3":"78"},{"1":"69","2":"2","3":"82"},{"1":"69","2":"3","3":"91"},{"1":"70","2":"1","3":"63"},{"1":"70","2":"2","3":"65"},{"1":"70","2":"3","3":"65"},{"1":"71","2":"1","3":"41"},{"1":"71","2":"2","3":"41"},{"1":"71","2":"3","3":"43"},{"1":"72","2":"1","3":"40"},{"1":"72","2":"2","3":"34"},{"1":"72","2":"3","3":"40"},{"1":"73","2":"1","3":"49"},{"1":"73","2":"2","3":"50"},{"1":"73","2":"3","3":"61"},{"1":"74","2":"1","3":"64"},{"1":"74","2":"2","3":"66"},{"1":"74","2":"3","3":"88"},{"1":"75","2":"1","3":"23"},{"1":"75","2":"2","3":"27"},{"1":"75","2":"3","3":"27"},{"1":"76","2":"1","3":"67"},{"1":"76","2":"2","3":"66"},{"1":"76","2":"3","3":"69"},{"1":"77","2":"1","3":"64"},{"1":"77","2":"2","3":"53"},{"1":"77","2":"3","3":"61"},{"1":"78","2":"1","3":"89"},{"1":"78","2":"2","3":"97"},{"1":"78","2":"3","3":"94"},{"1":"79","2":"1","3":"53"},{"1":"79","2":"2","3":"56"},{"1":"79","2":"3","3":"61"},{"1":"80","2":"1","3":"63"},{"1":"80","2":"2","3":"54"},{"1":"80","2":"3","3":"61"},{"1":"81","2":"1","3":"55"},{"1":"81","2":"2","3":"36"},{"1":"81","2":"3","3":"47"},{"1":"82","2":"1","3":"19"},{"1":"82","2":"2","3":"39"},{"1":"82","2":"3","3":"45"},{"1":"83","2":"1","3":"15"},{"1":"83","2":"2","3":"4"},{"1":"83","2":"3","3":"9"},{"1":"84","2":"1","3":"59"},{"1":"84","2":"2","3":"65"},{"1":"84","2":"3","3":"80"},{"1":"85","2":"1","3":"54"},{"1":"85","2":"2","3":"53"},{"1":"85","2":"3","3":"58"},{"1":"86","2":"1","3":"62"},{"1":"86","2":"2","3":"58"},{"1":"86","2":"3","3":"49"},{"1":"87","2":"1","3":"77"},{"1":"87","2":"2","3":"79"},{"1":"87","2":"3","3":"87"},{"1":"88","2":"1","3":"31"},{"1":"88","2":"2","3":"29"},{"1":"88","2":"3","3":"46"},{"1":"89","2":"1","3":"46"},{"1":"89","2":"2","3":"47"},{"1":"89","2":"3","3":"53"},{"1":"90","2":"1","3":"78"},{"1":"90","2":"2","3":"83"},{"1":"90","2":"3","3":"96"},{"1":"91","2":"1","3":"49"},{"1":"91","2":"2","3":"40"},{"1":"91","2":"3","3":"36"},{"1":"92","2":"1","3":"61"},{"1":"92","2":"2","3":"66"},{"1":"92","2":"3","3":"86"},{"1":"93","2":"1","3":"51"},{"1":"93","2":"2","3":"53"},{"1":"93","2":"3","3":"62"},{"1":"94","2":"1","3":"68"},{"1":"94","2":"2","3":"65"},{"1":"94","2":"3","3":"77"},{"1":"95","2":"1","3":"35"},{"1":"95","2":"2","3":"42"},{"1":"95","2":"3","3":"44"},{"1":"96","2":"1","3":"42"},{"1":"96","2":"2","3":"51"},{"1":"96","2":"3","3":"51"},{"1":"97","2":"1","3":"42"},{"1":"97","2":"2","3":"26"},{"1":"97","2":"3","3":"29"},{"1":"98","2":"1","3":"73"},{"1":"98","2":"2","3":"73"},{"1":"98","2":"3","3":"72"},{"1":"99","2":"1","3":"80"},{"1":"99","2":"2","3":"74"},{"1":"99","2":"3","3":"86"},{"1":"100","2":"1","3":"58"},{"1":"100","2":"2","3":"49"},{"1":"100","2":"3","3":"69"},{"1":"101","2":"1","3":"76"},{"1":"101","2":"2","3":"80"},{"1":"101","2":"3","3":"81"},{"1":"102","2":"1","3":"43"},{"1":"102","2":"2","3":"39"},{"1":"102","2":"3","3":"45"},{"1":"103","2":"1","3":"25"},{"1":"103","2":"2","3":"32"},{"1":"103","2":"3","3":"29"},{"1":"104","2":"1","3":"76"},{"1":"104","2":"2","3":"82"},{"1":"104","2":"3","3":"100"},{"1":"105","2":"1","3":"46"},{"1":"105","2":"2","3":"38"},{"1":"105","2":"3","3":"51"},{"1":"106","2":"1","3":"42"},{"1":"106","2":"2","3":"56"},{"1":"106","2":"3","3":"71"},{"1":"107","2":"1","3":"68"},{"1":"107","2":"2","3":"51"},{"1":"107","2":"3","3":"58"},{"1":"108","2":"1","3":"8"},{"1":"108","2":"2","3":"11"},{"1":"108","2":"3","3":"28"},{"1":"109","2":"1","3":"58"},{"1":"109","2":"2","3":"60"},{"1":"109","2":"3","3":"69"},{"1":"110","2":"1","3":"35"},{"1":"110","2":"2","3":"28"},{"1":"110","2":"3","3":"45"},{"1":"111","2":"1","3":"53"},{"1":"111","2":"2","3":"61"},{"1":"111","2":"3","3":"50"},{"1":"112","2":"1","3":"46"},{"1":"112","2":"2","3":"41"},{"1":"112","2":"3","3":"45"},{"1":"113","2":"1","3":"75"},{"1":"113","2":"2","3":"72"},{"1":"113","2":"3","3":"69"},{"1":"114","2":"1","3":"86"},{"1":"114","2":"2","3":"78"},{"1":"114","2":"3","3":"93"},{"1":"115","2":"1","3":"71"},{"1":"115","2":"2","3":"81"},{"1":"115","2":"3","3":"90"},{"1":"116","2":"1","3":"45"},{"1":"116","2":"2","3":"42"},{"1":"116","2":"3","3":"52"},{"1":"117","2":"1","3":"60"},{"1":"117","2":"2","3":"51"},{"1":"117","2":"3","3":"64"},{"1":"118","2":"1","3":"41"},{"1":"118","2":"2","3":"26"},{"1":"118","2":"3","3":"19"},{"1":"119","2":"1","3":"66"},{"1":"119","2":"2","3":"63"},{"1":"119","2":"3","3":"76"},{"1":"120","2":"1","3":"100"},{"1":"120","2":"2","3":"88"},{"1":"120","2":"3","3":"91"},{"1":"121","2":"1","3":"77"},{"1":"121","2":"2","3":"86"},{"1":"121","2":"3","3":"79"},{"1":"122","2":"1","3":"42"},{"1":"122","2":"2","3":"34"},{"1":"122","2":"3","3":"35"},{"1":"123","2":"1","3":"28"},{"1":"123","2":"2","3":"33"},{"1":"123","2":"3","3":"28"},{"1":"124","2":"1","3":"61"},{"1":"124","2":"2","3":"62"},{"1":"124","2":"3","3":"81"},{"1":"125","2":"1","3":"52"},{"1":"125","2":"2","3":"47"},{"1":"125","2":"3","3":"50"},{"1":"126","2":"1","3":"79"},{"1":"126","2":"2","3":"65"},{"1":"126","2":"3","3":"84"},{"1":"127","2":"1","3":"65"},{"1":"127","2":"2","3":"46"},{"1":"127","2":"3","3":"46"},{"1":"128","2":"1","3":"38"},{"1":"128","2":"2","3":"38"},{"1":"128","2":"3","3":"57"},{"1":"129","2":"1","3":"42"},{"1":"129","2":"2","3":"36"},{"1":"129","2":"3","3":"55"},{"1":"130","2":"1","3":"44"},{"1":"130","2":"2","3":"42"},{"1":"130","2":"3","3":"60"},{"1":"131","2":"1","3":"61"},{"1":"131","2":"2","3":"63"},{"1":"131","2":"3","3":"75"},{"1":"132","2":"1","3":"66"},{"1":"132","2":"2","3":"53"},{"1":"132","2":"3","3":"66"},{"1":"133","2":"1","3":"37"},{"1":"133","2":"2","3":"39"},{"1":"133","2":"3","3":"44"},{"1":"134","2":"1","3":"28"},{"1":"134","2":"2","3":"22"},{"1":"134","2":"3","3":"32"},{"1":"135","2":"1","3":"31"},{"1":"135","2":"2","3":"22"},{"1":"135","2":"3","3":"38"},{"1":"136","2":"1","3":"79"},{"1":"136","2":"2","3":"67"},{"1":"136","2":"3","3":"75"},{"1":"137","2":"1","3":"73"},{"1":"137","2":"2","3":"70"},{"1":"137","2":"3","3":"75"},{"1":"138","2":"1","3":"94"},{"1":"138","2":"2","3":"81"},{"1":"138","2":"3","3":"87"},{"1":"139","2":"1","3":"56"},{"1":"139","2":"2","3":"55"},{"1":"139","2":"3","3":"55"},{"1":"140","2":"1","3":"63"},{"1":"140","2":"2","3":"80"},{"1":"140","2":"3","3":"72"},{"1":"141","2":"1","3":"37"},{"1":"141","2":"2","3":"31"},{"1":"141","2":"3","3":"29"},{"1":"142","2":"1","3":"29"},{"1":"142","2":"2","3":"31"},{"1":"142","2":"3","3":"40"},{"1":"143","2":"1","3":"38"},{"1":"143","2":"2","3":"44"},{"1":"143","2":"3","3":"46"},{"1":"144","2":"1","3":"53"},{"1":"144","2":"2","3":"48"},{"1":"144","2":"3","3":"58"},{"1":"145","2":"1","3":"48"},{"1":"145","2":"2","3":"46"},{"1":"145","2":"3","3":"69"},{"1":"146","2":"1","3":"30"},{"1":"146","2":"2","3":"19"},{"1":"146","2":"3","3":"35"},{"1":"147","2":"1","3":"38"},{"1":"147","2":"2","3":"35"},{"1":"147","2":"3","3":"40"},{"1":"148","2":"1","3":"40"},{"1":"148","2":"2","3":"50"},{"1":"148","2":"3","3":"57"},{"1":"149","2":"1","3":"41"},{"1":"149","2":"2","3":"39"},{"1":"149","2":"3","3":"57"},{"1":"150","2":"1","3":"11"},{"1":"150","2":"2","3":"7"},{"1":"150","2":"3","3":"14"},{"1":"151","2":"1","3":"24"},{"1":"151","2":"2","3":"22"},{"1":"151","2":"3","3":"38"},{"1":"152","2":"1","3":"40"},{"1":"152","2":"2","3":"29"},{"1":"152","2":"3","3":"39"},{"1":"153","2":"1","3":"63"},{"1":"153","2":"2","3":"51"},{"1":"153","2":"3","3":"53"},{"1":"154","2":"1","3":"68"},{"1":"154","2":"2","3":"67"},{"1":"154","2":"3","3":"71"},{"1":"155","2":"1","3":"93"},{"1":"155","2":"2","3":"82"},{"1":"155","2":"3","3":"84"},{"1":"156","2":"1","3":"50"},{"1":"156","2":"2","3":"42"},{"1":"156","2":"3","3":"52"},{"1":"157","2":"1","3":"56"},{"1":"157","2":"2","3":"75"},{"1":"157","2":"3","3":"75"},{"1":"158","2":"1","3":"63"},{"1":"158","2":"2","3":"61"},{"1":"158","2":"3","3":"71"},{"1":"159","2":"1","3":"65"},{"1":"159","2":"2","3":"61"},{"1":"159","2":"3","3":"70"},{"1":"160","2":"1","3":"50"},{"1":"160","2":"2","3":"59"},{"1":"160","2":"3","3":"71"},{"1":"161","2":"1","3":"71"},{"1":"161","2":"2","3":"65"},{"1":"161","2":"3","3":"61"},{"1":"162","2":"1","3":"56"},{"1":"162","2":"2","3":"46"},{"1":"162","2":"3","3":"52"},{"1":"163","2":"1","3":"49"},{"1":"163","2":"2","3":"47"},{"1":"163","2":"3","3":"44"},{"1":"164","2":"1","3":"34"},{"1":"164","2":"2","3":"58"},{"1":"164","2":"3","3":"56"},{"1":"165","2":"1","3":"65"},{"1":"165","2":"2","3":"59"},{"1":"165","2":"3","3":"59"},{"1":"166","2":"1","3":"70"},{"1":"166","2":"2","3":"73"},{"1":"166","2":"3","3":"75"},{"1":"167","2":"1","3":"27"},{"1":"167","2":"2","3":"33"},{"1":"167","2":"3","3":"44"},{"1":"168","2":"1","3":"46"},{"1":"168","2":"2","3":"44"},{"1":"168","2":"3","3":"42"},{"1":"169","2":"1","3":"40"},{"1":"169","2":"2","3":"50"},{"1":"169","2":"3","3":"52"},{"1":"170","2":"1","3":"39"},{"1":"170","2":"2","3":"42"},{"1":"170","2":"3","3":"38"},{"1":"171","2":"1","3":"61"},{"1":"171","2":"2","3":"62"},{"1":"171","2":"3","3":"84"},{"1":"172","2":"1","3":"27"},{"1":"172","2":"2","3":"32"},{"1":"172","2":"3","3":"32"},{"1":"173","2":"1","3":"61"},{"1":"173","2":"2","3":"53"},{"1":"173","2":"3","3":"55"},{"1":"174","2":"1","3":"31"},{"1":"174","2":"2","3":"41"},{"1":"174","2":"3","3":"46"},{"1":"175","2":"1","3":"32"},{"1":"175","2":"2","3":"50"},{"1":"175","2":"3","3":"46"},{"1":"176","2":"1","3":"45"},{"1":"176","2":"2","3":"38"},{"1":"176","2":"3","3":"48"},{"1":"177","2":"1","3":"44"},{"1":"177","2":"2","3":"45"},{"1":"177","2":"3","3":"59"},{"1":"178","2":"1","3":"61"},{"1":"178","2":"2","3":"53"},{"1":"178","2":"3","3":"55"},{"1":"179","2":"1","3":"66"},{"1":"179","2":"2","3":"73"},{"1":"179","2":"3","3":"75"},{"1":"180","2":"1","3":"43"},{"1":"180","2":"2","3":"34"},{"1":"180","2":"3","3":"49"},{"1":"181","2":"1","3":"12"},{"1":"181","2":"2","3":"0"},{"1":"181","2":"3","3":"0"},{"1":"182","2":"1","3":"58"},{"1":"182","2":"2","3":"57"},{"1":"182","2":"3","3":"51"},{"1":"183","2":"1","3":"33"},{"1":"183","2":"2","3":"14"},{"1":"183","2":"3","3":"24"},{"1":"184","2":"1","3":"66"},{"1":"184","2":"2","3":"41"},{"1":"184","2":"3","3":"36"},{"1":"185","2":"1","3":"56"},{"1":"185","2":"2","3":"51"},{"1":"185","2":"3","3":"36"},{"1":"186","2":"1","3":"29"},{"1":"186","2":"2","3":"30"},{"1":"186","2":"3","3":"33"},{"1":"187","2":"1","3":"56"},{"1":"187","2":"2","3":"62"},{"1":"187","2":"3","3":"64"},{"1":"188","2":"1","3":"72"},{"1":"188","2":"2","3":"71"},{"1":"188","2":"3","3":"65"},{"1":"189","2":"1","3":"27"},{"1":"189","2":"2","3":"26"},{"1":"189","2":"3","3":"24"},{"1":"190","2":"1","3":"52"},{"1":"190","2":"2","3":"62"},{"1":"190","2":"3","3":"76"},{"1":"191","2":"1","3":"40"},{"1":"191","2":"2","3":"26"},{"1":"191","2":"3","3":"43"},{"1":"192","2":"1","3":"79"},{"1":"192","2":"2","3":"70"},{"1":"192","2":"3","3":"68"},{"1":"193","2":"1","3":"35"},{"1":"193","2":"2","3":"34"},{"1":"193","2":"3","3":"37"},{"1":"194","2":"1","3":"36"},{"1":"194","2":"2","3":"47"},{"1":"194","2":"3","3":"45"},{"1":"195","2":"1","3":"38"},{"1":"195","2":"2","3":"30"},{"1":"195","2":"3","3":"36"},{"1":"196","2":"1","3":"41"},{"1":"196","2":"2","3":"26"},{"1":"196","2":"3","3":"41"},{"1":"197","2":"1","3":"76"},{"1":"197","2":"2","3":"71"},{"1":"197","2":"3","3":"82"},{"1":"198","2":"1","3":"22"},{"1":"198","2":"2","3":"11"},{"1":"198","2":"3","3":"26"},{"1":"199","2":"1","3":"53"},{"1":"199","2":"2","3":"34"},{"1":"199","2":"3","3":"48"},{"1":"200","2":"1","3":"58"},{"1":"200","2":"2","3":"73"},{"1":"200","2":"3","3":"77"},{"1":"201","2":"1","3":"38"},{"1":"201","2":"2","3":"30"},{"1":"201","2":"3","3":"27"},{"1":"202","2":"1","3":"26"},{"1":"202","2":"2","3":"20"},{"1":"202","2":"3","3":"49"},{"1":"203","2":"1","3":"45"},{"1":"203","2":"2","3":"33"},{"1":"203","2":"3","3":"48"},{"1":"204","2":"1","3":"84"},{"1":"204","2":"2","3":"72"},{"1":"204","2":"3","3":"86"},{"1":"205","2":"1","3":"41"},{"1":"205","2":"2","3":"46"},{"1":"205","2":"3","3":"49"},{"1":"206","2":"1","3":"45"},{"1":"206","2":"2","3":"48"},{"1":"206","2":"3","3":"64"},{"1":"207","2":"1","3":"44"},{"1":"207","2":"2","3":"49"},{"1":"207","2":"3","3":"61"},{"1":"208","2":"1","3":"53"},{"1":"208","2":"2","3":"62"},{"1":"208","2":"3","3":"68"},{"1":"209","2":"1","3":"33"},{"1":"209","2":"2","3":"32"},{"1":"209","2":"3","3":"38"},{"1":"210","2":"1","3":"54"},{"1":"210","2":"2","3":"49"},{"1":"210","2":"3","3":"55"},{"1":"211","2":"1","3":"57"},{"1":"211","2":"2","3":"63"},{"1":"211","2":"3","3":"75"},{"1":"212","2":"1","3":"29"},{"1":"212","2":"2","3":"30"},{"1":"212","2":"3","3":"40"},{"1":"213","2":"1","3":"52"},{"1":"213","2":"2","3":"65"},{"1":"213","2":"3","3":"61"},{"1":"214","2":"1","3":"57"},{"1":"214","2":"2","3":"67"},{"1":"214","2":"3","3":"74"},{"1":"215","2":"1","3":"50"},{"1":"215","2":"2","3":"42"},{"1":"215","2":"3","3":"55"},{"1":"216","2":"1","3":"44"},{"1":"216","2":"2","3":"40"},{"1":"216","2":"3","3":"49"},{"1":"217","2":"1","3":"49"},{"1":"217","2":"2","3":"49"},{"1":"217","2":"3","3":"64"},{"1":"218","2":"1","3":"52"},{"1":"218","2":"2","3":"53"},{"1":"218","2":"3","3":"59"},{"1":"219","2":"1","3":"77"},{"1":"219","2":"2","3":"63"},{"1":"219","2":"3","3":"58"},{"1":"220","2":"1","3":"90"},{"1":"220","2":"2","3":"97"},{"1":"220","2":"3","3":"100"},{"1":"221","2":"1","3":"73"},{"1":"221","2":"2","3":"69"},{"1":"221","2":"3","3":"58"},{"1":"222","2":"1","3":"31"},{"1":"222","2":"2","3":"34"},{"1":"222","2":"3","3":"46"},{"1":"223","2":"1","3":"61"},{"1":"223","2":"2","3":"64"},{"1":"223","2":"3","3":"69"},{"1":"224","2":"1","3":"90"},{"1":"224","2":"2","3":"98"},{"1":"224","2":"3","3":"96"},{"1":"225","2":"1","3":"61"},{"1":"225","2":"2","3":"63"},{"1":"225","2":"3","3":"67"},{"1":"226","2":"1","3":"54"},{"1":"226","2":"2","3":"40"},{"1":"226","2":"3","3":"59"},{"1":"227","2":"1","3":"61"},{"1":"227","2":"2","3":"53"},{"1":"227","2":"3","3":"69"},{"1":"228","2":"1","3":"80"},{"1":"228","2":"2","3":"83"},{"1":"228","2":"3","3":"73"},{"1":"229","2":"1","3":"50"},{"1":"229","2":"2","3":"49"},{"1":"229","2":"3","3":"76"},{"1":"230","2":"1","3":"60"},{"1":"230","2":"2","3":"56"},{"1":"230","2":"3","3":"70"},{"1":"231","2":"1","3":"69"},{"1":"231","2":"2","3":"74"},{"1":"231","2":"3","3":"85"},{"1":"232","2":"1","3":"47"},{"1":"232","2":"2","3":"56"},{"1":"232","2":"3","3":"66"},{"1":"233","2":"1","3":"39"},{"1":"233","2":"2","3":"25"},{"1":"233","2":"3","3":"35"},{"1":"234","2":"1","3":"55"},{"1":"234","2":"2","3":"53"},{"1":"234","2":"3","3":"70"},{"1":"235","2":"1","3":"66"},{"1":"235","2":"2","3":"70"},{"1":"235","2":"3","3":"76"},{"1":"236","2":"1","3":"61"},{"1":"236","2":"2","3":"55"},{"1":"236","2":"3","3":"65"},{"1":"237","2":"1","3":"45"},{"1":"237","2":"2","3":"38"},{"1":"237","2":"3","3":"53"},{"1":"238","2":"1","3":"43"},{"1":"238","2":"2","3":"60"},{"1":"238","2":"3","3":"60"},{"1":"239","2":"1","3":"11"},{"1":"239","2":"2","3":"10"},{"1":"239","2":"3","3":"17"},{"1":"240","2":"1","3":"40"},{"1":"240","2":"2","3":"37"},{"1":"240","2":"3","3":"36"},{"1":"241","2":"1","3":"65"},{"1":"241","2":"2","3":"62"},{"1":"241","2":"3","3":"65"},{"1":"242","2":"1","3":"28"},{"1":"242","2":"2","3":"19"},{"1":"242","2":"3","3":"30"},{"1":"243","2":"1","3":"53"},{"1":"243","2":"2","3":"63"},{"1":"243","2":"3","3":"77"},{"1":"244","2":"1","3":"60"},{"1":"244","2":"2","3":"69"},{"1":"244","2":"3","3":"62"},{"1":"245","2":"1","3":"71"},{"1":"245","2":"2","3":"75"},{"1":"245","2":"3","3":"79"},{"1":"246","2":"1","3":"23"},{"1":"246","2":"2","3":"25"},{"1":"246","2":"3","3":"35"},{"1":"247","2":"1","3":"49"},{"1":"247","2":"2","3":"49"},{"1":"247","2":"3","3":"51"},{"1":"248","2":"1","3":"39"},{"1":"248","2":"2","3":"25"},{"1":"248","2":"3","3":"37"},{"1":"249","2":"1","3":"41"},{"1":"249","2":"2","3":"37"},{"1":"249","2":"3","3":"29"},{"1":"250","2":"1","3":"69"},{"1":"250","2":"2","3":"59"},{"1":"250","2":"3","3":"69"},{"1":"251","2":"1","3":"46"},{"1":"251","2":"2","3":"34"},{"1":"251","2":"3","3":"28"},{"1":"252","2":"1","3":"74"},{"1":"252","2":"2","3":"74"},{"1":"252","2":"3","3":"73"},{"1":"253","2":"1","3":"27"},{"1":"253","2":"2","3":"40"},{"1":"253","2":"3","3":"47"},{"1":"254","2":"1","3":"88"},{"1":"254","2":"2","3":"85"},{"1":"254","2":"3","3":"76"},{"1":"255","2":"1","3":"0"},{"1":"255","2":"2","3":"7"},{"1":"255","2":"3","3":"37"},{"1":"256","2":"1","3":"62"},{"1":"256","2":"2","3":"69"},{"1":"256","2":"3","3":"80"},{"1":"257","2":"1","3":"53"},{"1":"257","2":"2","3":"64"},{"1":"257","2":"3","3":"72"},{"1":"258","2":"1","3":"49"},{"1":"258","2":"2","3":"48"},{"1":"258","2":"3","3":"56"},{"1":"259","2":"1","3":"64"},{"1":"259","2":"2","3":"49"},{"1":"259","2":"3","3":"49"},{"1":"260","2":"1","3":"37"},{"1":"260","2":"2","3":"21"},{"1":"260","2":"3","3":"26"},{"1":"261","2":"1","3":"30"},{"1":"261","2":"2","3":"20"},{"1":"261","2":"3","3":"29"},{"1":"262","2":"1","3":"87"},{"1":"262","2":"2","3":"73"},{"1":"262","2":"3","3":"82"},{"1":"263","2":"1","3":"75"},{"1":"263","2":"2","3":"77"},{"1":"263","2":"3","3":"80"},{"1":"264","2":"1","3":"15"},{"1":"264","2":"2","3":"18"},{"1":"264","2":"3","3":"33"},{"1":"265","2":"1","3":"68"},{"1":"265","2":"2","3":"60"},{"1":"265","2":"3","3":"75"},{"1":"266","2":"1","3":"40"},{"1":"266","2":"2","3":"38"},{"1":"266","2":"3","3":"45"},{"1":"267","2":"1","3":"43"},{"1":"267","2":"2","3":"51"},{"1":"267","2":"3","3":"57"},{"1":"268","2":"1","3":"78"},{"1":"268","2":"2","3":"83"},{"1":"268","2":"3","3":"82"},{"1":"269","2":"1","3":"70"},{"1":"269","2":"2","3":"67"},{"1":"269","2":"3","3":"66"},{"1":"270","2":"1","3":"26"},{"1":"270","2":"2","3":"31"},{"1":"270","2":"3","3":"50"},{"1":"271","2":"1","3":"65"},{"1":"271","2":"2","3":"64"},{"1":"271","2":"3","3":"70"},{"1":"272","2":"1","3":"45"},{"1":"272","2":"2","3":"54"},{"1":"272","2":"3","3":"72"},{"1":"273","2":"1","3":"45"},{"1":"273","2":"2","3":"30"},{"1":"273","2":"3","3":"57"},{"1":"274","2":"1","3":"36"},{"1":"274","2":"2","3":"38"},{"1":"274","2":"3","3":"48"},{"1":"275","2":"1","3":"48"},{"1":"275","2":"2","3":"47"},{"1":"275","2":"3","3":"66"},{"1":"276","2":"1","3":"65"},{"1":"276","2":"2","3":"53"},{"1":"276","2":"3","3":"59"},{"1":"277","2":"1","3":"44"},{"1":"277","2":"2","3":"35"},{"1":"277","2":"3","3":"52"},{"1":"278","2":"1","3":"46"},{"1":"278","2":"2","3":"56"},{"1":"278","2":"3","3":"68"},{"1":"279","2":"1","3":"57"},{"1":"279","2":"2","3":"48"},{"1":"279","2":"3","3":"49"},{"1":"280","2":"1","3":"72"},{"1":"280","2":"2","3":"70"},{"1":"280","2":"3","3":"85"},{"1":"281","2":"1","3":"76"},{"1":"281","2":"2","3":"67"},{"1":"281","2":"3","3":"74"},{"1":"282","2":"1","3":"37"},{"1":"282","2":"2","3":"38"},{"1":"282","2":"3","3":"44"},{"1":"283","2":"1","3":"39"},{"1":"283","2":"2","3":"44"},{"1":"283","2":"3","3":"49"},{"1":"284","2":"1","3":"27"},{"1":"284","2":"2","3":"22"},{"1":"284","2":"3","3":"41"},{"1":"285","2":"1","3":"12"},{"1":"285","2":"2","3":"7"},{"1":"285","2":"3","3":"25"},{"1":"286","2":"1","3":"68"},{"1":"286","2":"2","3":"40"},{"1":"286","2":"3","3":"43"},{"1":"287","2":"1","3":"98"},{"1":"287","2":"2","3":"94"},{"1":"287","2":"3","3":"89"},{"1":"288","2":"1","3":"52"},{"1":"288","2":"2","3":"48"},{"1":"288","2":"3","3":"67"},{"1":"289","2":"1","3":"35"},{"1":"289","2":"2","3":"20"},{"1":"289","2":"3","3":"13"},{"1":"290","2":"1","3":"60"},{"1":"290","2":"2","3":"41"},{"1":"290","2":"3","3":"59"},{"1":"291","2":"1","3":"21"},{"1":"291","2":"2","3":"35"},{"1":"291","2":"3","3":"53"},{"1":"292","2":"1","3":"60"},{"1":"292","2":"2","3":"53"},{"1":"292","2":"3","3":"66"},{"1":"293","2":"1","3":"62"},{"1":"293","2":"2","3":"49"},{"1":"293","2":"3","3":"54"},{"1":"294","2":"1","3":"69"},{"1":"294","2":"2","3":"71"},{"1":"294","2":"3","3":"85"},{"1":"295","2":"1","3":"74"},{"1":"295","2":"2","3":"77"},{"1":"295","2":"3","3":"87"},{"1":"296","2":"1","3":"34"},{"1":"296","2":"2","3":"40"},{"1":"296","2":"3","3":"39"},{"1":"297","2":"1","3":"28"},{"1":"297","2":"2","3":"25"},{"1":"297","2":"3","3":"41"},{"1":"298","2":"1","3":"54"},{"1":"298","2":"2","3":"61"},{"1":"298","2":"3","3":"60"},{"1":"299","2":"1","3":"25"},{"1":"299","2":"2","3":"30"},{"1":"299","2":"3","3":"44"},{"1":"300","2":"1","3":"50"},{"1":"300","2":"2","3":"64"},{"1":"300","2":"3","3":"78"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
-  &lt;/script&gt;
-&lt;/div&gt;
+]
 
 ---
 
-### An example
-
-Then we can run our repeated measures ANOVA.
+## An example: Option 1
 
 
 ```r
 college %&gt;%
-  select(starts_with("exam"), id) %&gt;%
-  pivot_longer(cols = starts_with("exam"), 
-               names_to = "exam",
-               values_to = "score",
-               names_prefix = "exam_") %&gt;%
-* aov(score ~ exam + Error(id), data = .) %&gt;%
-* summary()
+  select(exam_1:exam_3, id) %&gt;%
+  gather(-id, key = "exam", value = "score") %&gt;%
+* anova_test(score ~ exam + Error(id/exam))
 ```
 
 --
 
 
 ```
+## ANOVA Table (type III tests)
 ## 
-## Error: id
-##           Df Sum Sq Mean Sq F value Pr(&gt;F)
-## Residuals  1  565.5   565.5               
+## $ANOVA
+##   Effect DFn DFd      F        p p&lt;.05   ges
+## 1   exam   2 598 87.773 3.77e-34     * 0.024
 ## 
-## Error: Within
-##            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-*## exam        2   8344    4172   11.07 1.79e-05 ***
-## Residuals 896 337786     377                     
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## $`Mauchly's Test for Sphericity`
+##   Effect     W        p p&lt;.05
+## 1   exam 0.771 1.58e-17     *
+## 
+## $`Sphericity Corrections`
+##   Effect   GGe      DF[GG]    p[GG] p[GG]&lt;.05   HFe       DF[HF]    p[HF]
+## 1   exam 0.814 1.63, 486.7 2.58e-28         * 0.818 1.64, 488.99 1.96e-28
+##   p[HF]&lt;.05
+## 1         *
+```
+
+---
+
+## An example: Option 2
+
+
+```r
+college %&gt;%
+  select(exam_1:exam_3, id) %&gt;%
+  gather(-id, key = "exam", value = "score") %&gt;%
+* anova_test(dv = score, wid = exam, within = exam)
+```
+
+--
+
+
+```
+## ANOVA Table (type III tests)
+## 
+## $ANOVA
+##   Effect DFn DFd      F        p p&lt;.05   ges
+## 1   exam   2 598 87.773 3.77e-34     * 0.024
+## 
+## $`Mauchly's Test for Sphericity`
+##   Effect     W        p p&lt;.05
+## 1   exam 0.771 1.58e-17     *
+## 
+## $`Sphericity Corrections`
+##   Effect   GGe      DF[GG]    p[GG] p[GG]&lt;.05   HFe       DF[HF]    p[HF]
+## 1   exam 0.814 1.63, 486.7 2.58e-28         * 0.818 1.64, 488.99 1.96e-28
+##   p[HF]&lt;.05
+## 1         *
 ```
 
 ---
@@ -1261,42 +1334,43 @@ Factorial ANOVA allows us to examine two or more independent variables (IVs) sim
 
 ## Factorial ANOVA
 
-To perform a factorial ANOVA in R, all you need to do is add more variables to the right hand of the tilde (~) in the ANOVA equation using either a + (does not add an interaction term) or * (adds an interaction term).
+To perform a factorial ANOVA in R, all you need to do is add more variables to the right hand of the tilde (~) in the ANOVA equation using either a + (does not add an interaction term) or * (adds an interaction term). 
 
 ---
 
 ## Example independent factorial design
 
-
-```r
-college %&gt;% aov(weight_1 ~ gender + smokes, data = .) %&gt;% summary() # NO INTERACTION
-```
-
-```
-##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## gender        2   3312  1656.2   8.894 0.000177 ***
-## smokes        1    122   122.3   0.657 0.418374    
-## Residuals   296  55119   186.2                     
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-```
-
---
+**Formula without interaction**:
 
 
 ```r
-college %&gt;% aov(weight_1 ~ gender * smokes, data = .) %&gt;% summary() #  INTERACTION 
+college %&gt;%
+  anova_test(hs_gpa ~ grade_class + smokes) # NO INTERACTION
 ```
 
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["DFn"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["DFd"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p&lt;.05"],"name":[6],"type":["chr"],"align":["left"]},{"label":["ges"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"grade_class","2":"3","3":"295","4":"0.841","5":"0.473","6":"","7":"0.008000","_rn_":"1"},{"1":"smokes","2":"1","3":"295","4":"0.157","5":"0.692","6":"","7":"0.000533","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+
+---
+
+## Example independent factorial design
+
+**Formula with interaction**:
+
+
+```r
+college %&gt;% 
+  anova_test(hs_gpa ~ grade_class * smokes) #  INTERACTION 
 ```
-##                Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## gender          2   3312  1656.2   8.866 0.000183 ***
-## smokes          1    122   122.3   0.655 0.419126    
-## gender:smokes   2    196    98.0   0.525 0.592345    
-## Residuals     294  54923   186.8                     
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-```
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["DFn"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["DFd"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["p&lt;.05"],"name":[6],"type":["chr"],"align":["left"]},{"label":["ges"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"grade_class","2":"3","3":"292","4":"0.843","5":"0.471","6":"","7":"0.00900","_rn_":"1"},{"1":"smokes","2":"1","3":"292","4":"0.158","5":"0.692","6":"","7":"0.00054","_rn_":"2"},{"1":"grade_class:smokes","2":"3","3":"292","4":"1.271","5":"0.284","6":"","7":"0.01300","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 
 ---
 
@@ -1306,12 +1380,7 @@ class: inverse
 
 --
 
-Read more about how to conduct repeated measures and factorial ANOVA designs using the resources below.
-
-
-
-
-
+Read more about how to conduct repeated measures and factorial ANOVA designs using the resources on the R for the Rest of Us website.
 
 ---
 
@@ -1346,12 +1415,12 @@ college %&gt;%
 
 ## Chi-square in R
 
-Two methods: the `janitor` package or the `stats` package
+Two methods: the `janitor` package or the `rstatix` package
 
 --
 
 .pull-left[
-###Janitor Package
+**janitor package**:
 
 ```r
 college %&gt;%
@@ -1372,20 +1441,23 @@ college %&gt;%
 --
 
 .pull-right[
-###stats Package
+**rstatix package**:
 
 ```r
-stats::chisq.test(college$smokes, college$athlete)
+table(college$smokes, college$athlete) %&gt;%
+  chisq_test()
 ```
 
-```
-## 
-## 	Pearson's Chi-squared test with Yates' continuity correction
-## 
-## data:  college$smokes and college$athlete
-*## X-squared = 5.8858, df = 1, p-value = 0.01526
-```
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["n"],"name":[1],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[4],"type":["int"],"align":["right"]},{"label":["method"],"name":[5],"type":["chr"],"align":["left"]},{"label":["p.signif"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"300","2":"5.885766","3":"0.0153","4":"1","5":"Chi-square test","6":"*","_rn_":"1","_row":"X-squared"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 ]
+
+???
+
+Prefer janitor because it's more tidyverse friendly than chisq_test is. There is a submitted issue on GitHub for the rstatix package to make this function pipe friendly, but until then janitor works great. 
 
 ---
 
@@ -1397,6 +1469,10 @@ The standardized residuals tell us for that cell if the expected and observed fr
 
 
 ```r
+tab &lt;- college %&gt;%
+  tabyl(smokes, athlete) %&gt;%
+  janitor::chisq.test()
+
 *tab$stdres
 ```
 
@@ -1420,7 +1496,7 @@ Similarly, we can ask for the observed and expected counts.
 ### Observed
 
 ```r
-tab$observed
+*tab$observed
 ```
 
 &lt;div data-pagedtable="false"&gt;
@@ -1436,7 +1512,7 @@ tab$observed
 ### Expected
 
 ```r
-tab$expected
+*tab$expected
 ```
 
 &lt;div data-pagedtable="false"&gt;
@@ -1568,6 +1644,10 @@ college %&gt;%
 ## X-squared = 3.4316, df = 4, p-value = 0.4884
 ```
 
+???
+
+Somtimes this works. In this case, it isn't sufficient. So let's go back. 
+
 ---
 
 ## 2. Combine rows or columns so there are larger cells
@@ -1630,6 +1710,10 @@ college %&gt;%
 ## X-squared = 2.5474, df = 2, p-value = 0.2798
 ```
 
+???
+
+In this case, it works, but sometimes it doesn't. Let's see our third option just in case this doesn't work in future cases.
+
 ---
 
 ## 3. Both!
@@ -1689,62 +1773,33 @@ class: center, middle, dk-section-title
 
 Tests the relationship between two (usually) continuous variables.
 
---
-
-There are three methods you can use to test correlations.
-
---
-
-1. **`cor()` and `cor.test()` in the `stats` package**. `cor()` can do a correlation matrix, but no p-values. `cor.test()` can provide p-values, but can't do so with a correlation matrix.
-
---
-
-2. **`rcorr()` in the `Hmisc` package**. `rcorr()` can provide a correlation matrix with p-values, but not in a tidy format.
-
---
-
-3. **`correlation()` in the `correlation` package**. `correlation()` can provide a correlation matrix with p-values, but it can also do so in a tidy format.
-
 ---
 
 ## Correlation in R
 
---
+
+```r
+dat %&gt;%
+  select_if(is.numeric) %&gt;% # Optional: select only the data you want from your dataframe
+  cor_test()
+```
+
+---
+
+## An example
 
 
 ```r
 college %&gt;%
   select(exam_1, exam_2) %&gt;%
-* correlation()
+* cor_test()
 ```
 
 --
 
 &lt;div data-pagedtable="false"&gt;
   &lt;script data-pagedtable-source type="application/json"&gt;
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Parameter1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Parameter2"],"name":[2],"type":["chr"],"align":["left"]},{"label":["r"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["CI_low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["CI_high"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[7],"type":["int"],"align":["right"]},{"label":["p"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Method"],"name":[9],"type":["chr"],"align":["left"]},{"label":["n_Obs"],"name":[10],"type":["int"],"align":["right"]}],"data":[{"1":"exam_1","2":"exam_2","3":"0.8965278","4":"0.8717947","5":"0.9167018","6":"34.93659","7":"298","8":"2.168671e-107","9":"Pearson","10":"300","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
-  &lt;/script&gt;
-&lt;/div&gt;
-
----
-
-## Correlation in R
-
---
-
-
-```r
-college %&gt;%
-  select(exam_1, exam_2) %&gt;%
-  correlation() %&gt;%
-* select(r, p)
-```
-
---
-
-&lt;div data-pagedtable="false"&gt;
-  &lt;script data-pagedtable-source type="application/json"&gt;
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["r"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.8965278","2":"2.168671e-107","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+{"columns":[{"label":["var1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["var2"],"name":[2],"type":["chr"],"align":["left"]},{"label":["cor"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["method"],"name":[8],"type":["chr"],"align":["left"]}],"data":[{"1":"exam_1","2":"exam_2","3":"0.9","4":"34.93659","5":"2.17e-107","6":"0.8717947","7":"0.9167018","8":"Pearson"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
   &lt;/script&gt;
 &lt;/div&gt;
 
@@ -1756,32 +1811,13 @@ college %&gt;%
 ```r
 college %&gt;%
 * select(starts_with("exam")) %&gt;%
-  correlation()
+  cor_mat()
 ```
 --
 
 &lt;div data-pagedtable="false"&gt;
   &lt;script data-pagedtable-source type="application/json"&gt;
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Parameter1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Parameter2"],"name":[2],"type":["chr"],"align":["left"]},{"label":["r"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["CI_low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["CI_high"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[7],"type":["int"],"align":["right"]},{"label":["p"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Method"],"name":[9],"type":["chr"],"align":["left"]},{"label":["n_Obs"],"name":[10],"type":["int"],"align":["right"]}],"data":[{"1":"exam_1","2":"exam_2","3":"0.8965278","4":"0.8717947","5":"0.9167018","6":"34.93659","7":"298","8":"4.337343e-107","9":"Pearson","10":"300","_rn_":"1"},{"1":"exam_1","2":"exam_3","3":"0.8115754","4":"0.7690092","5":"0.8469762","6":"23.97949","7":"298","8":"1.585990e-71","9":"Pearson","10":"300","_rn_":"2"},{"1":"exam_2","2":"exam_3","3":"0.9129238","4":"0.8918864","5":"0.9300190","6":"38.61393","7":"298","8":"1.580782e-117","9":"Pearson","10":"300","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
-  &lt;/script&gt;
-&lt;/div&gt;
-
----
-
-## Correlation Matrix in R
-
-
-```r
-college %&gt;%
-  select(starts_with("exam")) %&gt;%
-  correlation() %&gt;%
-* summary()
-```
---
-
-&lt;div data-pagedtable="false"&gt;
-  &lt;script data-pagedtable-source type="application/json"&gt;
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Parameter"],"name":[1],"type":["chr"],"align":["left"]},{"label":["exam_3"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["exam_2"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"exam_1","2":"0.8115754","3":"0.8965278","_rn_":"1"},{"1":"exam_2","2":"0.9129238","3":"NA","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["rowname"],"name":[1],"type":["chr"],"align":["left"]},{"label":["exam_1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["exam_2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["exam_3"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"exam_1","2":"1.00","3":"0.90","4":"0.81","_rn_":"1"},{"1":"exam_2","2":"0.90","3":"1.00","4":"0.91","_rn_":"2"},{"1":"exam_3","2":"0.81","3":"0.91","4":"1.00","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[5],"max":[5]},"pages":{}}}
   &lt;/script&gt;
 &lt;/div&gt;
 
@@ -2891,7 +2927,7 @@ Our parametric statistics all have four main assumptions that we should test and
 
 Normally distributed:
 
-![](slides_files/figure-html/unnamed-chunk-132-1.png)&lt;!-- --&gt;
+![](slides_rstatix_files/figure-html/unnamed-chunk-137-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -2899,7 +2935,7 @@ Normally distributed:
 
 Positively skewed:
 
-![](slides_files/figure-html/unnamed-chunk-133-1.png)&lt;!-- --&gt;
+![](slides_rstatix_files/figure-html/unnamed-chunk-138-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -2907,7 +2943,7 @@ Positively skewed:
 
 Negatively skewed:
 
-![](slides_files/figure-html/unnamed-chunk-134-1.png)&lt;!-- --&gt;
+![](slides_rstatix_files/figure-html/unnamed-chunk-139-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -2915,7 +2951,7 @@ Negatively skewed:
 
 Equal variances or homogeneity of variances (assumption met):
 
-![](slides_files/figure-html/unnamed-chunk-135-1.png)&lt;!-- --&gt;
+![](slides_rstatix_files/figure-html/unnamed-chunk-140-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -2923,7 +2959,7 @@ Equal variances or homogeneity of variances (assumption met):
 
 Unequal variances or heterogeneity of variances (assumption not met):
 
-![](slides_files/figure-html/unnamed-chunk-136-1.png)&lt;!-- --&gt;
+![](slides_rstatix_files/figure-html/unnamed-chunk-141-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -3019,7 +3055,7 @@ college %&gt;%
   geom_histogram()
 ```
 
-![](slides_files/figure-html/unnamed-chunk-137-1.png)&lt;!-- --&gt;
+![](slides_rstatix_files/figure-html/unnamed-chunk-142-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -3030,7 +3066,7 @@ college %&gt;%
   geom_density()
 ```
 
-![](slides_files/figure-html/unnamed-chunk-138-1.png)&lt;!-- --&gt;
+![](slides_rstatix_files/figure-html/unnamed-chunk-143-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -3043,7 +3079,7 @@ college %&gt;%
   ggqqplot("act_reading") ## ggpubr package
 ```
 
-![](slides_files/figure-html/unnamed-chunk-139-1.png)&lt;!-- --&gt;
+![](slides_rstatix_files/figure-html/unnamed-chunk-144-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -3116,7 +3152,7 @@ college %&gt;%
 ]
 
 .pull-right[
-![](slides_files/figure-html/unnamed-chunk-143-1.png)&lt;!-- --&gt;
+![](slides_rstatix_files/figure-html/unnamed-chunk-148-1.png)&lt;!-- --&gt;
 ]
 
 ---
