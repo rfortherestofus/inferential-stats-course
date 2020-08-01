@@ -1088,28 +1088,28 @@ college %>%
 
 ## Chi-square in R
 
-Two methods: the `janitor` package or the `rstatix` package
+Two methods: the `rstatix` package or the `janitor` package
 
 --
 
 .pull-left[
-**janitor package**:
-```{r, eval = TRUE, highlight.output = 5}
-college %>%
-  tabyl(smokes, athlete) %>%
-  janitor::chisq.test()
-```
-
-]
-
---
-
-.pull-right[
 **rstatix package**:
 ```{r, eval = TRUE}
 table(college$smokes, college$athlete) %>%
   chisq_test()
 ```
+]
+
+--
+
+.pull-right[
+**janitor package**:
+```{r, eval = TRUE}
+college %>%
+  tabyl(smokes, athlete) %>%
+  janitor::chisq.test()
+```
+
 ]
 
 ???
@@ -1191,7 +1191,7 @@ class: inverse
 ## 2 ##
 tab2 <- college %>%
   tabyl(grade_class, live_on_campus) %>%
-  chisq.test()
+  janitor::chisq.test()
 
 tab2
 
@@ -1404,7 +1404,7 @@ college %>%
 ```
 --
 
-```{r, eval = TRUE, echo = FALSE}
+```{r, eval = TRUE, echo = FALSE, rows.print = 10}
 college %>%
   cor_test(starts_with("exam"))
 ```
@@ -1580,6 +1580,9 @@ college %>%
   lm.beta() %>% #<<
   summary() 
 ```
+
+.small[`lm.beta()` is from the lm.beta package.]
+
 ]
 
 --
@@ -1643,7 +1646,7 @@ To perform a multiple regression, add the IVs to the right of the ~ (tilde).
 
 <br />
 
-With both `aov()` and `lm()`, you can request interactions by replacing the + with a *.
+Just like with ANOVAs, you can request interactions by replacing the + with a *.
 
 --
 
@@ -1704,6 +1707,32 @@ college %>%
 college %>%
   lm(exam_2 ~ iq + gender, 
      data = .) %>%
+  lm.beta() %>% 
+  summary()
+```
+
+???
+
+Because I haven't specified gender as a factor, it is choosing Female as the referent category because it's alphabetically first. If we want to change that, we need to mutate gender and relevel the factor of gender
+
+---
+
+## Changing the reference level
+
+```{r}
+college %>%
+  mutate(gender = fct_relevel(gender, levels = "Trans*", "Female", "Male")) %>% #<<
+  lm(exam_2 ~ iq + `gender`, data = .) %>%
+  lm.beta() %>% 
+  summary()
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE, highlight.output = c(12:14, 19)}
+college %>%
+  mutate(gender = fct_relevel(gender, levels = "Trans*", "Female", "Male")) %>% #<<
+  lm(exam_2 ~ iq + `gender`, data = .) %>%
   lm.beta() %>% 
   summary()
 ```
