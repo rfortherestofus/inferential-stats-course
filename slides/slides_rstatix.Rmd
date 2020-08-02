@@ -37,6 +37,21 @@ class: center, middle, dk-section-title
 
 ---
 
+class: bottom, right
+background-image: url(images/r_first.png)
+background-size: contain
+
+.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
+
+---
+
+class: bottom, right
+background-image: url(images/r_then.png)
+background-size: contain
+
+.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
+
+---
 
 ## What you will learn in this course
 
@@ -98,13 +113,14 @@ This course will cover seven topics.
 --
 
 3. Packages:
-  + tidyverse, broom, janitor
-  + skimr, summarytools
+  + tidyverse
+  + broom
+  + janitor
   + rstatix
+  + stats
   + lm.beta
   + psych
-  + apa
-  + ggpubr
+  + and more!
   
 ???
 
@@ -119,6 +135,56 @@ library(psych) ## for reliability: omega and alpha
 library(apa) ## for reporting results in APA format  
 library(ggpubr) ## for qq plots  
 library(rstatix) ## for shapiro_test that is pipe-friendly  
+
+---
+
+## A quick overview of tidyverse
+
+There are a few tidyverse functions we'll sometimes use:
+
+--
+
+- dplyr::select
+- dplyr::filter
+- dplyr::mutate
+- tidyr::gather
+- tidyr::pivot_longer
+
+--
+
+Let's briefly review them.
+
+---
+
+class: bottom, right
+background-image: url(images/dplyr_filter.png)
+background-size: contain
+
+.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
+
+???
+
+Discuss select with it, too. 
+
+---
+
+class: bottom, right
+background-image: url(images/dplyr_mutate.png)
+background-size: contain
+
+.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
+
+---
+
+class: bottom, right
+background-image: url(images/tidyr_spread_gather.png)
+background-size: contain
+
+.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
+
+???
+
+Also discuss pivot_longer.
 
 ---
 
@@ -472,7 +538,9 @@ class: inverse
 
 --
 
-1. Perform an independent samples t-test to test whether there is a difference in `act_english` by `gender`, but only for male or female students. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
+1. Perform an independent samples t-test to test whether there is a difference in `act_english` by `gender`. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
+
+(Notice what happens since gender has 3 levels. Try out using the `filter()` function from dplyr to only check the difference between Female and Male students. Alternatively, check out the page on `t_test()` to see how to use the `comparisons` argument to specify the groups to compare.)
 
 ```{r, include = FALSE}
 
@@ -1086,35 +1154,71 @@ college %>%
 
 ---
 
-## Chi-square in R
-
-Two methods: the `rstatix` package or the `janitor` package
+## Chi-square in R: rstatix
 
 --
 
-.pull-left[
-**rstatix package**:
-```{r, eval = TRUE}
+```{r}
 table(college$smokes, college$athlete) %>%
   chisq_test()
 ```
-]
 
 --
 
-.pull-right[
-**janitor package**:
-```{r, eval = TRUE}
+```{r, eval = TRUE, echo = FALSE}
+table(college$smokes, college$athlete) %>%
+  chisq_test()
+```
+
+---
+
+## Chi-square in R: janitor
+
+```{r}
 college %>%
   tabyl(smokes, athlete) %>%
   janitor::chisq.test()
 ```
 
-]
+--
 
-???
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  tabyl(smokes, athlete) %>%
+  janitor::chisq.test()
+```
 
-Prefer janitor because it's more tidyverse friendly than chisq_test is. There is a submitted issue on GitHub for the rstatix package to make this function pipe friendly, but until then janitor works great. 
+--
+
+Solution! Use the `tidy()` function in the *broom* package!
+
+---
+
+class: bottom, right
+background-image: url(images/broom_package.png)
+background-size: contain
+
+.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
+
+---
+
+## Chi-square in R: janitor
+
+```{r}
+college %>%
+  tabyl(smokes, athlete) %>%
+  janitor::chisq.test() %>%
+  tidy() #<<
+```
+
+--
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  tabyl(smokes, athlete) %>%
+  janitor::chisq.test() %>%
+  tidy()
+```
 
 ---
 
@@ -1523,7 +1627,7 @@ class: center, middle, dk-section-title
 
 --
 
-All three use the `lm()` function in the `stats` package.
+All three use the `lm()` function in the **stats** package.
 
 ---
 
@@ -1581,7 +1685,7 @@ college %>%
   summary() 
 ```
 
-.small[`lm.beta()` is from the lm.beta package.]
+.small[`lm.beta()` is from the **lm.beta** package.]
 
 ]
 
@@ -1596,6 +1700,30 @@ college %>%
   summary()
 ```
 ]
+
+---
+
+## Tidy results
+
+--
+
+```{r}
+college %>%
+  lm(exam_1 ~ iq, 
+     data = .) %>%
+  lm.beta() %>% 
+  tidy() #<<
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  lm(exam_1 ~ iq, 
+     data = .) %>%
+  lm.beta() %>% 
+  tidy()
+```
 
 ---
 
@@ -2304,215 +2432,40 @@ relomega$omega.tot %>%
 
 class: center, middle, dk-section-title
 
-# Broom Package
+# Reporting results
 
 ---
 
-## Independent t-test
+## modelsummary package
 
-```{r}
-college %>%
-  t.test(weight_2 ~ smokes, ., var.equal = TRUE)
-```
+Creates highly customizable tables and plots to summarize statistical models and data in R. 
 
---
-
-```{r eval = TRUE, echo = FALSE}
-college %>%
-  t.test(weight_2 ~ smokes, ., var.equal = TRUE)
-```
+![](images/modelsummary.png)
 
 ---
 
-## Independent t-test with broom
+## apa package
 
-```{r}
-college %>%
-  t.test(weight_2 ~ smokes, ., var.equal = TRUE) %>%
-  tidy() #<<
-```
---
-
-```{r eval = TRUE, echo = FALSE}
-college %>%
-  t.test(weight_2 ~ smokes, ., var.equal = TRUE) %>%
-  tidy()
-```
-
----
-
-## Which stats work with broom?
-
-- **t-test** (`t.test`)
-- **ANOVA** (`aov`)
-- **Chi-square** (`chis.test` in both the stats and janitor packages)
-- **Correlation** (`cor.test` in the stats package and `rcorr` in the Hmisc package)
-- **Regression** (`lm`)
-
-### Do not work with broom:
-- **Correlation** (`correlation` in the correlation package *because it is already tidy*) 
-- **Reliability** (`omega` and `alpha`)
-
----
-
-class: inverse
-
-## Your Turn
-
---
-
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
-
---
-
-1. Pick 1-2 of the previous analyses we performed in the Your Turn segments and add `tidy()` to the end of your analysis to get the tidied version of the output.
-
----
-
-class: inverse
-
-## Your Turn: Examples
-
-- **Independent t-test**: Perform an independent samples t-test to test whether there is a difference in `exam_1` by `athlete`. Use `var.equal = TRUE`. 
-- **Dependent t-test**: Perform a  dependent samples t-test to test whether there is a difference in exam scores: `exam_1` and `exam_2`.
-- **One-way ANOVA**: Perform a one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. 
-- **Chi-square**: Perform a chi-square to examine how `grade_class` relates to `live_on_campus`.
-- **Linear regression**: Perform a linear regression examining how `iq` predicts `act_reading`.
-- **Multiple regression**: Perform a multiple regression examining how both `iq` and `act_science` predict `act_reading`. 
-
-```{r include = FALSE}
-
-### BROOM ANSWERS
-
-## Independent t-test ##
-# Perform an independent samples t-test to test whether there is a difference in `exam_1` by `athlete`. Use `var.equal = TRUE`. 
-
-college %>%
-  t.test(exam_1 ~ athlete, ., var.equal = TRUE) %>%
-  tidy()
-
-## Dependent t-test ##
-# Perform a  dependent samples t-test to test whether there is a difference in exam scores: `exam_1` and `exam_2`. 
-
-t.test(college$exam_1, college$exam_2, paired = TRUE) %>%
-  tidy()
-
-## One-way ANOVA ##
-# Perform a one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. 
-
-college %>%
-  aov(hs_gpa ~ grade_class, data = .) %>%
-  tidy()
-
-## Chi-Square ##
-# Perform a chi-square to examine how `grade_class` relates to `live_on_campus`. 
-
-college %>%
-  tabyl(grade_class, live_on_campus) %>%
-  chisq.test() %>%
-  tidy()
-
-## Linear Regression ##
-# Perform a linear regression examining how `iq` predicts `act_reading`. 
-
-college %>%
-  lm(act_reading ~ iq, 
-     data = .) %>%
-  lm() %>%  #NOTE: will not work with lm.beta
-  summary() %>%
-  tidy()
-
-## Multiple Regression ##
-# Perform a multiple regression examining how both `iq` and `act_science` predict `act_reading`. 
-
-college %>%
-  lm(act_reading ~ iq + act_science, 
-     data = .) %>%
-  lm() %>% 
-  summary() %>%
-  tidy()
-
-```
-
----
-
-class: center, middle, dk-section-title
-
-# apa Package
-
----
-
-## apa Package
-
-The apa package functions help you format statistical tests according to the American Psychological Association (APA) guidelines. It supports the following tests:
+The **apa** package functions help you format statistical tests according to the American Psychological Association (APA) guidelines. It supports the following tests from the **stats** package:
 
 --
 
 - t-test (`t.test`) --> **t_apa**
 - ANOVA (`aov`) --> **anova_apa**
 - chi-square (`chisq.test`) --> **chisq_apa**
-- correlation (`cor.test` but not `correlation`) --> **cor_apa**
-
----
-
-## apa: Independent samples t-test
-
-```{r eval = TRUE}
-college %>%
-  t.test(exam_1 ~ athlete, ., var.equal = TRUE) %>%
-  t_apa() #<<
-```
-
----
-
-## apa: Dependent samples t-test
-
-```{r eval = TRUE}
-t.test(college$exam_1, college$exam_2, paired = TRUE) %>%
-  t_apa() #<<
-```
-
----
-
-## apa: One-way ANOVA
-
-```{r eval = TRUE}
-college %>%
-  aov(hs_gpa ~ grade_class, data = .) %>%
-  anova_apa() #<<
-```
+- correlation (`cor.test`) --> **cor_apa**
 
 --
 
 ```{r eval = TRUE}
 college %>%
-  aov(hs_gpa ~ grade_class, data = .) %>%
-  anova_apa(effect = "grade_class") #<<
+  t.test(exam_1 ~ athlete, data = ., var.equal = TRUE) %>%
+  t_apa() #<<
 ```
 
 ---
 
-## apa: Chi-square
-
-```{r eval = TRUE}
-college %>%
-  tabyl(grade_class, live_on_campus) %>%
-  chisq.test() %>%
-  chisq_apa() #<<
-```
-
----
-
-## apa: Correlation
-
-```{r eval = TRUE}
-cor.test(college$exam_1, college$exam_2) %>%
-  cor_apa()
-```
-
----
-
-## apa: inline code
+## apa package: inline code
 
 If you're writing your results directly in R, you can use inline code to embed your statistics in your text wrapping the statistic with `apa()`.
 
@@ -2527,19 +2480,17 @@ There was a strong, positive relationship between exam 1 and exam 2 scores, `r a
 
 ---
 
-class: inverse
+## papaja package
 
-## Your Turn
-
---
-
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+**papaja** stands for Preparing APA journal articles. It is an R Markdown template that produces APA manuscripts. 
 
 --
 
-2. Pick one of the previous analyses that the apa package works with and try writing out inline code. Note that you write this in the text portion (white background) of an R Markdown file, not a code portion (grey background). Surround the `apa()` code with backticks followed by the letter r to indicate that the code within should be analyzed using the r language. 
+It works with the **apa**, **APAstats**, and **apaTables** packages for easy reporting in accordance with APA guidelines. 
 
 ---
+
+
 
 class: center, middle, dk-section-title
 
@@ -2566,6 +2517,14 @@ Our parametric statistics all have four main assumptions that we should test and
 --
 
 1. Data is at the **interval or ratio** level. .small[*Note*: likert-scale data is *technically* at the ordinal level, and there is research to suggest it shouldn't be analyzed at the interval/ratio level.]
+
+---
+
+class: bottom, right
+background-image: url(images/not_normal.png)
+background-size: contain
+
+.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
 
 ---
 
@@ -2832,6 +2791,8 @@ college %>%
 college %>%
   shapiro_test(age)
 
+## NO age is not normally distributed. ##
+
 ```
 
 ---
@@ -2916,6 +2877,205 @@ college %>%
 # Levene's test # 
 college %>%
   levene_test(weight_1 ~ as.factor(smokes))
+
+```
+
+---
+
+class: center, middle, dk-section-title
+
+# Violated Assumptions
+
+---
+
+## Violated Assumptions
+
+--
+
+1. Winsorize outliers
+
+--
+
+2. Transform the data
+
+--
+
+3. Use the non-parametric equivalent statistic
+
+???
+
+What do you do when you've violated the assumptions of normality or homogeneity of variance? There are at least three solutions, which we'll cover each in turn here.
+
+---
+
+## Winsorize or trim
+
+```{r eval = TRUE, echo = FALSE, fig.height = 6, fig.width = 12}
+college %>%
+  ggplot(aes(iq)) +
+  geom_bar()
+```
+
+---
+
+## Winsorize or trim
+
+```{r eval = TRUE, echo = FALSE, fig.height = 6, fig.width = 12}
+college %>%
+  ggplot(aes(iq)) +
+  geom_histogram(bins = 40) + 
+  gghighlight::gghighlight(iq < 83)
+```
+
+---
+
+## Winsorize or trim
+
+.pull-left[
+```{r}
+college %>%
+  select(id, iq) %>%
+  arrange(iq)
+```
+]
+
+--
+
+.pull-right[
+```{r eval = TRUE, echo = FALSE, rows.print = 10}
+college %>%
+  select(id, iq) %>%
+  arrange(iq)
+```
+]
+
+---
+
+## Winsorize or trim
+
+.pull-left[
+```{r}
+college %>%
+  select(id, iq) %>% 
+  arrange(iq) %>%
+  mutate(iq = Winsorize(iq, #<<
+                        minval = 84, #<<
+                        maxval = 125)) #<<
+```
+]
+
+--
+
+.pull-right[
+```{r eval = TRUE, echo = FALSE, rows.print = 10}
+college %>%
+  select(id, iq) %>% 
+  arrange(iq) %>%
+  mutate(iq = DescTools::Winsorize(iq, minval = 84, maxval = 125))
+```
+]
+
+---
+
+## Transform the data
+
+--
+
+**Corrects for positive skew and unequal variances**:
+
+--
+
+- Log: `log(x)`
+
+--
+
+- Square Root: `sqrt(x)`
+
+--
+
+- Reciprocal: `(1/x)`
+
+--
+
+**Corrects for negative skew**:
+
+- Reverse score: Reverse the score `((MAX+1)-x)` then do one of the prior transformations.
+
+---
+
+## Transform data: An example
+
+.pull-left[
+```{r eval = TRUE, fig.height = 3, fig.width = 5}
+posskew %>%
+  ggplot(aes(data)) +
+  geom_density()
+```
+]
+
+--
+
+.pull-right[
+```{r eval = TRUE, fig.height = 3, fig.width = 5}
+posskew %>% 
+  mutate(data = sqrt(2.1 + data)) %>% #<<
+  ggplot(aes(data)) +
+  geom_density()
+```
+]
+
+---
+
+## Non-parametric tests
+
+--
+
+- Used when removing outliers or transforming data still does not help you meet the assumptions of the parametric test
+
+--
+
+- Has less restrictive assumptions than parametric tests
+
+--
+
+- Does not rely on a parametric (i.e., normal) distribution! 
+
+--
+
+| Parametric Test          | Non-parametric equivalent  |
+| ------------------------ |----------------------------|
+| Independent t-test       | Mann-Whitney test          |
+| Dependent t-test         | Wilcoxon Signed Range test |
+| One-way ANOVA            | Kruskal-Wallis test        |
+| Repeated-measures ANOVA  | Friedman's ANOVA test      |
+
+---
+
+class: inverse
+
+## Your Turn
+
+--
+
+1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+
+--
+
+1. Try the various transformations on the `age` variable. Do any of them improve the normality of the variable? Test using the `shapiro_test()` function as you learned in the "Testing assumptions" lesson.
+
+```{r include = FALSE}
+
+## Violating assumptions answers ##
+
+# Graph the data #
+college %>%
+  select(age) %>%
+  mutate(agelog = log(age),
+         agesqrt = sqrt(age),
+         agerec = 1/age) %>%
+  shapiro_test(age, agelog, agesqrt, agerec)
+
+# Answer: none of them significantly improve the normality. The reciprocal seems to do the best, but it's still not good. #
 
 ```
 
