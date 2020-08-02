@@ -37,7 +37,7 @@ class: center, middle, dk-section-title
 
 ---
 
-class: bottom, right
+class: bottom, center
 background-image: url(images/r_first.png)
 background-size: contain
 
@@ -45,7 +45,7 @@ background-size: contain
 
 ---
 
-class: bottom, right
+class: bottom, center
 background-image: url(images/r_then.png)
 background-size: contain
 
@@ -156,7 +156,7 @@ Let's briefly review them.
 
 ---
 
-class: bottom, right
+class: bottom, center
 background-image: url(images/dplyr_filter.png)
 background-size: contain
 
@@ -168,7 +168,7 @@ Discuss select with it, too.
 
 ---
 
-class: bottom, right
+class: bottom, center
 background-image: url(images/dplyr_mutate.png)
 background-size: contain
 
@@ -176,7 +176,7 @@ background-size: contain
 
 ---
 
-class: bottom, right
+class: bottom, center
 background-image: url(images/tidyr_spread_gather.png)
 background-size: contain
 
@@ -1194,7 +1194,7 @@ Solution! Use the `tidy()` function in the *broom* package!
 
 ---
 
-class: bottom, right
+class: bottom, center
 background-image: url(images/broom_package.png)
 background-size: contain
 
@@ -2520,7 +2520,7 @@ Our parametric statistics all have four main assumptions that we should test and
 
 ---
 
-class: bottom, right
+class: bottom, center
 background-image: url(images/not_normal.png)
 background-size: contain
 
