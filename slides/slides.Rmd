@@ -296,6 +296,7 @@ You'll be working with the college dataset to run all your analyses.
 
 ---
 
+background-image: url(images/independent.jpg)
 class: center, middle, dk-section-title
 
 # Independent t-test
@@ -324,7 +325,7 @@ class: center, middle, dk-section-title
 
 --
 
-Both t-tests are performed using the `t_test()` function in the **rstatix** package.
+Both t-tests are performed using the `t_test()` function in the **`rstatix`** package.
 
 ---
 
@@ -541,7 +542,7 @@ class: inverse
 
 1. Perform an independent samples t-test to test whether there is a difference in `act_english` by `gender`. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
 
-(Notice what happens since gender has 3 levels. Try out using the `filter()` function from dplyr to only check the difference between Female and Male students. Alternatively, check out the page on `t_test()` to see how to use the `comparisons` argument to specify the groups to compare.)
+Notice what happens since gender has 3 levels. Try out using the `filter()` function from dplyr to only check the difference between Female and Male students. Alternatively, check out the page on `t_test()` to see how to use the `comparisons` argument to specify the groups to compare.
 
 ```{r, include = FALSE}
 
@@ -565,6 +566,7 @@ college %>%
 
 ---
 
+background-image: url(images/dependent.jpg)
 class: center, middle, dk-section-title
 
 # Dependent t-test
@@ -593,7 +595,7 @@ class: center, middle, dk-section-title
 
 ## Dependent t-test in R
 
-The dependent t-test adds a new argument to the `t_test` function: 
+The dependent t-test adds a new argument to the `t_test()` function: 
 
 .center[`paired = TRUE`]
 
@@ -626,7 +628,7 @@ college %>%
 ```{r eval = TRUE}
 college %>%
   select(weight_1, weight_2) %>%
-  pivot_longer(everything(), 
+  pivot_longer(cols = everything(), 
                names_to = "time",
                values_to = "weight",
                names_prefix = "weight_")
@@ -660,15 +662,15 @@ class: inverse
 
 --
 
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
-
---
-
 1. Perform a  dependent samples t-test to test whether there is a difference in exam scores: `exam_1` and `exam_2`. Is there a difference? What is the p-value? 
 
 --
 
 1. Perform a dependent samples t-test to test whether there is a difference in `act_science` and `act_mathematics` scores. Is there a difference? What is the p-value?
+
+--
+
+Don't forget: You'll need to make your data long before running your t-test.
 
 ```{r, include = FALSE}
 
@@ -721,7 +723,7 @@ class: center, middle, dk-section-title
 
 ## One-way ANOVA in R
 
-The formatting for the one-way ANOVA is similar to that of `t_test` except we replace it with `anova_test`.
+The formatting for the one-way ANOVA is similar to that of `t_test()` except we replace it with `anova_test`.
 
 --
 
