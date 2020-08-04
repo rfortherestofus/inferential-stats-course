@@ -27,19 +27,18 @@ library(apa) ## for reporting results in APA format
 library(ggpubr) ## for qq plots
 library(rstatix) ## for shapiro_test that is pipe-friendly
 
-college <- read_csv("../Data/college.csv")
+college <- read_csv("../data/college.csv")
 ```
 
-
 class: center, middle, dk-section-title
+background-image: url(images/welcome.jpg)
 
-# Welcome to the Course!
+# Welcome to the course!
 
 ---
 
 class: bottom, center
 background-image: url(images/r_first.png)
-background-size: contain
 
 .small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
 
@@ -47,24 +46,13 @@ background-size: contain
 
 class: bottom, center
 background-image: url(images/r_then.png)
-background-size: contain
+
 
 .small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
 
 ---
 
 ## What you will learn in this course
-
-???
-
-This course will cover seven topics. 
-1. First, we're going to learn four main inferential statistics...
-
-5. We'll also learn how to conduct reliability such as Cronbach's alpha, a measure of internal consistency.
-
-6. Then we'll learn how to report statistics in R through learning how to extract values from the summary output, tidying up the results, and using packages to report statistics easily.
-
-7. Lastly, we'll cover how to test assumptions of your parametric tests and what to do if you do not meet the assumptions of normally distributed data. 
 
 --
 
@@ -97,6 +85,19 @@ This course will cover seven topics.
 --
 
 8. testing parametric assumptions
+
+
+???
+
+This course will cover seven topics. 
+1. First, we're going to learn four main inferential statistics...
+
+5. We'll also learn how to conduct reliability such as Cronbach's alpha, a measure of internal consistency.
+
+6. Then we'll learn how to report statistics in R through learning how to extract values from the summary output, tidying up the results, and using packages to report statistics easily.
+
+7. Lastly, we'll cover how to test assumptions of your parametric tests and what to do if you do not meet the assumptions of normally distributed data. 
+
 
 ---
 
@@ -140,15 +141,15 @@ library(rstatix) ## for shapiro_test that is pipe-friendly
 
 ## A quick overview of tidyverse
 
-There are a few tidyverse functions we'll sometimes use:
+There are a few tidyverse functions we'll use:
 
 --
 
-- dplyr::select
-- dplyr::filter
-- dplyr::mutate
-- tidyr::gather
-- tidyr::pivot_longer
+- `dplyr::select()`
+- `dplyr::filter()`
+- `dplyr::mutate()`
+- `tidyr::gather()`
+- `tidyr::pivot_longer()`
 
 --
 
@@ -158,7 +159,6 @@ Let's briefly review them.
 
 class: bottom, center
 background-image: url(images/dplyr_filter.jpg)
-background-size: contain
 
 .small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
 
@@ -170,7 +170,6 @@ Discuss select with it, too.
 
 class: bottom, center
 background-image: url(images/dplyr_mutate.png)
-background-size: contain
 
 .small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
 
@@ -178,7 +177,6 @@ background-size: contain
 
 class: bottom, center
 background-image: url(images/tidyr_spread_gather.png)
-background-size: contain
 
 .small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
 
@@ -204,6 +202,7 @@ Also discuss pivot_longer.
 
 ---
 
+background-image: url(images/data.jpg)
 class: center, middle, dk-section-title
 
 # Introduction to the dataset
@@ -213,7 +212,7 @@ class: center, middle, dk-section-title
 ## college.csv
 
 ```{r eval = TRUE}
-college <- read_csv("../Data/college.csv")
+college <- read_csv("../data/college.csv")
 
 college 
 ```
@@ -261,6 +260,8 @@ college %>%
   tb()
 ```
 
+
+
 ---
 
 ```{r eval = TRUE, echo = FALSE, results = 'asis'}
@@ -283,7 +284,7 @@ You'll be working with the college dataset to run all your analyses.
 
 --
 
-1. Download the dataset "college.csv"
+1. Download the dataset "college.csv" from https://bit.ly/college-dataset
 
 --
 
@@ -291,7 +292,7 @@ You'll be working with the college dataset to run all your analyses.
 
 --
 
-1. Import the spreadsheet into a dataframe `college`
+1. Import the spreadsheet into a dataframe `college` using `readr::read_csv()`
 
 ---
 
@@ -1718,11 +1719,11 @@ college %>%
 --
 
 ```{r eval = TRUE, echo = FALSE}
-college %>%
-  lm(exam_1 ~ iq, 
-     data = .) %>%
-  lm.beta() %>% 
-  tidy()
+# college %>%
+#   lm(exam_1 ~ iq, 
+#      data = .) %>%
+#   lm.beta() %>% 
+#   tidy()
 ```
 
 ---
