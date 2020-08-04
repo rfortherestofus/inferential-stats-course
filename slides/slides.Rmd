@@ -114,15 +114,15 @@ This course will cover seven topics.
 --
 
 3. Packages:
-  + tidyverse
-  + broom
-  + janitor
-  + rstatix
-  + stats
-  + lm.beta
-  + psych
-  + and more!
-  
++ tidyverse
++ broom
++ janitor
++ rstatix
++ stats
++ lm.beta
++ psych
++ and more!
+
 ???
 
 library(tidyverse) ## because tidyverse = life  
@@ -693,6 +693,7 @@ college %>%
 
 ---
 
+background-image:url(images/one_way.jpg)
 class: center, middle, dk-section-title
 
 # One-way ANOVA
@@ -772,13 +773,15 @@ college %>%
 ## Detailed ANOVA results
 
 ```{r, eval = TRUE}
-college %>% anova_test(exam_1 ~ grade_class)
+college %>% 
+  anova_test(exam_1 ~ grade_class)
 ```
 
 --
 
 ```{r}
-college %>% anova_test(exam_1 ~ grade_class, `detailed = TRUE`)
+college %>% 
+  anova_test(exam_1 ~ grade_class, `detailed = TRUE`)
 ```
 
 --
@@ -837,10 +840,6 @@ class: inverse
 
 --
 
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
-
---
-
 1. Perform a one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. Is there a difference? What is the p-value? 
 
 --
@@ -862,6 +861,7 @@ college %>%
 
 ---
 
+background-image:url(images/compare.jpg)
 class: center, middle, dk-section-title
 
 # Post hoc comparisons
@@ -929,10 +929,6 @@ class: inverse
 
 --
 
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
-
---
-
 1. Perform one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. Is there a difference? If so, perform a Tukey's HSD to test where the differences are. Describe the differences.
 
 --
@@ -961,6 +957,7 @@ college %>%
 
 ---
 
+background-image:url(images/pattern.jpg)
 class: center, middle, dk-section-title
 
 # Other ANOVA tests
@@ -1130,6 +1127,7 @@ Read more about how to conduct repeated measures and factorial ANOVA designs usi
 
 ---
 
+background-image:url(images/square.jpg)
 class: center, middle, dk-section-title
 
 # Chi-square
@@ -1281,9 +1279,6 @@ class: inverse
 
 --
 
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
-
---
 
 1. Perform a chi-square to examine how `grade_class` relates to `live_on_campus`. What is the p-value? Is there a relationship?
 
@@ -1375,7 +1370,7 @@ college %>%
 
 ???
 
-Somtimes this works. In this case, it isn't sufficient. So let's go back. 
+Sometimes this works. In this case, it isn't sufficient. So let's go back. 
 
 ---
 
@@ -1396,9 +1391,12 @@ college %>%
 ```{r, eval = TRUE}
 college %>%
   filter(smokes == 1) %>%
-  mutate(URM = recode(race, "Bi-Racial" = 1,  #<<
-                      "Asian" = 0, "White" = 0,  #<<
-                      "Black" = 1, "Hispanic" = 1)) %>%  #<<
+  mutate(URM = recode(race, 
+                      "Bi-Racial" = 1,  #<<
+                      "Asian" = 0, #<<
+                      "White" = 0, #<<
+                      "Black" = 1, #<<
+                      "Hispanic" = 1)) %>%  #<<
   tabyl(URM, gender)
 ```
 
@@ -1409,11 +1407,14 @@ college %>%
 ```{r, eval = TRUE}
 college %>%
   filter(smokes == 1) %>%
-  mutate(URM = recode(race, "Bi-Racial" = 1,
-                      "Asian" = 0, "White" = 0,
-                      "Black" = 1, "Hispanic" = 1)) %>%
+  mutate(URM = recode(race, 
+                      "Bi-Racial" = 1,  #<<
+                      "Asian" = 0, #<<
+                      "White" = 0, #<<
+                      "Black" = 1, #<<
+                      "Hispanic" = 1)) %>%  #<<
   tabyl(URM, gender) %>%
-  chisq.test()  #<<
+  chisq.test() #<<
 ```
 
 ???
@@ -1430,9 +1431,12 @@ In this case, it works, but sometimes it doesn't. Let's see our third option jus
 college %>%
   filter(smokes == 1) %>%
   filter(gender != "Trans*") %>%  #<< 
-  mutate(URM = recode(race, "Bi-Racial" = 1,  #<<
-                      "Asian" = 0, "White" = 0,  #<<
-                      "Black" = 1, "Hispanic" = 1)) %>%  #<<
+  mutate(URM = recode(race, 
+                      "Bi-Racial" = 1,  #<<
+                      "Asian" = 0, #<<
+                      "White" = 0, #<<
+                      "Black" = 1, #<<
+                      "Hispanic" = 1)) %>%  #<<
   tabyl(URM, gender)
 ```
 
@@ -1444,9 +1448,12 @@ college %>%
 college %>%
   filter(smokes == 1) %>%
   filter(gender != "Trans*") %>%
-  mutate(URM = recode(race, "Bi-Racial" = 1,
-                      "Asian" = 0, "White" = 0,
-                      "Black" = 1, "Hispanic" = 1)) %>%
+  mutate(URM = recode(race, 
+                      "Bi-Racial" = 1, #<<
+                      "Asian" = 0, #<<
+                      "White" = 0, #<<
+                      "Black" = 1, #<<
+                      "Hispanic" = 1)) %>% #<<
   tabyl(URM, gender) %>%
   chisq.test()  #<<
 ```
@@ -2427,7 +2434,7 @@ relomega <- college %>%
 relomega$omega.tot %>%
   round(2)
 
-  ## .98
+## .98
 
 ```
 
