@@ -288,7 +288,7 @@ You'll be working with the college dataset to run all your analyses.
 
 --
 
-1. Create a new R script file where you'll do all of your inferential statistics
+1. Create a new R script file or RMarkdown document where you'll do all of your inferential statistics
 
 --
 
@@ -381,7 +381,7 @@ Notice the degrees of freedom has decimals. This is because the `t_test()` funct
 
 ---
 
-## Variances Equal
+## Variances equal
 
 ```{r}
 college %>%
@@ -529,10 +529,6 @@ You can also adjust the confidence intervals to be from the default 95% confiden
 class: inverse
 
 ## Your Turn
-
---
-
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
 
 --
 
@@ -996,7 +992,7 @@ dat %>%
 
 ---
 
-### An example
+## An example
 
 Let's examine how exam scores (`exam_1`, `exam_2`, and `exam_3`) differ within individuals across time. 
 
@@ -1223,7 +1219,7 @@ college %>%
 
 ---
 
-## Standardized Residuals
+## Standardized residuals
 
 The standardized residuals tell us for that cell if the expected and observed frequency are independent. They are z-scores so values greater than 1.96 are statistically significant (*p* < .05).
 
@@ -1308,6 +1304,7 @@ tab2$expected
 
 ---
 
+background-image:url(images/small.jpg)
 class: center, middle, dk-section-title
 
 # Dealing with small cells
@@ -1460,6 +1457,7 @@ college %>%
 
 ---
 
+background-image:url(images/scatter.jpg)
 class: center, middle, dk-section-title
 
 # Correlation
@@ -1595,10 +1593,6 @@ class: inverse
 
 --
 
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
-
---
-
 1. Perform a correlation among the four ACT scores. Which two scales of the ACT have the highest correlation? Which two scales have the lowest correlation?
 
 ```{r include = FALSE}
@@ -1617,6 +1611,7 @@ college %>%
 
 ---
 
+background-image:url(images/pattern2.jpg)
 class: center, middle, dk-section-title
 
 # Regression
@@ -1625,7 +1620,7 @@ class: center, middle, dk-section-title
 
 ## Three basic types of regression
 
-1. **Linear regression** has a single IV
+1. **Linear regression** has a single independent variable (IV)
 
 --
 
@@ -1637,7 +1632,7 @@ class: center, middle, dk-section-title
 
 --
 
-All three use the `lm()` function in the **stats** package.
+All three use the `lm()` function in the **`stats`** package.
 
 ---
 
@@ -1659,9 +1654,13 @@ college %>%
 ```
 ]
 
+???
+
+Make sure to explain the . here
+
 ---
 
-## Linear regression
+### Linear regression
 
 .left-code[
 ```{r}
@@ -1684,7 +1683,7 @@ college %>%
 
 ---
 
-## Standardized Coefficients
+### Standardized Coefficients
 
 .left-code[
 ```{r}
@@ -1713,7 +1712,7 @@ college %>%
 
 ---
 
-## Tidy results
+### Tidy results
 
 --
 
@@ -1729,9 +1728,9 @@ college %>%
 
 ```{r eval = TRUE, echo = FALSE}
 # college %>%
-#   lm(exam_1 ~ iq, 
+#   lm(exam_1 ~ iq,
 #      data = .) %>%
-#   lm.beta() %>% 
+#   lm.beta() %>%
 #   tidy()
 ```
 
@@ -1739,11 +1738,7 @@ college %>%
 
 class: inverse
 
-## Your Turn
-
---
-
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+### Your Turn
 
 --
 
@@ -1768,11 +1763,11 @@ college %>%
 
 class: center, middle, dk-section-title
 
-# Multiple Regression
+## Multiple regression
 
 ---
 
-## Multiple Regression in R
+### Multiple regression in R
 
 To perform a multiple regression, add the IVs to the right of the ~ (tilde).
 
@@ -1791,6 +1786,8 @@ Just like with ANOVAs, you can request interactions by replacing the + with a *.
 **Example**: DV ~ IV1 * IV2
 
 ---
+
+### Multiple regression in R
 
 ```{r}
 college %>%
@@ -1811,6 +1808,8 @@ college %>%
 
 ---
 
+### Multiple regression in R
+
 ```{r}
 college %>%
   lm(exam_2 ~ iq` * `exam_1, data = .) %>%
@@ -1830,7 +1829,7 @@ college %>%
 
 ---
 
-## Categorical predictors
+### Categorical predictors
 
 ```{r}
 college %>%
@@ -1855,7 +1854,7 @@ Because I haven't specified gender as a factor, it is choosing Female as the ref
 
 ---
 
-## Changing the reference level
+### Changing the reference level
 
 ```{r}
 college %>%
@@ -1879,11 +1878,7 @@ college %>%
 
 class: inverse
 
-## Your Turn
-
---
-
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
+### Your Turn
 
 --
 
@@ -1908,11 +1903,11 @@ college %>%
 
 class: center, middle, dk-section-title
 
-# Hierarchical Regression
+## Hierarchical regression
 
 ---
 
-## Hierarchical Regression
+### Hierarchical regression
 
 Hierarchical regression takes a *little* more work than in SPSS. Here are the steps:
 
@@ -1930,7 +1925,7 @@ Hierarchical regression takes a *little* more work than in SPSS. Here are the st
 
 ---
 
-## Hierarchical Regression in R
+### Hierarchical regression in R
 
 .pull-left[
 **Step 1:** 
@@ -1967,7 +1962,7 @@ anova(lm1, lm2) #<<
 
 class: inverse
 
-## Your Turn
+### Your Turn
 
 --
 
@@ -1975,6 +1970,7 @@ Read more about hierarchical regression with the resources below.
 
 ---
 
+background-image:url(images/reliable.jpg)
 class: center, middle, dk-section-title
 
 # Reliability
@@ -2018,7 +2014,7 @@ However, Cronbach's alpha has assumptions your data *may not* meet. For that rea
 ## Tau equivalence
 
 .pull-left[
-### Tau Equivalent
+### Tau equivalent
 | Item          | Std. Loading  |
 | ------------- |:-------------:|
 | Q1            | .711          |
@@ -2029,7 +2025,7 @@ However, Cronbach's alpha has assumptions your data *may not* meet. For that rea
 ]
 
 .pull-right[
-### Not Tau Equivalent
+### Not Tau equivalent
 | Item          | Std. Loading  |
 | ------------- |:-------------:|
 | Q1            | .806          |
@@ -2241,15 +2237,8 @@ class: inverse
 
 --
 
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
-
---
-
 1. Perform a test of internal consistency using both omega and alpha on the SWLS scale at time 2. Does the scale have good internal consistency at time 2, as well?
 
---
-
-1. (Optional) Read the article by McNeish (2018) explaining why omega is often a better measure of internal consistency than alpha. 
 
 ```{r include = FALSE}
 
@@ -2271,13 +2260,14 @@ college %>%
 
 ---
 
+background-image:url(images/extract.jpg)
 class: center, middle, dk-section-title
 
-# Extracting Output
+# Extracting output
 
 ---
 
-## Extracting Output
+## Extracting output
 
 .center[
 So you've got your output...
@@ -2306,8 +2296,7 @@ college %>%
 
 .pull-left[
 ```{r}
-rel <- #<<
-  college %>%
+rel <- college %>% #<<
   select(starts_with("swls_time1")) %>%
   alpha()
 ```
@@ -2349,6 +2338,7 @@ rel$alpha.drop %>%
   rownames_to_column("var") %>% #<<
   arrange(std.alpha) #<<
 ```
+
 ```{r eval = TRUE, echo = FALSE}
 rel$alpha.drop %>%
   select(std.alpha) %>%
@@ -2376,8 +2366,7 @@ drop <- #<<
 
 .pull-left[
 ```{r}
-drop <-
-  rel$alpha.drop %>%
+drop <- rel$alpha.drop %>%
   select(std.alpha) %>%
   rownames_to_column("var") %>%
   arrange(std.alpha)
@@ -2394,8 +2383,7 @@ rel$total %>% #<<
 
 .pull-right[
 ```{r eval = TRUE, echo = FALSE, rows.print = 10}
-drop <-
-  rel$alpha.drop %>%
+drop <- rel$alpha.drop %>%
   select(std.alpha) %>%
   rownames_to_column("var") %>%
   arrange(std.alpha)
@@ -2413,10 +2401,6 @@ rel$total %>%
 class: inverse
 
 ## Your Turn
-
---
-
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
 
 --
 
@@ -2440,6 +2424,7 @@ relomega$omega.tot %>%
 
 ---
 
+background-image:url(images/report.jpg)
 class: center, middle, dk-section-title
 
 # Reporting results
@@ -2450,7 +2435,9 @@ class: center, middle, dk-section-title
 
 Creates highly customizable tables and plots to summarize statistical models and data in R. 
 
+.center[
 ![](images/modelsummary.png)
+]
 
 ---
 
@@ -2460,10 +2447,10 @@ The **apa** package functions help you format statistical tests according to the
 
 --
 
-- t-test (`t.test`) --> **t_apa**
-- ANOVA (`aov`) --> **anova_apa**
-- chi-square (`chisq.test`) --> **chisq_apa**
-- correlation (`cor.test`) --> **cor_apa**
+- t-test: `t.test()` --> **t_apa()**
+- ANOVA: `aov()` --> **anova_apa()**
+- chi-square: `chisq.test()` --> **chisq_apa()**
+- correlation: `cor.test()` --> **cor_apa()**
 
 --
 
@@ -2502,6 +2489,7 @@ It works with the **apa**, **APAstats**, and **apaTables** packages for easy rep
 
 
 
+background-image:url(images/test_assumptions.jpg)
 class: center, middle, dk-section-title
 
 # Testing assumptions
@@ -2706,6 +2694,7 @@ class: inverse
 
 ---
 
+background-image:url(images/normal.jpg)
 class: center, middle, dk-section-title
 
 # Testing for normality
@@ -2778,10 +2767,6 @@ class: inverse
 
 --
 
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
-
---
-
 1. Using each of the three methods, test whether `age` is normally distributed. Come to a conclusion: is age normally distributed? 
 
 ```{r include = FALSE}
@@ -2807,6 +2792,7 @@ college %>%
 
 ---
 
+background-image:url(images/homogeneity.jpg)
 class: center, middle, dk-section-title
 
 # Testing for homogeneity of variance
@@ -2867,10 +2853,6 @@ class: inverse
 
 --
 
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
-
---
-
 1. Using each of the two methods, test whether the variance of `weight_1` differs by whether someone smokes. Come to a conclusion: is there homogeneity of variance in weight by smoking status? 
 
 ```{r include = FALSE}
@@ -2892,13 +2874,14 @@ college %>%
 
 ---
 
+background-image:url(images/outlier.jpg)
 class: center, middle, dk-section-title
 
-# Violated Assumptions
+# Violated assumptions
 
 ---
 
-## Violated Assumptions
+## Violated assumptions
 
 --
 
@@ -3064,10 +3047,6 @@ posskew %>%
 class: inverse
 
 ## Your Turn
-
---
-
-1. Open the R project for this course and your R markdown file. Run the beginning of your script so you have the `college` dataset available in your R environment.
 
 --
 
