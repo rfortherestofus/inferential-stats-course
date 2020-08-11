@@ -461,27 +461,25 @@ The alternative argument lets you specify either **less** or **greater** than 0.
 
 ## Alternative hypothesis
 
-.pull-left[
-```{r, eval = TRUE}
+```{r}
 college %>%
-  t_test(weight_2 ~ smokes, 
-         var.equal = TRUE, 
-         detailed = TRUE,
-         alternative = "two.sided") #<<
+  t_test(weight_2 ~ smokes, var.equal = TRUE, detailed = TRUE, `alternative = "two.sided"`)
 ```
-]
 
---
-
-.pull-right[
-```{r, eval = TRUE}
+```{r, eval = TRUE, echo = FALSE}
 college %>%
-  t_test(weight_2 ~ smokes,  
-         var.equal = TRUE,  
-         detailed = TRUE,
-         alternative = "greater") #<<
+  t_test(weight_2 ~ smokes, var.equal = TRUE, detailed = TRUE, alternative = "two.sided")
 ```
-]
+
+```{r}
+college %>%
+  t_test(weight_2 ~ smokes, var.equal = TRUE, detailed = TRUE, `alternative = "greater"`) 
+```
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  t_test(weight_2 ~ smokes, var.equal = TRUE, detailed = TRUE, alternative = "greater") 
+```
 
 ???
 
@@ -1274,7 +1272,6 @@ class: inverse
 ## Your Turn
 
 --
-
 
 1. Perform a chi-square to examine how `grade_class` relates to `live_on_campus`. What is the p-value? Is there a relationship?
 
@@ -2404,7 +2401,11 @@ class: inverse
 
 --
 
-1. Perform a test of internal consistency using omega on the SWLS scale at time 2. Extract the `omega.tot` information from the list. Round it to two decimals. What is your omega value?
+1. Perform a test of internal consistency using omega on the SWLS scale at time
+
+--
+
+2. Extract the `omega.tot` information from the list. Round it to two decimals. What is your omega value?
 
 ```{r include = FALSE}
 
