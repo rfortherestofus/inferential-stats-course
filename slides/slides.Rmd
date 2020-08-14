@@ -116,9 +116,9 @@ This course will cover seven topics.
 3. Packages:
 + tidyverse
 + broom
-+ janitor
 + rstatix
-+ stats
++ janitor
++ correlation
 + lm.beta
 + psych
 + and more!
@@ -126,16 +126,12 @@ This course will cover seven topics.
 ???
 
 library(tidyverse) ## because tidyverse = life  
-library(skimr) ## looking at the data  
-library(summarytools) ## looking at the data  
 library(broom) ## for extracting output using broom  
+library(rstatix) ## for tidyverse-friendly stats
 library(janitor) ## for chi-square: tabyl for chi-squares  
 library(correlation) ## for correlation: tidy correlation results  
 library(lm.beta) ## for regression: standardized coefficients  
 library(psych) ## for reliability: omega and alpha  
-library(apa) ## for reporting results in APA format  
-library(ggpubr) ## for qq plots  
-library(rstatix) ## for shapiro_test that is pipe-friendly  
 
 ---
 
@@ -146,43 +142,19 @@ There are a few tidyverse functions we'll use:
 --
 
 - `dplyr::select()`
-- `dplyr::filter()`
-- `dplyr::mutate()`
-- `tidyr::gather()`
-- `tidyr::pivot_longer()`
 
 --
 
-Let's briefly review them.
 
----
+- `dplyr::filter()`
 
-class: bottom, center
-background-image: url(images/dplyr_filter.jpg)
+--
 
-.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
+- `dplyr::mutate()`
 
-???
+--
 
-Discuss select with it, too. 
-
----
-
-class: bottom, center
-background-image: url(images/dplyr_mutate.png)
-
-.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
-
----
-
-class: bottom, center
-background-image: url(images/tidyr_spread_gather.png)
-
-.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
-
-???
-
-Also discuss pivot_longer.
+- `tidyr::pivot_longer()`
 
 ---
 
@@ -608,43 +580,53 @@ Unfortunately, data *has* to be in long format. Often dependent t-test data is i
 
 ## Converting wide to long format
 
-.pull-left[
-```{r eval = TRUE}
-college %>%
-  select(weight_1, weight_2) %>%
-  gather(key = "time", value = "weight")
-```
-]
+Let's test the difference in means between `weight_1` and `weight_2`.
 
 --
 
-.pull-right[
-```{r eval = TRUE}
+```{r}
+college %>%
+  select(weight_1, weight_2) %>%
+  pivot_longer(cols = everything(), 
+               names_prefix = "weight_",
+               names_to = "time",
+               values_to = "weight",)
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  select(weight_1, weight_2) %>%
+  pivot_longer(cols = everything(), 
+               names_prefix = "weight_",
+               names_to = "time",
+               values_to = "weight",)
+```
+
+---
+
+## Dependent t-test in R
+
+```{r}
 college %>%
   select(weight_1, weight_2) %>%
   pivot_longer(cols = everything(), 
                names_to = "time",
                values_to = "weight",
-               names_prefix = "weight_")
-```
-]
-
----
-
-```{r eval = TRUE}
-college %>%
-  select(weight_1, weight_2) %>%
-  gather(key = "time", value = "weight") %>%
+               names_prefix = "weight_") %>%
   t_test(weight ~ time, paired = TRUE) #<<
 ```
 
 --
 
-```{r eval = TRUE}
+```{r eval = TRUE, echo = FALSE}
 college %>%
   select(weight_1, weight_2) %>%
-  pivot_longer(everything(), names_to = "time",
-               values_to = "weight", names_prefix = "weight_") %>%
+  pivot_longer(cols = everything(), 
+               names_to = "time",
+               values_to = "weight",
+               names_prefix = "weight_") %>%
   t_test(weight ~ time, paired = TRUE) #<<
 ```
 
@@ -673,13 +655,19 @@ Don't forget: You'll need to make your data long before running your t-test.
 ## 2 ##
 college %>%
   select(exam_1, exam_2) %>%
-  gather(key = "time", value = "score") %>%
-  t_test(exam ~ time, paired = TRUE)
+  pivot_longer(cols = everything(), 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "weight_") %>%
+  t_test(score ~ exam, paired = TRUE)
 
 ## 3 ##
 college %>%
-  select(exam_1, exam_2) %>%
-  gather(key = "act_test", value = "score") %>%
+  select(act_science, act_mathematics) %>%
+  pivot_longer(cols = everything(), 
+               names_to = "act_test",
+               values_to = "score",
+               names_prefix = "weight_") %>%
   t_test(score ~ act_test, paired = TRUE)
 
 ```
@@ -994,24 +982,10 @@ dat %>%
 
 Let's examine how exam scores (`exam_1`, `exam_2`, and `exam_3`) differ within individuals across time. 
 
-Notice that we'll need to make our data into *long format* to make this work, since we need the DV into into variable. Recall there are two ways to do this:
+Notice that we'll need to make our data into *long format* to make this work, since we need the DV into into variable. 
 
 --
 
-.pull-left[
-**gather**:
-```{r}
-college %>%
-  select(exam_1:exam_3, id) %>%
-  gather(-id, 
-         key = "exam", 
-         value = "score")
-```
-]
-
---
-
-.pull-right[
 **pivot_longer**:
 ```{r}
 college %>%
@@ -1021,7 +995,6 @@ college %>%
                values_to = "score",
                names_prefix = "exam_")
 ```
-]
 
 ---
 
@@ -1030,7 +1003,10 @@ college %>%
 ```{r}
 college %>%
   select(exam_1:exam_3, id) %>%
-  gather(-id, key = "exam", value = "score") %>%
+  pivot_longer(-id, 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "exam_") %>%
   anova_test(score ~ exam + Error(id/exam)) #<<
 ```
 
@@ -1039,7 +1015,10 @@ college %>%
 ```{r eval = TRUE, echo = FALSE}
 college %>%
   select(exam_1:exam_3, id) %>%
-  gather(-id, key = "exam", value = "score") %>%
+  pivot_longer(-id, 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "exam_") %>%
   anova_test(score ~ exam + Error(id/exam))
 ```
 
@@ -1050,7 +1029,10 @@ college %>%
 ```{r}
 college %>%
   select(exam_1:exam_3, id) %>%
-  gather(-id, key = "exam", value = "score") %>%
+  pivot_longer(-id, 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "exam_") %>%
   anova_test(dv = score, wid = exam, within = exam) #<<
 ```
 
@@ -1059,7 +1041,10 @@ college %>%
 ```{r eval = TRUE, echo = FALSE}
 college %>%
   select(exam_1:exam_3, id) %>%
-  gather(-id, key = "exam", value = "score") %>%
+  pivot_longer(-id, 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "exam_") %>%
   anova_test(dv = score, wid = exam, within = exam)
 ```
 
