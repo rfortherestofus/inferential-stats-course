@@ -1003,10 +1003,7 @@ college %>%
 ```{r}
 college %>%
   select(exam_1:exam_3, id) %>%
-  pivot_longer(-id, 
-               names_to = "exam",
-               values_to = "score",
-               names_prefix = "exam_") %>%
+  pivot_longer(-id, names_to = "exam", values_to = "score", names_prefix = "exam_") %>%
   anova_test(score ~ exam + Error(id/exam)) #<<
 ```
 
@@ -1015,10 +1012,7 @@ college %>%
 ```{r eval = TRUE, echo = FALSE}
 college %>%
   select(exam_1:exam_3, id) %>%
-  pivot_longer(-id, 
-               names_to = "exam",
-               values_to = "score",
-               names_prefix = "exam_") %>%
+  pivot_longer(-id, names_to = "exam", values_to = "score", names_prefix = "exam_") %>%
   anova_test(score ~ exam + Error(id/exam))
 ```
 
@@ -1029,11 +1023,8 @@ college %>%
 ```{r}
 college %>%
   select(exam_1:exam_3, id) %>%
-  pivot_longer(-id, 
-               names_to = "exam",
-               values_to = "score",
-               names_prefix = "exam_") %>%
-  anova_test(dv = score, wid = exam, within = exam) #<<
+  pivot_longer(-id, names_to = "exam", values_to = "score", names_prefix = "exam_") %>%
+  anova_test(dv = score, wid = id, within = exam) #<<
 ```
 
 --
@@ -1041,11 +1032,8 @@ college %>%
 ```{r eval = TRUE, echo = FALSE}
 college %>%
   select(exam_1:exam_3, id) %>%
-  pivot_longer(-id, 
-               names_to = "exam",
-               values_to = "score",
-               names_prefix = "exam_") %>%
-  anova_test(dv = score, wid = exam, within = exam)
+  pivot_longer(-id, names_to = "exam", values_to = "score", names_prefix = "exam_") %>%
+  anova_test(dv = score, wid = id, within = exam)
 ```
 
 ---
