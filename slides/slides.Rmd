@@ -1109,14 +1109,14 @@ The chi-square test is used to analyze categorical data (data that describe cate
 
 ```{r}
 college %>% 
-  tabyl(live_on_campus, athlete)
+  tabyl(smokes, athlete)
 ```
 
 --
 
 ```{r, eval = TRUE, echo = FALSE}
 college %>% 
-  tabyl(live_on_campus, athlete)
+  tabyl(smokes, athlete)
 ```
 
 
@@ -1414,7 +1414,7 @@ college %>%
 ```{r, eval = TRUE}
 college %>%
   filter(smokes == 1) %>%
-  filter(gender != "Trans*") %>%
+  filter(gender != "Trans*") %>% #<< 
   mutate(URM = recode(race, 
                       "Bi-Racial" = 1, #<<
                       "Asian" = 0, #<<
@@ -1697,11 +1697,11 @@ college %>%
 --
 
 ```{r eval = TRUE, echo = FALSE}
-# college %>%
-#   lm(exam_1 ~ iq,
-#      data = .) %>%
-#   lm.beta() %>%
-#   tidy()
+college %>%
+  lm(exam_1 ~ iq,
+     data = .) %>%
+  lm.beta() %>%
+  tidy()
 ```
 
 ---
@@ -1879,7 +1879,7 @@ class: center, middle, dk-section-title
 
 ### Hierarchical regression
 
-Hierarchical regression takes a *little* more work than in SPSS. Here are the steps:
+Hierarchical regression takes a *little* more work. Here are the steps:
 
 --
 
