@@ -2250,7 +2250,7 @@ So you've got your output...
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 ```{r}
 college %>%
@@ -2262,7 +2262,7 @@ college %>%
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 .pull-left[
 ```{r}
@@ -2286,7 +2286,7 @@ rel <- college %>%
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 ```{r}
 rel$alpha.drop #<<
@@ -2300,7 +2300,7 @@ rel$alpha.drop
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 ```{r}
 rel$alpha.drop %>%
@@ -2318,7 +2318,7 @@ rel$alpha.drop %>%
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 .pull-left[
 ```{r}
@@ -2332,7 +2332,7 @@ drop <- #<<
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 .pull-left[
 ```{r}
@@ -2365,6 +2365,56 @@ rel$total %>%
   mutate(std.alpha = round(std.alpha, 3))
 ```
 ]
+
+---
+
+## Another example: lm()
+
+.pull-left[
+```{r}
+lmbeta <- college %>%
+  lm(exam_1 ~ iq, data = .) %>%
+  lm.beta() %>%
+  summary() 
+```
+
+```{r eval = TRUE, echo = FALSE, include = FALSE}
+lmbeta <- college %>%
+  lm(exam_1 ~ iq, data = .) %>%
+  lm.beta() %>%
+  summary()
+```
+]
+
+--
+
+.pull-right[
+![](images/lm1.png)
+]
+
+---
+
+## Another example: lm()
+
+```{r}
+lmbeta$coefficients
+```
+
+```{r eval = TRUE, echo = FALSE}
+lmbeta$coefficients
+```
+
+---
+
+## Another example: lm()
+
+```{r}
+lmbeta$adj.r.squared
+```
+
+```{r eval = TRUE, echo = FALSE}
+lmbeta$adj.r.squared
+```
 
 ---
 
@@ -2440,11 +2490,17 @@ college %>%
 
 If you're writing your results directly in R, you can use inline code to embed your statistics in your text wrapping the statistic with `apa()`.
 
+--
+
 ### For example
+
+--
 
 **This**: 
 There was a strong, positive relationship between exam 1 and exam 2 scores, `'r apa(cor.test(college$exam_1, college$exam_2))'`.  
 .small[*Note*: use backticks, not apostrophes.]
+
+--
 
 **Turns into this**:
 There was a strong, positive relationship between exam 1 and exam 2 scores, `r apa(cor.test(college$exam_1, college$exam_2))`. 
@@ -2453,15 +2509,13 @@ There was a strong, positive relationship between exam 1 and exam 2 scores, `r a
 
 ## papaja package
 
-**papaja** stands for Preparing APA journal articles. It is an R Markdown template that produces APA manuscripts. 
+**papaja** stands for Preparing APA Journal Articles. It is an R Markdown template that produces APA manuscripts. 
 
 --
 
 It works with the **apa**, **APAstats**, and **apaTables** packages for easy reporting in accordance with APA guidelines. 
 
 ---
-
-
 
 background-image:url(images/test_assumptions.jpg)
 class: center, middle, dk-section-title
@@ -2484,7 +2538,7 @@ Our parametric statistics all have four main assumptions that we should test and
 
 --
 
-1. Scores are **independent** from one another. .small[*Note*: this is not an assumption of within groups designs like the dependent t-test or repeated measures ANOVA.]
+1. Scores are **independent** from one another. .small[*Note*: this is not an assumption of within subjects designs like the dependent t-test or repeated measures ANOVA.]
 
 --
 
@@ -2880,6 +2934,7 @@ What do you do when you've violated the assumptions of normality or homogeneity 
 ```{r eval = TRUE, echo = FALSE, fig.height = 6, fig.width = 12}
 college %>%
   ggplot(aes(iq)) +
+  geom_histogram(bins = 40) + 
   geom_bar()
 ```
 
@@ -2925,10 +2980,11 @@ college %>%
 college %>%
   select(id, iq) %>% 
   arrange(iq) %>%
-  mutate(iq = Winsorize(iq, #<<
+  mutate(iq = DescTools::Winsorize(iq, #<<
                         minval = 84, #<<
                         maxval = 125)) #<<
 ```
+.small[Winsorize() is from the DescTools package.]
 ]
 
 --
@@ -2990,6 +3046,9 @@ posskew %>%
   geom_density()
 ```
 ]
+
+??? 
+Explain the 2.1 was because can't take square roots of zero or negative values, so needed to shift values up. 
 
 ---
 
