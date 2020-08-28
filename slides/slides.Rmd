@@ -2424,7 +2424,7 @@ class: inverse
 
 --
 
-1. Perform a test of internal consistency using omega on the SWLS scale at time
+1. Perform a test of internal consistency using omega on the SWLS scale at time 1.
 
 --
 
@@ -2436,7 +2436,7 @@ class: inverse
 
 ## 2 ##
 relomega <- college %>%
-  select(starts_with("swls_time2")) %>%
+  select(starts_with("swls_time1")) %>%
   omega()
 
 relomega$omega.tot %>%
@@ -2696,7 +2696,7 @@ Interval and ratio data are:
 
 --
 
-- That have proportionate intervals between variables
+- That have proportionate intervals between levels
 
 --
 
@@ -2704,7 +2704,7 @@ Interval and ratio data are:
 
 --
 
-Ordinal variables *do not have proportionate intervals between intervals.*
+Ordinal variables *do not have proportionate intervals between levels.*
 
 --
 
