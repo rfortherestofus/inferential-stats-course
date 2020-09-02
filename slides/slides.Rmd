@@ -116,9 +116,9 @@ This course will cover seven topics.
 3. Packages:
 + tidyverse
 + broom
-+ janitor
 + rstatix
-+ stats
++ janitor
++ correlation
 + lm.beta
 + psych
 + and more!
@@ -126,16 +126,12 @@ This course will cover seven topics.
 ???
 
 library(tidyverse) ## because tidyverse = life  
-library(skimr) ## looking at the data  
-library(summarytools) ## looking at the data  
 library(broom) ## for extracting output using broom  
+library(rstatix) ## for tidyverse-friendly stats
 library(janitor) ## for chi-square: tabyl for chi-squares  
 library(correlation) ## for correlation: tidy correlation results  
 library(lm.beta) ## for regression: standardized coefficients  
 library(psych) ## for reliability: omega and alpha  
-library(apa) ## for reporting results in APA format  
-library(ggpubr) ## for qq plots  
-library(rstatix) ## for shapiro_test that is pipe-friendly  
 
 ---
 
@@ -146,43 +142,19 @@ There are a few tidyverse functions we'll use:
 --
 
 - `dplyr::select()`
-- `dplyr::filter()`
-- `dplyr::mutate()`
-- `tidyr::gather()`
-- `tidyr::pivot_longer()`
 
 --
 
-Let's briefly review them.
 
----
+- `dplyr::filter()`
 
-class: bottom, center
-background-image: url(images/dplyr_filter.jpg)
+--
 
-.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
+- `dplyr::mutate()`
 
-???
+--
 
-Discuss select with it, too. 
-
----
-
-class: bottom, center
-background-image: url(images/dplyr_mutate.png)
-
-.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
-
----
-
-class: bottom, center
-background-image: url(images/tidyr_spread_gather.png)
-
-.small[Image by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
-
-???
-
-Also discuss pivot_longer.
+- `tidyr::pivot_longer()`
 
 ---
 
@@ -280,7 +252,7 @@ You'll be working with the college dataset to run all your analyses.
 
 --
 
-1. Create a new project. Make sure you put it somehwere you'll be able to find it again later!
+1. Create a new project. Make sure you put it somewhere you'll be able to find it again later!
 
 --
 
@@ -461,27 +433,25 @@ The alternative argument lets you specify either **less** or **greater** than 0.
 
 ## Alternative hypothesis
 
-.pull-left[
-```{r, eval = TRUE}
+```{r}
 college %>%
-  t_test(weight_2 ~ smokes, 
-         var.equal = TRUE, 
-         detailed = TRUE,
-         alternative = "two.sided") #<<
+  t_test(weight_2 ~ smokes, var.equal = TRUE, detailed = TRUE, `alternative = "two.sided"`)
 ```
-]
 
---
-
-.pull-right[
-```{r, eval = TRUE}
+```{r, eval = TRUE, echo = FALSE}
 college %>%
-  t_test(weight_2 ~ smokes,  
-         var.equal = TRUE,  
-         detailed = TRUE,
-         alternative = "greater") #<<
+  t_test(weight_2 ~ smokes, var.equal = TRUE, detailed = TRUE, alternative = "two.sided")
 ```
-]
+
+```{r}
+college %>%
+  t_test(weight_2 ~ smokes, var.equal = TRUE, detailed = TRUE, `alternative = "greater"`) 
+```
+
+```{r, eval = TRUE, echo = FALSE}
+college %>%
+  t_test(weight_2 ~ smokes, var.equal = TRUE, detailed = TRUE, alternative = "greater") 
+```
 
 ???
 
@@ -610,43 +580,53 @@ Unfortunately, data *has* to be in long format. Often dependent t-test data is i
 
 ## Converting wide to long format
 
-.pull-left[
-```{r eval = TRUE}
-college %>%
-  select(weight_1, weight_2) %>%
-  gather(key = "time", value = "weight")
-```
-]
+Let's test the difference in means between `weight_1` and `weight_2`.
 
 --
 
-.pull-right[
-```{r eval = TRUE}
+```{r}
+college %>%
+  select(weight_1, weight_2) %>%
+  pivot_longer(cols = everything(), 
+               names_prefix = "weight_",
+               names_to = "time",
+               values_to = "weight",)
+```
+
+--
+
+```{r eval = TRUE, echo = FALSE}
+college %>%
+  select(weight_1, weight_2) %>%
+  pivot_longer(cols = everything(), 
+               names_prefix = "weight_",
+               names_to = "time",
+               values_to = "weight",)
+```
+
+---
+
+## Dependent t-test in R
+
+```{r}
 college %>%
   select(weight_1, weight_2) %>%
   pivot_longer(cols = everything(), 
                names_to = "time",
                values_to = "weight",
-               names_prefix = "weight_")
-```
-]
-
----
-
-```{r eval = TRUE}
-college %>%
-  select(weight_1, weight_2) %>%
-  gather(key = "time", value = "weight") %>%
+               names_prefix = "weight_") %>%
   t_test(weight ~ time, paired = TRUE) #<<
 ```
 
 --
 
-```{r eval = TRUE}
+```{r eval = TRUE, echo = FALSE}
 college %>%
   select(weight_1, weight_2) %>%
-  pivot_longer(everything(), names_to = "time",
-               values_to = "weight", names_prefix = "weight_") %>%
+  pivot_longer(cols = everything(), 
+               names_to = "time",
+               values_to = "weight",
+               names_prefix = "weight_") %>%
   t_test(weight ~ time, paired = TRUE) #<<
 ```
 
@@ -675,13 +655,19 @@ Don't forget: You'll need to make your data long before running your t-test.
 ## 2 ##
 college %>%
   select(exam_1, exam_2) %>%
-  gather(key = "time", value = "score") %>%
-  t_test(exam ~ time, paired = TRUE)
+  pivot_longer(cols = everything(), 
+               names_to = "exam",
+               values_to = "score",
+               names_prefix = "weight_") %>%
+  t_test(score ~ exam, paired = TRUE)
 
 ## 3 ##
 college %>%
-  select(exam_1, exam_2) %>%
-  gather(key = "act_test", value = "score") %>%
+  select(act_science, act_mathematics) %>%
+  pivot_longer(cols = everything(), 
+               names_to = "act_test",
+               values_to = "score",
+               names_prefix = "weight_") %>%
   t_test(score ~ act_test, paired = TRUE)
 
 ```
@@ -996,24 +982,10 @@ dat %>%
 
 Let's examine how exam scores (`exam_1`, `exam_2`, and `exam_3`) differ within individuals across time. 
 
-Notice that we'll need to make our data into *long format* to make this work, since we need the DV into into variable. Recall there are two ways to do this:
+Notice that we'll need to make our data into *long format* to make this work, since we need the DV into into variable. 
 
 --
 
-.pull-left[
-**gather**:
-```{r}
-college %>%
-  select(exam_1:exam_3, id) %>%
-  gather(-id, 
-         key = "exam", 
-         value = "score")
-```
-]
-
---
-
-.pull-right[
 **pivot_longer**:
 ```{r}
 college %>%
@@ -1023,7 +995,6 @@ college %>%
                values_to = "score",
                names_prefix = "exam_")
 ```
-]
 
 ---
 
@@ -1032,7 +1003,7 @@ college %>%
 ```{r}
 college %>%
   select(exam_1:exam_3, id) %>%
-  gather(-id, key = "exam", value = "score") %>%
+  pivot_longer(-id, names_to = "exam", values_to = "score", names_prefix = "exam_") %>%
   anova_test(score ~ exam + Error(id/exam)) #<<
 ```
 
@@ -1041,7 +1012,7 @@ college %>%
 ```{r eval = TRUE, echo = FALSE}
 college %>%
   select(exam_1:exam_3, id) %>%
-  gather(-id, key = "exam", value = "score") %>%
+  pivot_longer(-id, names_to = "exam", values_to = "score", names_prefix = "exam_") %>%
   anova_test(score ~ exam + Error(id/exam))
 ```
 
@@ -1052,8 +1023,8 @@ college %>%
 ```{r}
 college %>%
   select(exam_1:exam_3, id) %>%
-  gather(-id, key = "exam", value = "score") %>%
-  anova_test(dv = score, wid = exam, within = exam) #<<
+  pivot_longer(-id, names_to = "exam", values_to = "score", names_prefix = "exam_") %>%
+  anova_test(dv = score, wid = id, within = exam) #<<
 ```
 
 --
@@ -1061,8 +1032,8 @@ college %>%
 ```{r eval = TRUE, echo = FALSE}
 college %>%
   select(exam_1:exam_3, id) %>%
-  gather(-id, key = "exam", value = "score") %>%
-  anova_test(dv = score, wid = exam, within = exam)
+  pivot_longer(-id, names_to = "exam", values_to = "score", names_prefix = "exam_") %>%
+  anova_test(dv = score, wid = id, within = exam)
 ```
 
 ---
@@ -1138,14 +1109,14 @@ The chi-square test is used to analyze categorical data (data that describe cate
 
 ```{r}
 college %>% 
-  tabyl(live_on_campus, athlete)
+  tabyl(smokes, athlete)
 ```
 
 --
 
 ```{r, eval = TRUE, echo = FALSE}
 college %>% 
-  tabyl(live_on_campus, athlete)
+  tabyl(smokes, athlete)
 ```
 
 
@@ -1274,7 +1245,6 @@ class: inverse
 ## Your Turn
 
 --
-
 
 1. Perform a chi-square to examine how `grade_class` relates to `live_on_campus`. What is the p-value? Is there a relationship?
 
@@ -1444,7 +1414,7 @@ college %>%
 ```{r, eval = TRUE}
 college %>%
   filter(smokes == 1) %>%
-  filter(gender != "Trans*") %>%
+  filter(gender != "Trans*") %>% #<< 
   mutate(URM = recode(race, 
                       "Bi-Racial" = 1, #<<
                       "Asian" = 0, #<<
@@ -1909,7 +1879,7 @@ class: center, middle, dk-section-title
 
 ### Hierarchical regression
 
-Hierarchical regression takes a *little* more work than in SPSS. Here are the steps:
+Hierarchical regression takes a *little* more work. Here are the steps:
 
 --
 
@@ -2280,7 +2250,7 @@ So you've got your output...
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 ```{r}
 college %>%
@@ -2292,7 +2262,7 @@ college %>%
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 .pull-left[
 ```{r}
@@ -2316,7 +2286,7 @@ rel <- college %>%
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 ```{r}
 rel$alpha.drop #<<
@@ -2330,7 +2300,7 @@ rel$alpha.drop
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 ```{r}
 rel$alpha.drop %>%
@@ -2348,7 +2318,7 @@ rel$alpha.drop %>%
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 .pull-left[
 ```{r}
@@ -2362,7 +2332,7 @@ drop <- #<<
 
 ---
 
-## An example: alpha
+## An example: alpha()
 
 .pull-left[
 ```{r}
@@ -2398,13 +2368,67 @@ rel$total %>%
 
 ---
 
+## Another example: lm()
+
+.pull-left[
+```{r}
+lmbeta <- college %>%
+  lm(exam_1 ~ iq, data = .) %>%
+  lm.beta() %>%
+  summary() 
+```
+
+```{r eval = TRUE, echo = FALSE, include = FALSE}
+lmbeta <- college %>%
+  lm(exam_1 ~ iq, data = .) %>%
+  lm.beta() %>%
+  summary()
+```
+]
+
+--
+
+.pull-right[
+![](images/lm1.png)
+]
+
+---
+
+## Another example: lm()
+
+```{r}
+lmbeta$coefficients
+```
+
+```{r eval = TRUE, echo = FALSE}
+lmbeta$coefficients
+```
+
+---
+
+## Another example: lm()
+
+```{r}
+lmbeta$adj.r.squared
+```
+
+```{r eval = TRUE, echo = FALSE}
+lmbeta$adj.r.squared
+```
+
+---
+
 class: inverse
 
 ## Your Turn
 
 --
 
-1. Perform a test of internal consistency using omega on the SWLS scale at time 2. Extract the `omega.tot` information from the list. Round it to two decimals. What is your omega value?
+1. Perform a test of internal consistency using omega on the SWLS scale at time 1.
+
+--
+
+2. Extract the `omega.tot` information from the list. Round it to two decimals. What is your omega value?
 
 ```{r include = FALSE}
 
@@ -2412,7 +2436,7 @@ class: inverse
 
 ## 2 ##
 relomega <- college %>%
-  select(starts_with("swls_time2")) %>%
+  select(starts_with("swls_time1")) %>%
   omega()
 
 relomega$omega.tot %>%
@@ -2466,11 +2490,17 @@ college %>%
 
 If you're writing your results directly in R, you can use inline code to embed your statistics in your text wrapping the statistic with `apa()`.
 
+--
+
 ### For example
+
+--
 
 **This**: 
 There was a strong, positive relationship between exam 1 and exam 2 scores, `'r apa(cor.test(college$exam_1, college$exam_2))'`.  
 .small[*Note*: use backticks, not apostrophes.]
+
+--
 
 **Turns into this**:
 There was a strong, positive relationship between exam 1 and exam 2 scores, `r apa(cor.test(college$exam_1, college$exam_2))`. 
@@ -2479,15 +2509,13 @@ There was a strong, positive relationship between exam 1 and exam 2 scores, `r a
 
 ## papaja package
 
-**papaja** stands for Preparing APA journal articles. It is an R Markdown template that produces APA manuscripts. 
+**papaja** stands for Preparing APA Journal Articles. It is an R Markdown template that produces APA manuscripts. 
 
 --
 
 It works with the **apa**, **APAstats**, and **apaTables** packages for easy reporting in accordance with APA guidelines. 
 
 ---
-
-
 
 background-image:url(images/test_assumptions.jpg)
 class: center, middle, dk-section-title
@@ -2510,7 +2538,7 @@ Our parametric statistics all have four main assumptions that we should test and
 
 --
 
-1. Scores are **independent** from one another. .small[*Note*: this is not an assumption of within groups designs like the dependent t-test or repeated measures ANOVA.]
+1. Scores are **independent** from one another. .small[*Note*: this is not an assumption of within subjects designs like the dependent t-test or repeated measures ANOVA.]
 
 --
 
@@ -2668,7 +2696,7 @@ Interval and ratio data are:
 
 --
 
-- That have proportionate intervals between variables
+- That have proportionate intervals between levels
 
 --
 
@@ -2676,7 +2704,7 @@ Interval and ratio data are:
 
 --
 
-Ordinal variables *do not have proportionate intervals between intervals.*
+Ordinal variables *do not have proportionate intervals between levels.*
 
 --
 
@@ -2906,6 +2934,7 @@ What do you do when you've violated the assumptions of normality or homogeneity 
 ```{r eval = TRUE, echo = FALSE, fig.height = 6, fig.width = 12}
 college %>%
   ggplot(aes(iq)) +
+  geom_histogram(bins = 40) + 
   geom_bar()
 ```
 
@@ -2951,10 +2980,11 @@ college %>%
 college %>%
   select(id, iq) %>% 
   arrange(iq) %>%
-  mutate(iq = Winsorize(iq, #<<
+  mutate(iq = DescTools::Winsorize(iq, #<<
                         minval = 84, #<<
                         maxval = 125)) #<<
 ```
+.small[Winsorize() is from the DescTools package.]
 ]
 
 --
@@ -3016,6 +3046,9 @@ posskew %>%
   geom_density()
 ```
 ]
+
+??? 
+Explain the 2.1 was because can't take square roots of zero or negative values, so needed to shift values up. 
 
 ---
 
