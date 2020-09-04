@@ -514,16 +514,16 @@ Notice what happens since gender has 3 levels. Try out using the `filter()` func
 
 ### T-TEST ANSWERS
 
-## 2 ##
+## 1 ##
 college %>%
   t_test(exam_1 ~ athlete, var.equal = TRUE)
 
-## 3 ##
+## 2 ##
 college %>%
   filter(gender != "Trans*") %>%
   t_test(act_english ~ gender, var.equal = FALSE)
 
-## Alternative 3: this is not covered ##
+## Alternative 2: this is not covered ##
 college %>%
   t_test(act_english ~ gender, var.equal = FALSE,
          comparisons = list(c("Male", "Female")))
@@ -652,7 +652,7 @@ Don't forget: You'll need to make your data long before running your t-test.
 
 ### T-TEST ANSWERS
 
-## 2 ##
+## 1 ##
 college %>%
   select(exam_1, exam_2) %>%
   pivot_longer(cols = everything(), 
@@ -661,7 +661,7 @@ college %>%
                names_prefix = "weight_") %>%
   t_test(score ~ exam, paired = TRUE)
 
-## 3 ##
+## 2 ##
 college %>%
   select(act_science, act_mathematics) %>%
   pivot_longer(cols = everything(), 
@@ -832,11 +832,11 @@ class: inverse
 
 ### ONE-WAY ANOVA ANSWERS
 
-## 2 ##
+## 1 ##
 college %>%
   anova_test(hs_gpa ~ grade_class)
 
-## 3 ##
+## 2 ##
 college %>%
   anova_test(act_english ~ race)
 ```
@@ -921,14 +921,14 @@ class: inverse
 
 ### ONE-WAY ANOVA ANSWERS
 
-## 2 ##
+## 1 ##
 college %>%
   anova_test(hs_gpa ~ grade_class)
 
 college %>%
   tukey_hsd(hs_gpa ~ grade_class)
 
-## 3 ##
+## 2 ##
 college %>%
   anova_test(weight_2 ~ gender)
 
@@ -1256,20 +1256,20 @@ class: inverse
 
 ### CHI-SQUARE ANSWERS
 
-## 2 ##
+## 1 ##
 tab2 <- college %>%
   tabyl(grade_class, live_on_campus) %>%
   janitor::chisq.test()
 
 tab2
 
-## 3 ##
+## 2 ##
 tab2$stdres
 
 tab2$observed
 
 tab2$expected
-# 
+
 ```
 
 ---
@@ -1569,7 +1569,7 @@ class: inverse
 
 ### CORRELATION ANSWERS
 
-## 2 ##
+## 1 ##
 college %>%
   cor_mat(starts_with("act")) %>%
   cor_mark_significant()
@@ -1718,7 +1718,7 @@ class: inverse
 
 ### LINEAR REGRESSION ANSWERS
 
-## 2 ##
+## 1 ##
 college %>%
   lm(act_reading ~ iq, 
      data = .) %>%
@@ -1858,7 +1858,7 @@ class: inverse
 
 ### MULTIPLE REGRESSION ANSWERS
 
-## 2 ##
+## 1 ##
 college %>%
   lm(act_reading ~ iq + act_science, 
      data = .) %>%
@@ -2214,7 +2214,7 @@ class: inverse
 
 ### RELIABILITY ANSWERS
 
-## 2 ##
+## 1 ##
 college %>%
   select(starts_with("swls_time2")) %>%
   omega()
@@ -2434,11 +2434,12 @@ class: inverse
 
 ### EXTRACTING BASE R ANSWERS
 
-## 2 ##
+## 1 ##
 relomega <- college %>%
   select(starts_with("swls_time1")) %>%
   omega()
 
+## 2 ## 
 relomega$omega.tot %>%
   round(2)
 

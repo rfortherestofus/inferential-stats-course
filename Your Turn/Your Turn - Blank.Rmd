@@ -1,0 +1,144 @@
+---
+title: "Inferential Stats with R - Your Turn"
+author: "DLW"
+date: "9/4/2020"
+output: html_document
+---
+
+# Introduction to the Dataset
+
+You'll be working with the college dataset to run all your analyses. 
+
+1. Create a new project. Make sure you put it somehwere you'll be able to find it again later!
+
+2. Download the dataset "college.csv" from https://bit.ly/college-dataset
+
+3. Create a new R script file or RMarkdown document where you'll do all of your inferential statistics
+
+4. Import the spreadsheet into a dataframe `college` using `readr::read_csv()`
+
+```{r}
+
+```
+
+# Independent t-test
+
+1. Perform an independent samples t-test to test whether there is a difference in `exam_1` by `athlete`. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
+
+2. Perform an independent samples t-test to test whether there is a difference in `act_english` by `gender`. Use `var.equal = TRUE`. Is there a difference? What is the p-value? 
+
+Notice what happens since gender has 3 levels. Try out using the `filter()` function from dplyr to only check the difference between Female and Male students. Alternatively, check out the page on `t_test()` to see how to use the `comparisons` argument to specify the groups to compare.
+
+```{r}
+
+```
+
+# Dependent t-test
+
+1. Perform a  dependent samples t-test to test whether there is a difference in exam scores: `exam_1` and `exam_2`. Is there a difference? What is the p-value? 
+
+2. Perform a dependent samples t-test to test whether there is a difference in `act_science` and `act_mathematics` scores. Is there a difference? What is the p-value?
+
+Don't forget: You'll need to make your data long before running your t-test.
+
+```{r}
+
+```
+
+# One-way ANOVA
+
+1. Perform a one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. Is there a difference? What is the p-value? 
+
+2. Perform a one-way ANOVA to test whether there is a difference in `act_english` by `race`. Is there a difference? What is the p-value? 
+
+```{r}
+
+```
+
+# Post hoc comparisons
+
+1. Perform one-way ANOVA to test whether there is a difference in `hs_gpa` by `grade_class`. Is there a difference? If so, perform a Tukey's HSD to test where the differences are. Describe the differences.
+
+2. Perform one-way ANOVA to test whether there is a difference in `weight_2` by `gender`. Is there a difference? If so, perform a Tukey's HSD to test where the differences are. Describe the differences. 
+
+```{r}
+
+```
+
+# Chi-square
+
+1. Perform a chi-square to examine how `grade_class` relates to `live_on_campus`. What is the p-value? Is there a relationship?
+
+2. If there is a significant difference, examine standardized residuals and the observed/expected frequencies to determine what grade class is more or less likely to live on campus. Interpret the results.
+
+```{r}
+
+```
+
+# Correlation
+
+1. Perform a correlation among the four ACT scores. Which two scales of the ACT have the highest correlation? Which two scales have the lowest correlation?
+
+```{r}
+
+```
+
+# Linear regression
+
+1. Perform a linear regression examining how `iq` predicts `act_reading`. Ask for standardized coefficients before calling for the summary of results. Is IQ a significant predictor of ACT reading scores? If so, what is the standardized coefficient?
+
+```{r}
+
+```
+
+# Multiple regression
+
+1. Perform a multiple regression examining how both `iq` and `act_science` predict `act_reading`. Ask for standardized coefficients before calling for the summary of results. Which (if any) of the IVs are significant predictors? Based on the standardized coefficient, which is the stronger predictor of ACT readings cores?
+
+```{r}
+
+```
+
+# Reliability
+
+1. Perform a test of internal consistency using both omega and alpha on the SWLS scale at time 2. Does the scale have good internal consistency at time 2, as well?
+
+```{r}
+
+```
+
+# Extracting output
+
+1. Perform a test of internal consistency using omega on the SWLS scale at time 1.
+
+2. Extract the `omega.tot` information from the list. Round it to two decimals. What is your omega value?
+
+```{r}
+
+```
+
+# Testing for normality
+
+1. Using each of the three methods, test whether `age` is normally distributed. Come to a conclusion: is age normally distributed? 
+
+```{r}
+
+```
+
+# Testing for homogeneity of variance
+
+1. Using each of the two methods, test whether the variance of `weight_1` differs by whether someone smokes. Come to a conclusion: is there homogeneity of variance in weight by smoking status? 
+
+```{r}
+
+```
+ 
+# Violated assumptions
+
+1. Try the various transformations on the `age` variable. Do any of them improve the normality of the variable? Test using the `shapiro_test()` function as you learned in the "Testing assumptions" lesson.
+
+```{r}
+
+```
+
+
