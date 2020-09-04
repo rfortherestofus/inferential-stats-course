@@ -252,7 +252,7 @@ You'll be working with the college dataset to run all your analyses.
 
 --
 
-1. Create a new project. Make sure you put it somehwere you'll be able to find it again later!
+1. Create a new project. Make sure you put it somewhere you'll be able to find it again later!
 
 --
 
