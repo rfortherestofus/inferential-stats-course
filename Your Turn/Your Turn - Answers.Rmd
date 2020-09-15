@@ -71,7 +71,7 @@ college %>%
   pivot_longer(cols = everything(), 
                names_to = "exam",
                values_to = "score",
-               names_prefix = "weight_") %>%
+               names_prefix = "exam_") %>%
   t_test(score ~ exam, paired = TRUE)
 
 ## 2 ##

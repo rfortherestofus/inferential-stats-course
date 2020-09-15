@@ -9,7 +9,7 @@ output: html_document
 
 You'll be working with the college dataset to run all your analyses. 
 
-1. Create a new project. Make sure you put it somewhere you'll be able to find it again later!
+1. Create a new project. Make sure you put it somehwere you'll be able to find it again later!
 
 2. Download the dataset "college.csv" from https://bit.ly/college-dataset
 
@@ -45,12 +45,12 @@ Notice what happens since gender has 3 levels. Try out using the `filter()` func
 college %>%
   t_test(exam_1 ~ athlete, var.equal = TRUE)
 
-## 2 ##
+## 2 - Filter ##
 college %>%
   filter(gender != "Trans*") %>%
   t_test(act_english ~ gender, var.equal = TRUE)
 
-## 2 alternative ##
+## 2 - Comparisons ##
 college %>%
   t_test(act_english ~ gender, var.equal = TRUE,
          comparisons = list(c("Male", "Female")))
@@ -78,10 +78,10 @@ college %>%
 college %>%
   select(act_science, act_mathematics) %>%
   pivot_longer(cols = everything(),
-               names_to = "ACT",
+               names_to = "act",
                values_to = "score",
                names_prefix = "act_") %>%
-  t_test(score ~ ACT, paired = TRUE)
+  t_test(score ~ act, paired = TRUE)
 ```
 
 # One-way ANOVA
@@ -108,7 +108,9 @@ college %>%
 
 ```{r}
 ## 1 ##
-# No significant difference in hs_gpa by grade_class, so no Tukey's HSD.
+college %>%
+  anova_test(hs_gpa ~ grade_class)
+# do not run a Tukey's HSD: there is no significant difference in groups
 
 ## 2 ##
 college %>%
@@ -126,17 +128,7 @@ college %>%
 2. If there is a significant difference, examine standardized residuals and the observed/expected frequencies to determine what grade class is more or less likely to live on campus. Interpret the results.
 
 ```{r}
-## 1 ##
-tab <- college %>%
-  tabyl(grade_class, live_on_campus) %>%
-  chisq.test()
 
-## 2 ##
-tab$stdres
-
-tab$observed
-
-tab$expected
 ```
 
 # Correlation
@@ -144,13 +136,7 @@ tab$expected
 1. Perform a correlation among the four ACT scores. Which two scales of the ACT have the highest correlation? Which two scales have the lowest correlation?
 
 ```{r}
-college %>%
-  cor_mat(starts_with("act")) %>%
-  pull_lower_triangle() %>%
-  cor_mark_significant()
 
-#Highest: English & math r = .83
-#Lowest: English & reading r = .38
 ```
 
 # Linear regression
@@ -158,10 +144,7 @@ college %>%
 1. Perform a linear regression examining how `iq` predicts `act_reading`. Ask for standardized coefficients before calling for the summary of results. Is IQ a significant predictor of ACT reading scores? If so, what is the standardized coefficient?
 
 ```{r}
-college %>%
-  lm(act_reading ~ iq, data = .) %>%
-  lm.beta() %>%
-  summary()
+
 ```
 
 # Multiple regression
@@ -169,10 +152,7 @@ college %>%
 1. Perform a multiple regression examining how both `iq` and `act_science` predict `act_reading`. Ask for standardized coefficients before calling for the summary of results. Which (if any) of the IVs are significant predictors? Based on the standardized coefficient, which is the stronger predictor of ACT readings cores?
 
 ```{r}
-college %>%
-  lm(act_reading ~ iq + act_science, data = .) %>%
-  lm.beta() %>%
-  summary()
+
 ```
 
 # Reliability
@@ -180,15 +160,7 @@ college %>%
 1. Perform a test of internal consistency using both omega and alpha on the SWLS scale at time 2. Does the scale have good internal consistency at time 2, as well?
 
 ```{r}
-## omega ##
-college %>%
-  select(starts_with("swls_time2")) %>%
-  omega()
 
-## alpha ##
-college %>%
-  select(starts_with("swls_time2")) %>%
-  alpha()
 ```
 
 # Extracting output
@@ -198,14 +170,7 @@ college %>%
 2. Extract the `omega.tot` information from the list. Round it to two decimals. What is your omega value?
 
 ```{r}
-## 1 ##
-rel <- college %>%
-  select(starts_with("swls_time1")) %>%
-  omega()
 
-## 2 ##
-rel$omega.tot %>%
-  round(digits = 2)
 ```
 
 # Testing for normality
@@ -213,18 +178,7 @@ rel$omega.tot %>%
 1. Using each of the three methods, test whether `age` is normally distributed. Come to a conclusion: is age normally distributed? 
 
 ```{r}
-# Density plot #
-college %>%
-  ggplot(aes(age)) +
-  geom_density()
 
-# q-q plot #
-college %>%
-  ggqqplot("age")
-
-# Shapiro-Wilk's test #
-college %>%
-  shapiro_test(age)
 ```
 
 # Testing for homogeneity of variance
@@ -232,16 +186,7 @@ college %>%
 1. Using each of the two methods, test whether the variance of `weight_1` differs by whether someone smokes. Come to a conclusion: is there homogeneity of variance in weight by smoking status? 
 
 ```{r}
-# Graph the data #
-college %>%
-  mutate(smokes = as.factor(smokes)) %>%
-  ggplot(aes(smokes, weight_1)) +
-  geom_jitter(width = .1) +
-  geom_boxplot(alpha = .8)
 
-# Levene's test #
-college %>%
-  levene_test(weight_1 ~ as.factor(smokes))
 ```
  
 # Violated assumptions
@@ -249,12 +194,7 @@ college %>%
 1. Try the various transformations on the `age` variable. Do any of them improve the normality of the variable? Test using the `shapiro_test()` function as you learned in the "Testing assumptions" lesson.
 
 ```{r}
-college %>%
-  select(age) %>%
-  mutate(agelog = log(age),
-         agesqrt = sqrt(age),
-         agerec = 1/(age)) %>%
-  shapiro_test(age, agelog, agesqrt, agerec)
+
 ```
 
 
